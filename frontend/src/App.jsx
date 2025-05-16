@@ -1,16 +1,30 @@
-import { Outlet, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import theme from './theme';
 
-export default function App() {
+// Layout components
+import Layout from './components/layout/Layout';
+
+// Pages
+import Home from './pages/Home';
+import Tools from './pages/Tools';
+import Contact from './pages/Contact';
+
+function App() {
   return (
-    <div>
-      <nav style={{ padding: 10, borderBottom: "1px solid #ccc" }}>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/about">About</Link> |{" "}
-        <Link to="/products">Products</Link>
-      </nav>
-      <main style={{ padding: 20 }}>
-        <Outlet />
-      </main>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </ThemeProvider>
   );
 }
+
+export default App;
