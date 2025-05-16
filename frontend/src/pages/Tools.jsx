@@ -29,7 +29,6 @@ import {
 
 import ToolCard from '@components/ui/ToolCard';
 
-// Mock data
 const toolsData = [
     {
         id: '1',
@@ -40,14 +39,19 @@ const toolsData = [
         isNew: true,
     },
     {
-        id: '2',
-        title: 'AI Content Generator',
-        description: 'Create high-quality content...',
-        imageUrl: 'https://images.pexels.com/photos/7014337/pexels-photo-7014337.jpeg?auto=compress&cs=tinysrgb&w=600',
-        category: 'Text Generation',
-        isPremium: true,
+        id: '3',
+        title: 'Image Enhancer',
+        description: 'Enhance and upscale images...',
+        imageUrl: 'https://images.pexels.com/photos/3768130/pexels-photo-3768130.jpeg?auto=compress&cs=tinysrgb&w=600',
+        category: 'Image Processing',
     },
-    // ... (các tool còn lại giữ nguyên như cũ)
+    {
+        id: '4',
+        title: 'Data Insights Generator',
+        description: 'Generate insights from data...',
+        imageUrl: 'https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&w=600',
+        category: 'Data Analysis',
+    },
 ];
 
 const categories = [
@@ -74,7 +78,6 @@ const Tools = () => {
             tool.description.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
         if (activeTab === 1) return matchesSearch && matchesCategory && tool.isNew;
-        if (activeTab === 2) return matchesSearch && matchesCategory && tool.isPremium;
         return matchesSearch && matchesCategory;
     });
 
@@ -113,7 +116,7 @@ const Tools = () => {
             >
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
-                        <Grid item xs={12} md={7}>
+                        <Grid size={{ xs: 12, md: 7 }}>
                             <Typography variant="h3" component="h1" fontWeight={700} gutterBottom>
                                 AI Tools Library
                             </Typography>
@@ -135,7 +138,7 @@ const Tools = () => {
                                     />
                                     <Chip
                                         icon={<Bookmark size={16} />}
-                                        label="Free & Premium"
+                                        label="Free Only"
                                         sx={{
                                             bgcolor: theme.palette.secondary.main + '20',
                                             color: theme.palette.secondary.main,
@@ -146,7 +149,7 @@ const Tools = () => {
                             </Box>
                         </Grid>
 
-                        <Grid item xs={12} md={5}>
+                        <Grid size={{ xs: 12, md: 5 }}>
                             <Paper
                                 elevation={0}
                                 sx={{
@@ -191,7 +194,7 @@ const Tools = () => {
             <Box sx={{ py: { xs: 6, md: 10 } }}>
                 <Container maxWidth="lg">
                     <Grid container spacing={4}>
-                        <Grid item xs={12} md={3}>
+                        <Grid size={{ xs: 12, md: 3 }}>
                             <Paper
                                 elevation={0}
                                 sx={{
@@ -238,12 +241,11 @@ const Tools = () => {
                             </Paper>
                         </Grid>
 
-                        <Grid item xs={12} md={9}>
+                        <Grid size={{ xs: 12, md: 9 }}>
                             <Box sx={{ mb: 4 }}>
                                 <Tabs value={activeTab} onChange={handleTabChange}>
                                     <Tab label="All Tools" />
                                     <Tab label="New" />
-                                    <Tab label="Premium" />
                                 </Tabs>
                             </Box>
 
@@ -257,7 +259,7 @@ const Tools = () => {
                                 <>
                                     <Grid container spacing={4}>
                                         {displayedTools.map((tool) => (
-                                            <Grid item xs={12} sm={6} key={tool.id}>
+                                            <Grid size={{ xs: 12, sm: 6 }} key={tool.id}>
                                                 <ToolCard {...tool} />
                                             </Grid>
                                         ))}

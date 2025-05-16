@@ -120,6 +120,13 @@ let theme = createTheme({
                 },
             },
         },
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    userSelect: 'none',
+                },
+            },
+        },
     },
 });
 

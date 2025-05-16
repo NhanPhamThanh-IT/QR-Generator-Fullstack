@@ -1,11 +1,11 @@
-import { 
-  Box, 
-  Container, 
-  Grid, 
-  Typography, 
-  Link, 
-  Button, 
-  TextField, 
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Link,
+  Button,
+  TextField,
   Divider,
   IconButton,
   useTheme
@@ -18,9 +18,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Box 
-      component="footer" 
-      sx={{ 
+    <Box
+      component="footer"
+      sx={{
         bgcolor: 'background.paper',
         py: 6,
         borderTop: '1px solid',
@@ -30,7 +30,7 @@ const Footer = () => {
     >
       <Container maxWidth="lg">
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Sparkles size={28} color={theme.palette.primary.main} />
               <Typography
@@ -42,7 +42,7 @@ const Footer = () => {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2, maxWidth: 300 }}>
-              Empowering users with cutting-edge AI tools designed to simplify tasks, 
+              Empowering users with cutting-edge AI tools designed to simplify tasks,
               enhance productivity, and unlock new possibilities.
             </Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
@@ -63,8 +63,8 @@ const Footer = () => {
               </IconButton>
             </Box>
           </Grid>
-          
-          <Grid item xs={6} sm={3} md={2}>
+
+          <Grid size={{ xs: 6, sm: 3, md: 2 }}>
             <Typography variant="subtitle1" fontWeight={600} gutterBottom>
               Pages
             </Typography>
@@ -80,8 +80,8 @@ const Footer = () => {
               </Link>
             </Box>
           </Grid>
-          
-          <Grid item xs={6} sm={3} md={2}>
+
+          <Grid size={{ xs: 6, sm: 3, md: 2 }}>
             <Typography variant="subtitle1" fontWeight={600} gutterBottom>
               Resources
             </Typography>
@@ -100,8 +100,8 @@ const Footer = () => {
               </Link>
             </Box>
           </Grid>
-          
-          <Grid item xs={12} sm={6} md={4}>
+
+          <Grid size={{ xs: 12, sm: 6, md: 4 }}>
             <Typography variant="subtitle1" fontWeight={600} gutterBottom>
               Subscribe to our newsletter
             </Typography>
@@ -113,18 +113,22 @@ const Footer = () => {
                 size="small"
                 placeholder="Your email"
                 variant="outlined"
-                sx={{ 
+                sx={{
                   flexGrow: 1,
+                  height: 40, // chiều cao cố định
                   "& .MuiOutlinedInput-root": {
-                    borderRadius: "28px 0 0 28px"
-                  }
+                    height: '100%',
+                    borderRadius: "28px 0 0 28px",
+                  },
                 }}
               />
-              <Button 
-                variant="contained" 
-                sx={{ 
+              <Button
+                variant="contained"
+                sx={{
+                  height: 40, // cùng chiều cao với TextField
                   borderRadius: "0 28px 28px 0",
-                  boxShadow: 'none'
+                  boxShadow: 'none',
+                  px: 3 // thêm padding ngang để trông cân đối
                 }}
               >
                 Subscribe
@@ -132,9 +136,9 @@ const Footer = () => {
             </Box>
           </Grid>
         </Grid>
-        
+
         <Divider sx={{ my: 4 }} />
-        
+
         <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="body2" color="text.secondary">
             © {currentYear} AI Tools. All rights reserved.
