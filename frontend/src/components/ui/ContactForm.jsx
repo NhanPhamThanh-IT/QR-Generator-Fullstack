@@ -2,7 +2,6 @@ import { useState } from 'react';
 import {
   Box,
   TextField,
-  Button,
   Grid,
   FormControl,
   InputLabel,
@@ -14,6 +13,7 @@ import {
   useTheme
 } from '@mui/material';
 import { Send } from 'lucide-react';
+import ActionButton from './ActionButton';
 
 const ContactForm = () => {
   const theme = useTheme();
@@ -179,26 +179,14 @@ const ContactForm = () => {
           />
         </Grid>
 
-        <Grid size={{ xs: 12 }} sx={{ mt: 4}}>
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button
-              type="submit"
-              variant="contained"
+        <Grid size={{ xs: 12 }} sx={{ mt: 4 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <ActionButton
+              text="Send Message"
+              iconComponent={Send}
+              isIconAtStart={false}
               color="primary"
-              size="large"
-              endIcon={<Send size={18} />}
-              sx={{
-                px: 4,
-                py: 1.5,
-                borderRadius: '28px',
-                boxShadow: '0 4px 14px rgba(58, 134, 255, 0.2)',
-                '&:hover': {
-                  boxShadow: '0 6px 20px rgba(58, 134, 255, 0.4)',
-                }
-              }}
-            >
-              Send Message
-            </Button>
+            />
           </Box>
         </Grid>
       </Grid>
