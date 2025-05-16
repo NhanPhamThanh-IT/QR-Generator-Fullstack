@@ -80,7 +80,13 @@ const Home = () => {
                 title="Powerful AI Tools for Your Everyday Tasks"
                 subtitle="Simplify complex tasks, boost productivity, and unlock new possibilities with our cutting-edge AI tools."
                 primaryButtonText="Explore Tools"
+                primaryButtonLink={"/tools"}
                 secondaryButtonText="Learn More"
+                secondaryButtonLink={"/contact"}
+                cardTitle="AI-Powered Tools"
+                cardDescription="Unlock the power of artificial intelligence with our suite of tools designed to enhance productivity and creativity."
+                cardButtonText={"Get Started"}
+                cardButtonLink={"/tools"}
             />
 
             {/* Features Section */}
