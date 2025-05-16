@@ -1,7 +1,7 @@
 import { Box, Container, Grid, Typography, Button, Paper } from '@mui/material';
 import { ArrowRight } from 'lucide-react';
 
-export const StatsSection = () => {
+export const StatisticsSection = () => {
     return (
         <Box sx={{
             py: { xs: 8, md: 10 },
@@ -92,4 +92,4 @@ export const StatsSection = () => {
     )
 }
 
-export default StatsSection;
+export default StatisticsSection;

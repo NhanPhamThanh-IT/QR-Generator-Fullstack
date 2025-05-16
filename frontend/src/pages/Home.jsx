@@ -1,17 +1,21 @@
 import {
     Box,
-    useTheme,
 } from '@mui/material';
 
 // Components
-import HeroSection from '@components/sections/HeroSection';
-import FeaturesSection from '@components/sections/FeaturesSection';
-import StatsSection from '@components/sections/StatsSection';
-import PopularToolsSection from '@components/sections/PopularToolsSection';
-import CTASection from '@components/sections/CTASection';
+import {
+    HeroSection,
+    FeaturesSection,
+    StatisticsSection,
+    PopularToolsSection,
+    CTASection
+} from '@components/sections/Homepage';
 
 // Constants
-import { featuresData, popularToolsData } from '@constants/Home';
+import {
+    featuresData,
+    popularToolsData
+} from '@constants/HomeConstants';
 
 const Home = () => {
     return (
@@ -35,8 +39,8 @@ const Home = () => {
                 featuresData={featuresData}
             />
 
-            {/* Stats Section */}
-            <StatsSection />
+            {/* Statistics Section */}
+            <StatisticsSection />
 
             {/* Popular Tools Section */}
             <PopularToolsSection
