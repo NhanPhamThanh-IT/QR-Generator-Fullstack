@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Box,
     Container,
@@ -6,69 +5,18 @@ import {
     Typography,
     Button,
     useTheme,
-    Paper,
-    Divider
 } from '@mui/material';
-import { ArrowRight, Brain, Cpu, FileSearch, MessageSquare, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 // Components
-import HeroSection from '../components/ui/HeroSection';
-import SectionHeading from '../components/ui/SectionHeading';
-import ToolCard from '../components/ui/ToolCard';
-import FeatureCard from '../components/ui/FeatureCard';
+import HeroSection from '@components/sections/HeroSection';
+import FeaturesSection from '@components/sections/FeaturesSection';
+import StatsSection from '@components/sections/StatsSection';
+import SectionHeading from '@components/ui/SectionHeading';
+import ToolCard from '@components/ui/ToolCard';
 
-const featuresData = [
-    {
-        title: 'Advanced AI Algorithms',
-        description: 'Our tools leverage state-of-the-art AI algorithms to deliver high-quality results and insights.',
-        icon: Brain,
-        accentColor: '#3a86ff',
-    },
-    {
-        title: 'Fast Processing',
-        description: 'Process large amounts of data in seconds with our optimized AI processing infrastructure.',
-        icon: Zap,
-        accentColor: '#ffbe0b',
-    },
-    {
-        title: 'Smart Automation',
-        description: 'Automate repetitive tasks and workflows with intelligent AI assistants and tools.',
-        icon: Cpu,
-        accentColor: '#8338ec',
-    },
-    {
-        title: 'Natural Language Processing',
-        description: 'Advanced NLP capabilities for text analysis, summarization, and content generation.',
-        icon: MessageSquare,
-        accentColor: '#2cb67d',
-    },
-];
-
-const popularToolsData = [
-    {
-        id: '1',
-        title: 'Smart Document Analyzer',
-        description: 'Extract key information from documents, contracts, and forms using intelligent AI processing.',
-        imageUrl: 'https://images.pexels.com/photos/3771074/pexels-photo-3771074.jpeg?auto=compress&cs=tinysrgb&w=600',
-        category: 'Document AI',
-        isNew: true,
-    },
-    {
-        id: '2',
-        title: 'AI Content Generator',
-        description: 'Create high-quality content for blogs, social media, and marketing with advanced language models.',
-        imageUrl: 'https://images.pexels.com/photos/7014337/pexels-photo-7014337.jpeg?auto=compress&cs=tinysrgb&w=600',
-        category: 'Text Generation',
-        isPremium: true,
-    },
-    {
-        id: '3',
-        title: 'Image Enhancer',
-        description: 'Automatically enhance and upscale images using AI-powered image processing algorithms.',
-        imageUrl: 'https://images.pexels.com/photos/1036808/pexels-photo-1036808.jpeg?auto=compress&cs=tinysrgb&w=600',
-        category: 'Image Processing',
-    },
-];
+// Constants
+import { featuresData, popularToolsData } from '@constants/Home';
 
 const Home = () => {
     const theme = useTheme();
@@ -90,116 +38,12 @@ const Home = () => {
             />
 
             {/* Features Section */}
-            <Box sx={{ py: { xs: 8, md: 12 } }}>
-                <Container maxWidth="lg">
-                    <SectionHeading
-                        title="Unlock the Power of AI"
-                        subtitle="Our platform offers advanced AI capabilities designed to transform how you work, create, and interact with technology."
-                        centered={true}
-                    />
-
-                    <Grid container spacing={4}>
-                        {featuresData.map((feature, index) => (
-                            <Grid item xs={12} sm={6} md={3} key={index}>
-                                <FeatureCard
-                                    title={feature.title}
-                                    description={feature.description}
-                                    icon={feature.icon}
-                                    accentColor={feature.accentColor}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container>
-            </Box>
+            <FeaturesSection
+                featuresData={featuresData}
+            />
 
             {/* Stats Section */}
-            <Box sx={{
-                py: { xs: 8, md: 10 },
-                bgcolor: 'grey.50',
-                borderTop: '1px solid',
-                borderBottom: '1px solid',
-                borderColor: 'divider',
-            }}>
-                <Container maxWidth="lg">
-                    <Grid container spacing={4} justifyContent="center" alignItems="center">
-                        <Grid item xs={12} md={5}>
-                            <Typography variant="h4" component="h2" gutterBottom fontWeight={700}>
-                                Trusted by thousands of users worldwide
-                            </Typography>
-                            <Typography color="text.secondary" paragraph sx={{ mb: 4 }}>
-                                Our AI tools have helped individuals and businesses across the globe to streamline workflows,
-                                enhance creativity, and achieve more with less effort.
-                            </Typography>
-                            <Button
-                                variant="outlined"
-                                color="primary"
-                                endIcon={<ArrowRight size={16} />}
-                                sx={{ borderRadius: 28 }}
-                            >
-                                Read Success Stories
-                            </Button>
-                        </Grid>
-
-                        <Grid item xs={12} md={7}>
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-                                <Paper elevation={0} sx={{
-                                    py: 4,
-                                    px: 5,
-                                    textAlign: 'center',
-                                    borderRadius: 4,
-                                    mb: { xs: 2, md: 0 },
-                                    background: 'white',
-                                    boxShadow: '0 5px 20px rgba(0,0,0,0.05)',
-                                    width: { xs: '45%', sm: '30%' }
-                                }}>
-                                    <Typography variant="h3" component="p" color="primary" fontWeight={700} gutterBottom>
-                                        1.2M+
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        Monthly Users
-                                    </Typography>
-                                </Paper>
-
-                                <Paper elevation={0} sx={{
-                                    py: 4,
-                                    px: 5,
-                                    textAlign: 'center',
-                                    borderRadius: 4,
-                                    mb: { xs: 2, md: 0 },
-                                    background: 'white',
-                                    boxShadow: '0 5px 20px rgba(0,0,0,0.05)',
-                                    width: { xs: '45%', sm: '30%' }
-                                }}>
-                                    <Typography variant="h3" component="p" color="primary" fontWeight={700} gutterBottom>
-                                        15+
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        AI Tools
-                                    </Typography>
-                                </Paper>
-
-                                <Paper elevation={0} sx={{
-                                    py: 4,
-                                    px: 5,
-                                    textAlign: 'center',
-                                    borderRadius: 4,
-                                    background: 'white',
-                                    boxShadow: '0 5px 20px rgba(0,0,0,0.05)',
-                                    width: { xs: '92%', sm: '30%' }
-                                }}>
-                                    <Typography variant="h3" component="p" color="primary" fontWeight={700} gutterBottom>
-                                        98%
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        Satisfaction Rate
-                                    </Typography>
-                                </Paper>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
+            <StatsSection />
 
             {/* Popular Tools Section */}
             <Box sx={{ py: { xs: 8, md: 12 } }}>
