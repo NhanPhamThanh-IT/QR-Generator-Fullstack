@@ -13,49 +13,14 @@ import {
     Link,
     useTheme
 } from '@mui/material';
-import { MapPin, Mail, Phone, Clock, MessageSquare, ExternalLink } from 'lucide-react';
+import { MessageSquare, ExternalLink } from 'lucide-react';
 
 // Components
 import ContactForm from '@components/ui/ContactForm';
 import SectionHeading from '@components/ui/SectionHeading';
 
-const contactInfo = [
-    {
-        icon: MapPin,
-        primary: 'Address',
-        secondary: '123 AI Innovation Street, San Francisco, CA 94103, USA',
-    },
-    {
-        icon: Mail,
-        primary: 'Email',
-        secondary: 'info@aitools.com',
-    },
-    {
-        icon: Phone,
-        primary: 'Phone',
-        secondary: '+1 (555) 123-4567',
-    },
-    {
-        icon: Clock,
-        primary: 'Business Hours',
-        secondary: 'Monday - Friday: 9:00 AM - 6:00 PM (PST)',
-    },
-];
-
-const faqData = [
-    {
-        question: 'What types of AI tools do you offer?',
-        answer: 'We offer a variety of AI tools including text generation, image processing, data analysis, and document AI solutions. Our tools are designed to help with productivity, creativity, and automating repetitive tasks.',
-    },
-    {
-        question: 'Are there free tools available?',
-        answer: 'Yes, we offer both free and premium tools. Free tools come with basic features and are perfect for getting started, while premium tools offer advanced capabilities for professional needs.',
-    },
-    {
-        question: 'How do I get support for a tool I\'m using?',
-        answer: 'You can get support by contacting our team through this contact form, emailing support@aitools.com, or using the in-app help feature available for each tool.',
-    },
-];
+// Constants
+import { contactInfo, faqData } from '@constants/ContactConstants';
 
 const Contact = () => {
     const theme = useTheme();

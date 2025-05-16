@@ -11,7 +11,7 @@ import {
 import { ChevronRight, Sparkles } from 'lucide-react';
 import { useRouteNavigation } from '@hooks';
 
-const HeroSection = ({
+export const HeroSection = ({
   title,
   subtitle,
   primaryButtonText,
