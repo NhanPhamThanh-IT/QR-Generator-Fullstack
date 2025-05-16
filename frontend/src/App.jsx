@@ -5,10 +5,14 @@ import theme from './theme';
 // Layout components
 import Layout from '@components/layout/Layout';
 
-// Pages
-import Home from '@pages/Home';
-import Tools from '@pages/Tools';
-import Contact from '@pages/Contact';
+// Main Pages
+import Home from '@pages/MainPage/Home';
+import Tools from '@pages/MainPage/Tools';
+import Contact from '@pages/MainPage/Contact';
+import Docs from '@pages/MainPage/Docs';
+
+// Documentation Pages
+import Introduction from '@pages/DocumentationPage/Introduction';
 
 function App() {
   return (
@@ -19,7 +23,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/tools" element={<Tools />} />
+            <Route path="/docs" element={<Docs />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/docs/introduction" element={<Introduction />} />
           </Routes>
         </Layout>
       </Router>

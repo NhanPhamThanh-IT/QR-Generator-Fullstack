@@ -1,6 +1,9 @@
-import { Box, Button, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from '@mui/material';
+import { Box, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { MessageSquare } from 'lucide-react';
+
+// Components
+import ActionButton from './ActionButton';
 
 const InformationForm = ({ contactInfo }) => {
     const theme = useTheme();
@@ -16,6 +19,7 @@ const InformationForm = ({ contactInfo }) => {
                 borderColor: 'divider',
                 boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
                 overflow: 'hidden',
+                position: 'relative',
                 '&::before': {
                     content: '""',
                     position: 'absolute',
@@ -82,14 +86,12 @@ const InformationForm = ({ contactInfo }) => {
             </List>
 
             <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-                <Button
-                    variant="contained"
+                <ActionButton
+                    text="Start Live Chat"
+                    iconComponent={MessageSquare}
+                    isIconAtStart={true}
                     color="primary"
-                    startIcon={<MessageSquare size={16} />}
-                    sx={{ borderRadius: 28 }}
-                >
-                    Start Live Chat
-                </Button>
+                />
             </Box>
         </Paper>
     )
