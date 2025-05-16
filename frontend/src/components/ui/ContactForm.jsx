@@ -23,7 +23,7 @@ const ContactForm = () => {
     subject: '',
     message: '',
   });
-  
+
   const [formErrors, setFormErrors] = useState({
     name: false,
     email: false,
@@ -37,7 +37,7 @@ const ContactForm = () => {
       ...prev,
       [name]: value,
     }));
-    
+
     // Clear error when user types
     if (formErrors[name]) {
       setFormErrors((prev) => ({
@@ -54,19 +54,19 @@ const ContactForm = () => {
       subject: formValues.subject.trim() === '',
       message: formValues.message.trim() === '',
     };
-    
+
     setFormErrors(errors);
-    
+
     return !Object.values(errors).some(Boolean);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       // Form is valid, submit the data
       console.log('Form submitted:', formValues);
-      
+
       // Reset form after submission (in a real app, you'd do this after the API response)
       setFormValues({
         name: '',
@@ -78,11 +78,12 @@ const ContactForm = () => {
   };
 
   return (
-    <Paper 
-      elevation={0} 
-      component="form" 
+    <Paper
+      elevation={0}
+      component="form"
       onSubmit={handleSubmit}
-      sx={{ 
+      sx={{
+        height: '100%',
         p: { xs: 3, md: 5 },
         borderRadius: 4,
         boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
@@ -107,9 +108,9 @@ const ContactForm = () => {
       <Typography color="text.secondary" paragraph>
         Fill out this form and we'll get back to you as soon as possible.
       </Typography>
-      
+
       <Grid container spacing={3} sx={{ mt: 1 }}>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             label="Your Name"
@@ -122,8 +123,8 @@ const ContactForm = () => {
             variant="outlined"
           />
         </Grid>
-        
-        <Grid item xs={12} sm={6}>
+
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             label="Email Address"
@@ -137,8 +138,8 @@ const ContactForm = () => {
             variant="outlined"
           />
         </Grid>
-        
-        <Grid item xs={12}>
+
+        <Grid size={{ xs: 12 }}>
           <FormControl fullWidth error={formErrors.subject} required>
             <InputLabel>Subject</InputLabel>
             <Select
@@ -161,8 +162,8 @@ const ContactForm = () => {
             )}
           </FormControl>
         </Grid>
-        
-        <Grid item xs={12}>
+
+        <Grid size={{ xs: 12 }}>
           <TextField
             fullWidth
             label="Your Message"
@@ -177,8 +178,8 @@ const ContactForm = () => {
             variant="outlined"
           />
         </Grid>
-        
-        <Grid item xs={12}>
+
+        <Grid size={{ xs: 12 }} sx={{ mt: 4}}>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               type="submit"
@@ -186,7 +187,7 @@ const ContactForm = () => {
               color="primary"
               size="large"
               endIcon={<Send size={18} />}
-              sx={{ 
+              sx={{
                 px: 4,
                 py: 1.5,
                 borderRadius: '28px',
