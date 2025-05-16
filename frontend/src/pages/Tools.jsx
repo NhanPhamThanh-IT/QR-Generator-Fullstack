@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
     Box,
     Container,
@@ -27,8 +27,7 @@ import {
     Star,
 } from 'lucide-react';
 
-import SectionHeading from '../components/ui/SectionHeading';
-import ToolCard from '../components/ui/ToolCard';
+import ToolCard from '@components/ui/ToolCard';
 
 // Mock data
 const toolsData = [

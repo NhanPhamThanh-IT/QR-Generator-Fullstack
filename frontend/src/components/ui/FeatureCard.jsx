@@ -1,4 +1,3 @@
-import React from 'react';
 import { Paper, Box, Typography, useTheme } from '@mui/material';
 
 const FeatureCard = ({

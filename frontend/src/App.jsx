@@ -3,12 +3,12 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import theme from './theme';
 
 // Layout components
-import Layout from './components/layout/Layout';
+import Layout from '@components/layout/Layout';
 
 // Pages
-import Home from './pages/Home';
-import Tools from './pages/Tools';
-import Contact from './pages/Contact';
+import Home from '@pages/Home';
+import Tools from '@pages/Tools';
+import Contact from '@pages/Contact';
 
 function App() {
   return (
