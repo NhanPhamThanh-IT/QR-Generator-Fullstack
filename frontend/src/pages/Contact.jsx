@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Box,
     Container,
@@ -17,8 +16,8 @@ import {
 import { MapPin, Mail, Phone, Clock, MessageSquare, ExternalLink } from 'lucide-react';
 
 // Components
-import ContactForm from '../components/ui/ContactForm';
-import SectionHeading from '../components/ui/SectionHeading';
+import ContactForm from '@components/ui/ContactForm';
+import SectionHeading from '@components/ui/SectionHeading';
 
 const contactInfo = [
     {
