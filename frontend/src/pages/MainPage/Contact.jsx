@@ -8,11 +8,11 @@ import { HeroSection, ContactInfoSection, FAQSection, MapSection } from '@compon
 // Constants
 import { contactInfo, faqData } from '@constants/MainPage/ContactConstants';
 
-const Contact = () => {
+const Contact = ({ isMobile }) => {
     return (
         <Box>
             {/* Hero section */}
-            <HeroSection />
+            <HeroSection isMobile={isMobile}/>
 
             {/* Contact form and info section */}
             <ContactInfoSection contactInfo={contactInfo} />
