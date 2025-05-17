@@ -10,54 +10,30 @@ import {
     ListItemText,
     Divider,
     useTheme,
-    useMediaQuery,
 } from '@mui/material';
 import {
     ArrowRight,
 } from 'lucide-react';
 
 // Components
-import HeroComponent from '@components/ui/HeroComponent';
+import { HeroSection } from '@components/sections/HeroSection'
 import SectionHeading from '@components/ui/SectionHeading';
 import FeatureCard from '@components/ui/FeatureCard';
 
 // Constants
 import { HERO_SECTION_DATA, features } from '@constants/DocumentationPage/IntroductionConstants';
 
-const Introduction = () => {
+const Introduction = ({ isMobile }) => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <Box>
             {/* Hero Section */}
-            <HeroComponent>
-                <Container maxWidth="lg">
-                    <Typography
-                        component="h1"
-                        variant={isMobile ? 'h4' : 'h3'}
-                        sx={{
-                            fontWeight: 700,
-                            mb: 2,
-                            lineHeight: 1.2,
-                            textShadow: '0 2px 10px rgba(0,0,0,0.1)'
-                        }}
-                    >
-                        {HERO_SECTION_DATA.title}
-                    </Typography>
-                    <Typography
-                        variant={isMobile ? 'body1' : 'h6'}
-                        sx={{
-                            mb: 4,
-                            opacity: 0.9,
-                            maxWidth: 600,
-                            textShadow: '0 1px 8px rgba(0,0,0,0.1)'
-                        }}
-                    >
-                        {HERO_SECTION_DATA.description}
-                    </Typography>
-                </Container>
-            </HeroComponent>
+            <HeroSection
+                title={HERO_SECTION_DATA.title}
+                description={HERO_SECTION_DATA.description}
+                isMobile={isMobile}
+            />
 
             {/* Main Content */}
             <Box sx={{ py: { xs: 6, md: 10 } }}>
