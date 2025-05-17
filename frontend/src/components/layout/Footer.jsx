@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Footer component for the AI Tools website
+ * @module Footer
+ */
+
 import {
   Box,
   Container,
@@ -11,8 +16,36 @@ import {
   useTheme
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-import { Sparkles, Twitter, Facebook, Instagram, Linkedin, Github } from 'lucide-react';
+import {
+  Sparkles,
+  TwitterIcon,
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  GithubIcon
+} from 'lucide-react';
 
+/**
+ * Footer component that displays the website's footer section
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered Footer component
+ * 
+ * @example
+ * // Basic usage
+ * <Footer />
+ * 
+ * @description
+ * The Footer component includes:
+ * - Company logo and description
+ * - Social media links
+ * - Navigation links (Pages and Resources sections)
+ * - Newsletter subscription form
+ * - Copyright information and legal links
+ * 
+ * The component uses Material-UI components for styling and layout,
+ * and includes responsive design for different screen sizes.
+ */
 const Footer = () => {
   const theme = useTheme();
   const currentYear = new Date().getFullYear();
@@ -47,19 +80,19 @@ const Footer = () => {
             </Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
               <IconButton size="small" aria-label="twitter" color="primary">
-                <Twitter size={20} />
+                <TwitterIcon size={20} />
               </IconButton>
               <IconButton size="small" aria-label="facebook" color="primary">
-                <Facebook size={20} />
+                <FacebookIcon size={20} />
               </IconButton>
               <IconButton size="small" aria-label="instagram" color="primary">
-                <Instagram size={20} />
+                <InstagramIcon size={20} />
               </IconButton>
               <IconButton size="small" aria-label="linkedin" color="primary">
-                <Linkedin size={20} />
+                <LinkedinIcon size={20} />
               </IconButton>
               <IconButton size="small" aria-label="github" color="primary">
-                <Github size={20} />
+                <GithubIcon size={20} />
               </IconButton>
             </Box>
           </Grid>
@@ -86,16 +119,16 @@ const Footer = () => {
               Resources
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Link component="a" href="#" color="text.secondary" underline="hover">
+              <Link component="a" href="/docs" color="text.secondary" underline="hover">
                 Documentation
               </Link>
-              <Link component="a" href="#" color="text.secondary" underline="hover">
+              <Link component="a" href="/docs" color="text.secondary" underline="hover">
                 API Reference
               </Link>
               <Link component="a" href="#" color="text.secondary" underline="hover">
                 Blog
               </Link>
-              <Link component="a" href="#" color="text.secondary" underline="hover">
+              <Link component="a" href="/docs" color="text.secondary" underline="hover">
                 Tutorials
               </Link>
             </Box>
@@ -115,7 +148,7 @@ const Footer = () => {
                 variant="outlined"
                 sx={{
                   flexGrow: 1,
-                  height: 40, // chiều cao cố định
+                  height: 40,
                   "& .MuiOutlinedInput-root": {
                     height: '100%',
                     borderRadius: "28px 0 0 28px",
@@ -125,10 +158,10 @@ const Footer = () => {
               <Button
                 variant="contained"
                 sx={{
-                  height: 40, // cùng chiều cao với TextField
+                  height: 40,
                   borderRadius: "0 28px 28px 0",
                   boxShadow: 'none',
-                  px: 3 // thêm padding ngang để trông cân đối
+                  px: 3
                 }}
               >
                 Subscribe

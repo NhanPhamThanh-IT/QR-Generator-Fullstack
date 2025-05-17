@@ -1,1 +1,7 @@
-export { useRouteNavigation } from './useRouteNavigation';
+import { useRouteNavigation } from './useRouteNavigation';
+import { usePageTitle } from './usePageTitle';
+
+export {
+    usePageTitle,
+    useRouteNavigation
+};
