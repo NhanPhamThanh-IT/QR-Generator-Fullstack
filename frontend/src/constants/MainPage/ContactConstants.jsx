@@ -1,3 +1,9 @@
+export const HERO_SECTION_DATA = {
+    title: "Get in Touch",
+    description: "Have questions about our AI tools? Need help with your account? Or maybe you just want to say hello? We're here for you.",
+    
+};
+
 import { MapPin, Mail, Phone, Clock } from 'lucide-react';
 
 export const contactInfo = [

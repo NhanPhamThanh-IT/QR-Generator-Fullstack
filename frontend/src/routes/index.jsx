@@ -1,16 +1,29 @@
 import { Routes, Route } from 'react-router-dom';
-import PageLayout from '@components/layout/PageLayout';
+import { lazy, Suspense } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-// Main Pages
-import Home from '@pages/MainPage/Home';
-import Tools from '@pages/MainPage/Tools';
-import Contact from '@pages/MainPage/Contact';
-import Docs from '@pages/MainPage/Docs';
+// Components
+import PageLayout from '@components/layout/PageLayout';
+import LoadingFallback from '@components/ui/LoadingFallback';
 
-// Documentation Pages
-import Introduction from '@pages/DocumentationPage/Introduction';
+// Lazy load main pages
+const Home = lazy(() => import('@pages/MainPage/Home'));
+const Tools = lazy(() => import('@pages/MainPage/Tools'));
+const Contact = lazy(() => import('@pages/MainPage/Contact'));
+const Docs = lazy(() => import('@pages/MainPage/Docs'));
+
+// Lazy load documentation pages
+const Introduction = lazy(() => import('@pages/DocumentationPage/Introduction'));
+
+// Route wrapper component
+const RouteWrapper = ({ children, title }) => (
+    <PageLayout title={title}>
+        <Suspense fallback={<LoadingFallback />}>
+            {children}
+        </Suspense>
+    </PageLayout>
+);
 
 const AppRoutes = () => {
     const theme = useTheme();
@@ -18,46 +31,51 @@ const AppRoutes = () => {
 
     return (
         <Routes>
+            {/* Main Routes */}
             <Route
                 path="/"
                 element={
-                    <PageLayout title="Home">
+                    <RouteWrapper title="Home">
                         <Home isMobile={isMobile} />
-                    </PageLayout>
+                    </RouteWrapper>
                 }
             />
             <Route
                 path="/tools"
                 element={
-                    <PageLayout title="Tools">
+                    <RouteWrapper title="Tools">
                         <Tools isMobile={isMobile} />
-                    </PageLayout>
-                }
-            />
-            <Route
-                path="/docs"
-                element={
-                    <PageLayout title="Documentation">
-                        <Docs isMobile={isMobile} />
-                    </PageLayout>
+                    </RouteWrapper>
                 }
             />
             <Route
                 path="/contact"
                 element={
-                    <PageLayout title="Contact Us">
+                    <RouteWrapper title="Contact Us">
                         <Contact isMobile={isMobile} />
-                    </PageLayout>
+                    </RouteWrapper>
                 }
             />
-            <Route
-                path="/docs/introduction"
-                element={
-                    <PageLayout title="Introduction">
-                        <Introduction isMobile={isMobile} />
-                    </PageLayout>
-                }
-            />
+
+            {/* Documentation Routes */}
+            <Route path="/docs">
+                <Route
+                    index
+                    element={
+                        <RouteWrapper title="Documentation">
+                            <Docs isMobile={isMobile} />
+                        </RouteWrapper>
+                    }
+                />
+                <Route
+                    path="introduction"
+                    element={
+                        <RouteWrapper title="Introduction">
+                            <Introduction isMobile={isMobile} />
+                        </RouteWrapper>
+                    }
+                />
+            </Route>
         </Routes>
     );
 };

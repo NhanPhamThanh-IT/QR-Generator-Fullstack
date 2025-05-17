@@ -1,3 +1,8 @@
+export const HERO_SECTION_DATA = {
+    title: "Powerful AI Tools for Your Everyday Tasks",
+    description: "Simplify complex tasks, boost productivity, and unlock new possibilities with our cutting-edge AI tools."
+}
+
 import { Brain, Cpu, MessageSquare, Zap } from 'lucide-react';
 
 export const featuresData = [
