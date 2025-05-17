@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { 
-  AppBar, 
-  Box, 
-  Toolbar, 
-  Typography, 
-  Button, 
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Button,
   IconButton,
   Container,
   useScrollTrigger,
@@ -76,10 +76,10 @@ const Header = () => {
       <List>
         {navItems.map((item) => (
           <ListItem key={item.name} disablePadding>
-            <ListItemButton 
-              component={RouterLink} 
+            <ListItemButton
+              component={RouterLink}
               to={item.path}
-              sx={{ 
+              sx={{
                 textAlign: 'center',
                 color: location.pathname === item.path ? 'primary.main' : 'text.primary',
                 fontWeight: location.pathname === item.path ? 600 : 400,
@@ -99,11 +99,11 @@ const Header = () => {
   return (
     <>
       <HideOnScroll>
-        <AppBar 
-          position="fixed" 
-          color="default" 
-          elevation={isScrolled ? 4 : 0} 
-          sx={{ 
+        <AppBar
+          position="fixed"
+          color="default"
+          elevation={isScrolled ? 4 : 0}
+          sx={{
             bgcolor: isScrolled ? 'background.paper' : 'transparent',
             transition: 'all 0.3s ease'
           }}
@@ -116,7 +116,7 @@ const Header = () => {
                   <Box component="span" sx={{ ml: 1 }}>AI Tools</Box>
                 </Box>
               </Typography>
-              
+
               {isMobile ? (
                 <IconButton
                   color="inherit"
@@ -129,13 +129,13 @@ const Header = () => {
               ) : (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   {navItems.map((item) => (
-                    <Button 
-                      key={item.name} 
-                      component={RouterLink} 
+                    <Button
+                      key={item.name}
+                      component={RouterLink}
                       to={item.path}
                       color={location.pathname === item.path ? 'primary' : 'inherit'}
-                      sx={{ 
-                        mx: 1, 
+                      sx={{
+                        mx: 1,
                         position: 'relative',
                         fontWeight: location.pathname === item.path ? 600 : 400,
                         '&::after': location.pathname === item.path ? {
@@ -153,9 +153,9 @@ const Header = () => {
                       {item.name}
                     </Button>
                   ))}
-                  <Button 
-                    variant="contained" 
-                    color="primary" 
+                  <Button
+                    variant="contained"
+                    color="primary"
                     sx={{ ml: 2 }}
                   >
                     Get Started
