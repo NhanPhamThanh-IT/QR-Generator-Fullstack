@@ -7,13 +7,13 @@ import {
 } from '@mui/material';
 
 export const HeroSection = ({
-    title,
-    description,
+    heroData,
     leftChildren,
     rightChildren,
     isMobile,
     backgroundImage
 }) => {
+    const { title, description } = heroData;
     const theme = useTheme();
 
     const backgroundStyle = backgroundImage

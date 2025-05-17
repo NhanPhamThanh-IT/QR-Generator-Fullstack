@@ -14,11 +14,12 @@ import {
 import {
     ArrowRight,
 } from 'lucide-react';
+import { lazy, Suspense } from 'react';
 
 // Components
-import { HeroSection } from '@components/sections/HeroSection'
-import SectionHeading from '@components/ui/SectionHeading';
-import FeatureCard from '@components/ui/FeatureCard';
+const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
+const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 
 // Constants
 import { HERO_SECTION_DATA, features } from '@constants/DocumentationPage/IntroductionConstants';
@@ -29,11 +30,12 @@ const Introduction = ({ isMobile }) => {
     return (
         <Box>
             {/* Hero Section */}
-            <HeroSection
-                title={HERO_SECTION_DATA.title}
-                description={HERO_SECTION_DATA.description}
-                isMobile={isMobile}
-            />
+            <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
+                <HeroSection
+                    heroData={HERO_SECTION_DATA}
+                    isMobile={isMobile}
+                />
+            </Suspense>
 
             {/* Main Content */}
             <Box sx={{ py: { xs: 6, md: 10 } }}>
@@ -41,11 +43,13 @@ const Introduction = ({ isMobile }) => {
                     <Grid container spacing={6}>
                         {/* Overview Section */}
                         <Grid size={{ xs: 12 }}>
-                            <SectionHeading
-                                title="Overview"
-                                subtitle="Our platform provides a comprehensive suite of AI-powered tools designed to streamline your workflow and enhance productivity."
-                                centered={true}
-                            />
+                            <Suspense fallback={<Box sx={{ height: '100px' }} />}>
+                                <SectionHeading
+                                    title="Overview"
+                                    subtitle="Our platform provides a comprehensive suite of AI-powered tools designed to streamline your workflow and enhance productivity."
+                                    centered={true}
+                                />
+                            </Suspense>
                             <Paper
                                 elevation={0}
                                 sx={{
@@ -64,22 +68,26 @@ const Introduction = ({ isMobile }) => {
 
                         {/* Key Features */}
                         <Grid size={{ xs: 12 }}>
-                            <SectionHeading
-                                title="Key Features"
-                                subtitle="Our platform offers a range of powerful AI tools designed to streamline your workflow and enhance productivity."
-                                centered={true}
-                            />
+                            <Suspense fallback={<Box sx={{ height: '100px' }} />}>
+                                <SectionHeading
+                                    title="Key Features"
+                                    subtitle="Our platform offers a range of powerful AI tools designed to streamline your workflow and enhance productivity."
+                                    centered={true}
+                                />
+                            </Suspense>
                             <Grid container spacing={3}>
                                 {features.map((feature) => {
                                     const Icon = feature.icon;
                                     return (
                                         <Grid size={{ xs: 12, md: 6, lg: 3 }} key={feature.title}>
-                                            <FeatureCard
-                                                title={feature.title}
-                                                description={feature.description}
-                                                icon={Icon}
-                                                accentColor={feature.color}
-                                            />
+                                            <Suspense fallback={<Box sx={{ height: '200px', bgcolor: 'grey.100' }} />}>
+                                                <FeatureCard
+                                                    title={feature.title}
+                                                    description={feature.description}
+                                                    icon={Icon}
+                                                    accentColor={feature.color}
+                                                />
+                                            </Suspense>
                                         </Grid>
                                     );
                                 })}
@@ -137,7 +145,7 @@ const Introduction = ({ isMobile }) => {
                     </Grid>
                 </Container>
             </Box>
-        </Box >
+        </Box>
     );
 };
 

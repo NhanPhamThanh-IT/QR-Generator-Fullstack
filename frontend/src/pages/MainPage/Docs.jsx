@@ -19,9 +19,10 @@ import {
     Search,
     ChevronRight,
 } from 'lucide-react';
+import { lazy, Suspense } from 'react';
 
 // Components
-import { HeroSection } from '@components/sections/HeroSection'
+const HeroSection = lazy(() => import('@components/sections/HeroSection'));
 
 // Constants
 import { HERO_SECTION_DATA, documentationSections } from '@constants/MainPage/DocsConstants';
@@ -37,47 +38,48 @@ const Docs = ({ isMobile }) => {
     return (
         <Box>
             {/* Hero Section */}
-            <HeroSection
-                isMobile={isMobile}
-                title={HERO_SECTION_DATA.title}
-                description={HERO_SECTION_DATA.description}
-                children={<Paper
-                    elevation={0}
-                    sx={{
-                        p: 3,
-                        borderRadius: 3,
-                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                        border: '1px solid',
-                        borderColor: 'divider',
-                    }}
-                >
-                    <Typography variant="h6" gutterBottom fontWeight={600}>
-                        Search Documentation
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Find answers to your questions quickly
-                    </Typography>
-                    <TextField
-                        fullWidth
-                        placeholder="Search documentation..."
-                        value={searchQuery}
-                        onChange={handleSearchChange}
-                        variant="outlined"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <Search size={20} color={theme.palette.text.secondary} />
-                                </InputAdornment>
-                            ),
-                        }}
+            <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
+                <HeroSection
+                    isMobile={isMobile}
+                    heroData={HERO_SECTION_DATA}
+                    children={<Paper
+                        elevation={0}
                         sx={{
-                            '& .MuiOutlinedInput-root': {
-                                borderRadius: '12px',
-                            },
+                            p: 3,
+                            borderRadius: 3,
+                            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                            border: '1px solid',
+                            borderColor: 'divider',
                         }}
-                    />
-                </Paper>}
-            />
+                    >
+                        <Typography variant="h6" gutterBottom fontWeight={600}>
+                            Search Documentation
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Find answers to your questions quickly
+                        </Typography>
+                        <TextField
+                            fullWidth
+                            placeholder="Search documentation..."
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                            variant="outlined"
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <Search size={20} color={theme.palette.text.secondary} />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: '12px',
+                                },
+                            }}
+                        />
+                    </Paper>}
+                />
+            </Suspense>
 
             {/* Documentation Sections */}
             <Box sx={{ py: { xs: 6, md: 10 } }}>
@@ -124,16 +126,16 @@ const Docs = ({ isMobile }) => {
                                                         },
                                                     }}
                                                 >
+                                                    <ListItemIcon>
+                                                        <ChevronRight size={16} color={theme.palette.primary.main} />
+                                                    </ListItemIcon>
                                                     <ListItemText
                                                         primary={item.title}
                                                         primaryTypographyProps={{
-                                                            variant: 'body1',
-                                                            color: 'text.primary',
+                                                            variant: 'body2',
+                                                            fontWeight: 500,
                                                         }}
                                                     />
-                                                    <ListItemIcon sx={{ minWidth: 'auto' }}>
-                                                        <ChevronRight size={20} color={theme.palette.text.secondary} />
-                                                    </ListItemIcon>
                                                 </ListItem>
                                             ))}
                                         </List>
