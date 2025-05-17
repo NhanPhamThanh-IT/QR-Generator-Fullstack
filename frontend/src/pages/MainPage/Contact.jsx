@@ -6,7 +6,7 @@ import {
 import { HeroSection, ContactInfoSection, FAQSection, MapSection } from '@components/sections/ContactPage';
 
 // Constants
-import { contactInfo, faqData } from '@constants/ContactConstants';
+import { contactInfo, faqData } from '@constants/MainPage/ContactConstants';
 
 const Contact = () => {
     return (

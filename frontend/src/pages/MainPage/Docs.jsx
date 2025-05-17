@@ -14,67 +14,22 @@ import {
     Divider,
     useTheme,
     Button,
+    useMediaQuery,
 } from '@mui/material';
 import {
     Search,
-    Book,
-    FileText,
-    Code,
-    Settings,
-    HelpCircle,
     ChevronRight,
 } from 'lucide-react';
 
-const documentationSections = [
-    {
-        title: 'Getting Started',
-        icon: Book,
-        items: [
-            { title: 'Introduction', path: '/docs/introduction' },
-            { title: 'Quick Start Guide', path: '/docs/quick-start' },
-            { title: 'Installation', path: '/docs/installation' },
-        ],
-    },
-    {
-        title: 'Core Features',
-        icon: FileText,
-        items: [
-            { title: 'AI Tools Overview', path: '/docs/ai-tools' },
-            { title: 'Text Generation', path: '/docs/text-generation' },
-            { title: 'Image Processing', path: '/docs/image-processing' },
-        ],
-    },
-    {
-        title: 'API Reference',
-        icon: Code,
-        items: [
-            { title: 'Authentication', path: '/docs/api/auth' },
-            { title: 'Endpoints', path: '/docs/api/endpoints' },
-            { title: 'Rate Limits', path: '/docs/api/rate-limits' },
-        ],
-    },
-    {
-        title: 'Configuration',
-        icon: Settings,
-        items: [
-            { title: 'Environment Setup', path: '/docs/config/env' },
-            { title: 'API Keys', path: '/docs/config/api-keys' },
-            { title: 'Custom Settings', path: '/docs/config/settings' },
-        ],
-    },
-    {
-        title: 'Troubleshooting',
-        icon: HelpCircle,
-        items: [
-            { title: 'Common Issues', path: '/docs/troubleshooting/common' },
-            { title: 'Error Codes', path: '/docs/troubleshooting/errors' },
-            { title: 'FAQ', path: '/docs/troubleshooting/faq' },
-        ],
-    },
-];
+// Components
+import { HeroComponent } from '@components/ui/HeroComponent';
+
+// Constants
+import { HERO_SECTION_DATA, documentationSections } from '@constants/MainPage/DocsConstants';
 
 const Docs = () => {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearchChange = (event) => {
@@ -84,23 +39,31 @@ const Docs = () => {
     return (
         <Box>
             {/* Hero Section */}
-            <Box
-                sx={{
-                    pt: { xs: 6, md: 10 },
-                    pb: { xs: 6, md: 8 },
-                    background: `linear-gradient(to right, ${theme.palette.primary.main}10, ${theme.palette.primary.light}20)`,
-                    borderBottom: '1px solid',
-                    borderColor: 'divider',
-                }}
-            >
+            <HeroComponent>
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
                         <Grid size={{ xs: 12, md: 7 }}>
-                            <Typography variant="h3" component="h1" fontWeight={700} gutterBottom>
-                                Documentation
+                            <Typography
+                                component="h1"
+                                variant={isMobile ? 'h4' : 'h3'}
+                                sx={{
+                                    fontWeight: 700,
+                                    mb: 2,
+                                    lineHeight: 1.2,
+                                    textShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                                }}>
+                                {HERO_SECTION_DATA.title}
                             </Typography>
-                            <Typography variant="h6" color="text.secondary" sx={{ mb: 4, fontWeight: 400 }}>
-                                Everything you need to know about our AI tools and how to use them effectively.
+                            <Typography
+                                variant={isMobile ? 'body1' : 'h6'}
+                                sx={{
+                                    mb: 4,
+                                    opacity: 0.9,
+                                    maxWidth: 600,
+                                    textShadow: '0 1px 8px rgba(0,0,0,0.1)'
+                                }}
+                            >
+                                {HERO_SECTION_DATA.description}
                             </Typography>
                         </Grid>
 
@@ -118,7 +81,7 @@ const Docs = () => {
                                 <Typography variant="h6" gutterBottom fontWeight={600}>
                                     Search Documentation
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary" paragraph>
+                                <Typography variant="body2" color="text.secondary">
                                     Find answers to your questions quickly
                                 </Typography>
                                 <TextField
@@ -144,7 +107,7 @@ const Docs = () => {
                         </Grid>
                     </Grid>
                 </Container>
-            </Box>
+            </HeroComponent>
 
             {/* Documentation Sections */}
             <Box sx={{ py: { xs: 6, md: 10 } }}>

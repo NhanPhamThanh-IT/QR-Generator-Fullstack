@@ -10,68 +10,54 @@ import {
     ListItemText,
     Divider,
     useTheme,
+    useMediaQuery,
 } from '@mui/material';
 import {
-    Rocket,
-    Zap,
-    Shield,
-    Code,
-    Lightbulb,
     ArrowRight,
 } from 'lucide-react';
 
+// Components
+import HeroComponent from '@components/ui/HeroComponent';
+import SectionHeading from '@components/ui/SectionHeading';
+import FeatureCard from '@components/ui/FeatureCard';
+
+// Constants
+import { HERO_SECTION_DATA, features } from '@constants/DocumentationPage/IntroductionConstants';
+
 const Introduction = () => {
     const theme = useTheme();
-
-    const features = [
-        {
-            icon: Rocket,
-            title: 'Powerful AI Tools',
-            description: 'Access a suite of advanced AI tools designed to enhance your productivity and creativity.',
-        },
-        {
-            icon: Zap,
-            title: 'Lightning Fast',
-            description: 'Experience rapid processing and real-time results with our optimized AI infrastructure.',
-        },
-        {
-            icon: Shield,
-            title: 'Secure & Reliable',
-            description: 'Your data is protected with enterprise-grade security and reliable uptime.',
-        },
-        {
-            icon: Code,
-            title: 'Developer Friendly',
-            description: 'Comprehensive API documentation and SDKs for seamless integration.',
-        },
-        {
-            icon: Lightbulb,
-            title: 'Smart Solutions',
-            description: 'Intelligent features that adapt to your needs and improve over time.',
-        },
-    ];
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <Box>
             {/* Hero Section */}
-            <Box
-                sx={{
-                    pt: { xs: 6, md: 10 },
-                    pb: { xs: 6, md: 8 },
-                    background: 'grey.50',
-                    borderBottom: '1px solid',
-                    borderColor: 'divider',
-                }}
-            >
+            <HeroComponent>
                 <Container maxWidth="lg">
-                    <Typography variant="h3" component="h1" fontWeight={700} gutterBottom>
-                        Welcome to Our AI Tools Platform
+                    <Typography
+                        component="h1"
+                        variant={isMobile ? 'h4' : 'h3'}
+                        sx={{
+                            fontWeight: 700,
+                            mb: 2,
+                            lineHeight: 1.2,
+                            textShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                        }}
+                    >
+                        {HERO_SECTION_DATA.title}
                     </Typography>
-                    <Typography variant="h6" color="text.secondary" sx={{ mb: 4, fontWeight: 400 }}>
-                        Your comprehensive guide to leveraging the power of artificial intelligence for your projects.
+                    <Typography
+                        variant={isMobile ? 'body1' : 'h6'}
+                        sx={{
+                            mb: 4,
+                            opacity: 0.9,
+                            maxWidth: 600,
+                            textShadow: '0 1px 8px rgba(0,0,0,0.1)'
+                        }}
+                    >
+                        {HERO_SECTION_DATA.description}
                     </Typography>
                 </Container>
-            </Box>
+            </HeroComponent>
 
             {/* Main Content */}
             <Box sx={{ py: { xs: 6, md: 10 } }}>
@@ -79,6 +65,11 @@ const Introduction = () => {
                     <Grid container spacing={6}>
                         {/* Overview Section */}
                         <Grid size={{ xs: 12 }}>
+                            <SectionHeading
+                                title="Overview"
+                                subtitle="Our platform provides a comprehensive suite of AI-powered tools designed to streamline your workflow and enhance productivity."
+                                centered={true}
+                            />
                             <Paper
                                 elevation={0}
                                 sx={{
@@ -89,12 +80,6 @@ const Introduction = () => {
                                     borderColor: 'divider',
                                 }}
                             >
-                                <Typography variant="h5" fontWeight={600} gutterBottom>
-                                    Overview
-                                </Typography>
-                                <Typography variant="body1" paragraph>
-                                    Our platform provides a comprehensive suite of AI-powered tools designed to streamline your workflow and enhance productivity. Whether you're a developer, content creator, or business professional, our tools are built to help you achieve more with less effort.
-                                </Typography>
                                 <Typography variant="body1">
                                     This documentation will guide you through everything you need to know about our platform, from basic concepts to advanced features and best practices.
                                 </Typography>
@@ -103,39 +88,22 @@ const Introduction = () => {
 
                         {/* Key Features */}
                         <Grid size={{ xs: 12 }}>
-                            <Typography variant="h5" fontWeight={600} gutterBottom>
-                                Key Features
-                            </Typography>
+                            <SectionHeading
+                                title="Key Features"
+                                subtitle="Our platform offers a range of powerful AI tools designed to streamline your workflow and enhance productivity."
+                                centered={true}
+                            />
                             <Grid container spacing={3}>
                                 {features.map((feature) => {
                                     const Icon = feature.icon;
                                     return (
-                                        <Grid size={{ xs: 12, md: 6 }} key={feature.title}>
-                                            <Paper
-                                                elevation={0}
-                                                sx={{
-                                                    p: 3,
-                                                    height: '100%',
-                                                    borderRadius: 3,
-                                                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                                                    border: '1px solid',
-                                                    borderColor: 'divider',
-                                                    transition: 'transform 0.2s ease-in-out',
-                                                    '&:hover': {
-                                                        transform: 'translateY(-4px)',
-                                                    },
-                                                }}
-                                            >
-                                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                                    <Icon size={24} color={theme.palette.primary.main} />
-                                                    <Typography variant="h6" sx={{ ml: 1.5, fontWeight: 600 }}>
-                                                        {feature.title}
-                                                    </Typography>
-                                                </Box>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    {feature.description}
-                                                </Typography>
-                                            </Paper>
+                                        <Grid size={{ xs: 12, md: 6, lg: 3 }} key={feature.title}>
+                                            <FeatureCard
+                                                title={feature.title}
+                                                description={feature.description}
+                                                icon={Icon}
+                                                accentColor={feature.color}
+                                            />
                                         </Grid>
                                     );
                                 })}
@@ -193,7 +161,7 @@ const Introduction = () => {
                     </Grid>
                 </Container>
             </Box>
-        </Box>
+        </Box >
     );
 };
 
