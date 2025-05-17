@@ -14,7 +14,6 @@ import {
     Divider,
     useTheme,
     Button,
-    useMediaQuery,
 } from '@mui/material';
 import {
     Search,
@@ -22,15 +21,13 @@ import {
 } from 'lucide-react';
 
 // Components
-import { HeroComponent } from '@components/ui/HeroComponent';
-import { PageTitle } from '@components/ui/PageTitle';
+import { HeroSection } from '@components/sections/HeroSection'
 
 // Constants
 import { HERO_SECTION_DATA, documentationSections } from '@constants/MainPage/DocsConstants';
 
-const Docs = () => {
+const Docs = ({ isMobile }) => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearchChange = (event) => {
@@ -40,57 +37,47 @@ const Docs = () => {
     return (
         <Box>
             {/* Hero Section */}
-            <HeroComponent>
-                <Container maxWidth="lg">
-                    <Grid container spacing={4} alignItems="center">
-                        <Grid size={{ xs: 12, md: 7 }}>
-                            <PageTitle
-                                title={HERO_SECTION_DATA.title}
-                                description={HERO_SECTION_DATA.description}
-                            />
-                        </Grid>
-
-                        <Grid size={{ xs: 12, md: 5 }}>
-                            <Paper
-                                elevation={0}
-                                sx={{
-                                    p: 3,
-                                    borderRadius: 3,
-                                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                                    border: '1px solid',
-                                    borderColor: 'divider',
-                                }}
-                            >
-                                <Typography variant="h6" gutterBottom fontWeight={600}>
-                                    Search Documentation
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    Find answers to your questions quickly
-                                </Typography>
-                                <TextField
-                                    fullWidth
-                                    placeholder="Search documentation..."
-                                    value={searchQuery}
-                                    onChange={handleSearchChange}
-                                    variant="outlined"
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Search size={20} color={theme.palette.text.secondary} />
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                    sx={{
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '12px',
-                                        },
-                                    }}
-                                />
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </HeroComponent>
+            <HeroSection
+                isMobile={isMobile}
+                title={HERO_SECTION_DATA.title}
+                description={HERO_SECTION_DATA.description}
+                children={<Paper
+                    elevation={0}
+                    sx={{
+                        p: 3,
+                        borderRadius: 3,
+                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                        border: '1px solid',
+                        borderColor: 'divider',
+                    }}
+                >
+                    <Typography variant="h6" gutterBottom fontWeight={600}>
+                        Search Documentation
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        Find answers to your questions quickly
+                    </Typography>
+                    <TextField
+                        fullWidth
+                        placeholder="Search documentation..."
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        variant="outlined"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Search size={20} color={theme.palette.text.secondary} />
+                                </InputAdornment>
+                            ),
+                        }}
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                                borderRadius: '12px',
+                            },
+                        }}
+                    />
+                </Paper>}
+            />
 
             {/* Documentation Sections */}
             <Box sx={{ py: { xs: 6, md: 10 } }}>

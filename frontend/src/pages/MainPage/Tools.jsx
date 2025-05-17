@@ -64,7 +64,7 @@ const categories = [
     { name: 'Audio Processing', icon: ArrowUpDown },
 ];
 
-const Tools = () => {
+const Tools = ({ isMobile }) => {
     const theme = useTheme();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
