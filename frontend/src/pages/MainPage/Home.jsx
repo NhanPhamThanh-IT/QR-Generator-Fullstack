@@ -15,7 +15,7 @@ import {
 import {
     featuresData,
     popularToolsData
-} from '@constants/HomeConstants';
+} from '@constants/MainPage/HomeConstants';
 
 const Home = () => {
     return (

@@ -163,7 +163,7 @@ const Tools = () => {
                                 <Typography variant="h6" gutterBottom fontWeight={600}>
                                     Find the perfect tool
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary" paragraph>
+                                <Typography variant="body2" color="text.secondary">
                                     Search our collection of AI tools...
                                 </Typography>
                                 <TextField
