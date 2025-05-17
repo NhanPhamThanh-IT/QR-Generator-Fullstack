@@ -1,12 +1,96 @@
-# React + Vite
+# Tools Website Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for the Tools Website project, built with React and Vite.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Modern React application using Vite as the build tool
+- Material-UI (MUI) for beautiful and responsive UI components
+- Lucide React for high-quality icons
+- ESLint for code quality and consistency
 
-## Expanding the ESLint configuration
+## 📋 Prerequisites
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js (Latest LTS version recommended)
+- npm or yarn package manager
+
+## 🛠️ Installation
+
+1. Clone the repository:
+```bash
+git clone [repository-url]
+cd frontend
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+## 🏃‍♂️ Development
+
+To start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+The application will be available at `http://localhost:5173` by default.
+
+## 🏗️ Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+## 🔍 Linting
+
+To run the linter:
+
+```bash
+npm run lint
+# or
+yarn lint
+```
+
+## 🧪 Preview Production Build
+
+To preview the production build locally:
+
+```bash
+npm run preview
+# or
+yarn preview
+```
+
+## 📦 Dependencies
+
+### Main Dependencies
+- React 19
+- Material-UI (MUI)
+- Lucide React
+- Emotion (for styled components)
+
+### Development Dependencies
+- Vite
+- ESLint
+- TypeScript
+- React SWC Plugin
+
+## 📝 License
+
+[Add your license information here]
+
+## 👥 Contributing
+
+[Add contribution guidelines here]
