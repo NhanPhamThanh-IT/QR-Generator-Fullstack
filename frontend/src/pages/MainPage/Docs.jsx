@@ -23,6 +23,7 @@ import {
 
 // Components
 import { HeroComponent } from '@components/ui/HeroComponent';
+import { PageTitle } from '@components/ui/PageTitle';
 
 // Constants
 import { HERO_SECTION_DATA, documentationSections } from '@constants/MainPage/DocsConstants';
@@ -43,28 +44,10 @@ const Docs = () => {
                 <Container maxWidth="lg">
                     <Grid container spacing={4} alignItems="center">
                         <Grid size={{ xs: 12, md: 7 }}>
-                            <Typography
-                                component="h1"
-                                variant={isMobile ? 'h4' : 'h3'}
-                                sx={{
-                                    fontWeight: 700,
-                                    mb: 2,
-                                    lineHeight: 1.2,
-                                    textShadow: '0 2px 10px rgba(0,0,0,0.1)'
-                                }}>
-                                {HERO_SECTION_DATA.title}
-                            </Typography>
-                            <Typography
-                                variant={isMobile ? 'body1' : 'h6'}
-                                sx={{
-                                    mb: 4,
-                                    opacity: 0.9,
-                                    maxWidth: 600,
-                                    textShadow: '0 1px 8px rgba(0,0,0,0.1)'
-                                }}
-                            >
-                                {HERO_SECTION_DATA.description}
-                            </Typography>
+                            <PageTitle
+                                title={HERO_SECTION_DATA.title}
+                                description={HERO_SECTION_DATA.description}
+                            />
                         </Grid>
 
                         <Grid size={{ xs: 12, md: 5 }}>

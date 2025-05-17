@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import PageLayout from '@components/layout/PageLayout';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 // Main Pages
 import Home from '@pages/MainPage/Home';
@@ -11,13 +13,16 @@ import Docs from '@pages/MainPage/Docs';
 import Introduction from '@pages/DocumentationPage/Introduction';
 
 const AppRoutes = () => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
     return (
         <Routes>
             <Route
                 path="/"
                 element={
                     <PageLayout title="Home">
-                        <Home />
+                        <Home isMobile={isMobile} />
                     </PageLayout>
                 }
             />
@@ -25,7 +30,7 @@ const AppRoutes = () => {
                 path="/tools"
                 element={
                     <PageLayout title="Tools">
-                        <Tools />
+                        <Tools isMobile={isMobile} />
                     </PageLayout>
                 }
             />
@@ -33,7 +38,7 @@ const AppRoutes = () => {
                 path="/docs"
                 element={
                     <PageLayout title="Documentation">
-                        <Docs />
+                        <Docs isMobile={isMobile} />
                     </PageLayout>
                 }
             />
@@ -41,7 +46,7 @@ const AppRoutes = () => {
                 path="/contact"
                 element={
                     <PageLayout title="Contact Us">
-                        <Contact />
+                        <Contact isMobile={isMobile} />
                     </PageLayout>
                 }
             />
@@ -49,7 +54,7 @@ const AppRoutes = () => {
                 path="/docs/introduction"
                 element={
                     <PageLayout title="Introduction">
-                        <Introduction />
+                        <Introduction isMobile={isMobile} />
                     </PageLayout>
                 }
             />
