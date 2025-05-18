@@ -10,11 +10,19 @@ import {
     ListItemText,
     Divider,
     useTheme,
+    ListItemButton,
+    Card,
+    CardContent,
+    Stack,
 } from '@mui/material';
 import {
     ArrowRight,
+    BookOpen,
+    Code2,
+    Rocket,
 } from 'lucide-react';
 import { lazy, Suspense } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Components
 const HeroSection = lazy(() => import('@components/sections/HeroSection'));
@@ -26,6 +34,11 @@ import { HERO_SECTION_DATA, features } from '@constants/DocumentationPage/Introd
 
 const Introduction = ({ isMobile }) => {
     const theme = useTheme();
+    const navigate = useNavigate();
+
+    const handleNavigation = (path) => {
+        navigate(path);
+    };
 
     return (
         <Box>
@@ -50,20 +63,68 @@ const Introduction = ({ isMobile }) => {
                                     centered={true}
                                 />
                             </Suspense>
-                            <Paper
-                                elevation={0}
-                                sx={{
-                                    p: 4,
-                                    borderRadius: 3,
-                                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                                    border: '1px solid',
-                                    borderColor: 'divider',
-                                }}
-                            >
-                                <Typography variant="body1">
-                                    This documentation will guide you through everything you need to know about our platform, from basic concepts to advanced features and best practices.
-                                </Typography>
-                            </Paper>
+                            <Grid container spacing={3}>
+                                <Grid size={{ xs: 12, md: 6 }}>
+                                    <Card
+                                        elevation={0}
+                                        sx={{
+                                            height: '100%',
+                                            borderRadius: 3,
+                                            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                                            border: '1px solid',
+                                            borderColor: 'divider',
+                                            transition: 'transform 0.2s ease-in-out',
+                                            '&:hover': {
+                                                transform: 'translateY(-4px)',
+                                            },
+                                        }}
+                                    >
+                                        <CardContent sx={{ p: 4 }}>
+                                            <Stack spacing={3}>
+                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                                    <BookOpen size={24} color={theme.palette.primary.main} />
+                                                    <Typography variant="h6" fontWeight={600}>
+                                                        What is AI Tools Platform?
+                                                    </Typography>
+                                                </Box>
+                                                <Typography variant="body1" color="text.secondary">
+                                                    Our platform is a comprehensive suite of AI-powered tools designed to help you work smarter, not harder. From text generation to image processing, we provide the tools you need to enhance your productivity and creativity.
+                                                </Typography>
+                                            </Stack>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid size={{ xs: 12, md: 6 }}>
+                                    <Card
+                                        elevation={0}
+                                        sx={{
+                                            height: '100%',
+                                            borderRadius: 3,
+                                            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                                            border: '1px solid',
+                                            borderColor: 'divider',
+                                            transition: 'transform 0.2s ease-in-out',
+                                            '&:hover': {
+                                                transform: 'translateY(-4px)',
+                                            },
+                                        }}
+                                    >
+                                        <CardContent sx={{ p: 4 }}>
+                                            <Stack spacing={3}>
+                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                                    <Rocket size={24} color={theme.palette.secondary.main} />
+                                                    <Typography variant="h6" fontWeight={600}>
+                                                        Why Choose Us?
+                                                    </Typography>
+                                                </Box>
+                                                <Typography variant="body1" color="text.secondary">
+                                                    With state-of-the-art AI technology, intuitive interfaces, and comprehensive documentation, we make it easy for you to leverage the power of artificial intelligence in your projects.
+                                                </Typography>
+                                            </Stack>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            </Grid>
                         </Grid>
 
                         {/* Key Features */}
@@ -96,51 +157,74 @@ const Introduction = ({ isMobile }) => {
 
                         {/* Getting Started */}
                         <Grid size={{ xs: 12 }}>
-                            <Paper
+                            <Card
                                 elevation={0}
                                 sx={{
-                                    p: 4,
                                     borderRadius: 3,
                                     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
                                     border: '1px solid',
                                     borderColor: 'divider',
+                                    overflow: 'hidden',
                                 }}
                             >
-                                <Typography variant="h5" fontWeight={600} gutterBottom>
-                                    Getting Started
-                                </Typography>
-                                <List>
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <ArrowRight color={theme.palette.primary.main} />
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary="Create an account"
-                                            secondary="Sign up for a free account to access our tools"
-                                        />
-                                    </ListItem>
-                                    <Divider component="li" />
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <ArrowRight color={theme.palette.primary.main} />
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary="Explore the tools"
-                                            secondary="Browse through our collection of AI-powered tools"
-                                        />
-                                    </ListItem>
-                                    <Divider component="li" />
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <ArrowRight color={theme.palette.primary.main} />
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary="Start building"
-                                            secondary="Begin integrating our tools into your projects"
-                                        />
-                                    </ListItem>
-                                </List>
-                            </Paper>
+                                <CardContent sx={{ p: 0 }}>
+                                    <Box sx={{ p: 4, bgcolor: theme.palette.primary.main, color: 'white' }}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+                                            <Code2 size={24} />
+                                            <Typography variant="h5" fontWeight={600}>
+                                                Getting Started
+                                            </Typography>
+                                        </Box>
+                                        <Typography variant="body1" sx={{ opacity: 0.9 }}>
+                                            Follow these steps to begin your journey with our AI tools platform
+                                        </Typography>
+                                    </Box>
+                                    <List sx={{ p: 3 }}>
+                                        <ListItemButton
+                                            onClick={() => handleNavigation('/tools')}
+                                            sx={{
+                                                borderRadius: 2,
+                                                mb: 2,
+                                                '&:hover': {
+                                                    bgcolor: theme.palette.primary.main + '10',
+                                                },
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <ArrowRight color={theme.palette.primary.main} />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary="Explore the tools"
+                                                secondary="Browse through our collection of AI-powered tools"
+                                                primaryTypographyProps={{
+                                                    fontWeight: 500,
+                                                }}
+                                            />
+                                        </ListItemButton>
+                                        <Divider component="li" sx={{ my: 2 }} />
+                                        <ListItemButton
+                                            onClick={() => handleNavigation('/docs/quick-start')}
+                                            sx={{
+                                                borderRadius: 2,
+                                                '&:hover': {
+                                                    bgcolor: theme.palette.primary.main + '10',
+                                                },
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <ArrowRight color={theme.palette.primary.main} />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary="Start building"
+                                                secondary="Begin integrating our tools into your projects"
+                                                primaryTypographyProps={{
+                                                    fontWeight: 500,
+                                                }}
+                                            />
+                                        </ListItemButton>
+                                    </List>
+                                </CardContent>
+                            </Card>
                         </Grid>
                     </Grid>
                 </Container>

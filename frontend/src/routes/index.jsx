@@ -15,6 +15,8 @@ const Docs = lazy(() => import('@pages/MainPage/Docs'));
 
 // Lazy load documentation pages
 const Introduction = lazy(() => import('@pages/DocumentationPage/Introduction'));
+const QuickStart = lazy(() => import('@pages/DocumentationPage/QuickStart'));
+const Installation = lazy(() => import('@pages/DocumentationPage/Installation'));
 
 // Route wrapper component
 const RouteWrapper = ({ children, title }) => (
@@ -72,6 +74,22 @@ const AppRoutes = () => {
                     element={
                         <RouteWrapper title="Introduction">
                             <Introduction isMobile={isMobile} />
+                        </RouteWrapper>
+                    }
+                />
+                <Route
+                    path="quick-start"
+                    element={
+                        <RouteWrapper title="Quick Start">
+                            <QuickStart isMobile={isMobile} />
+                        </RouteWrapper>
+                    }
+                />
+                <Route
+                    path="installation"
+                    element={
+                        <RouteWrapper title="Installation">
+                            <Installation isMobile={isMobile} />
                         </RouteWrapper>
                     }
                 />
