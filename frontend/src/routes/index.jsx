@@ -14,9 +14,14 @@ const Contact = lazy(() => import('@pages/MainPage/Contact'));
 const Docs = lazy(() => import('@pages/MainPage/Docs'));
 
 // Lazy load documentation pages
-const Introduction = lazy(() => import('@pages/DocumentationPage/Introduction'));
-const QuickStart = lazy(() => import('@pages/DocumentationPage/QuickStart'));
-const Installation = lazy(() => import('@pages/DocumentationPage/Installation'));
+const Introduction = lazy(() => import('@pages/DocumentationPage/Getting-Started/Introduction'));
+const QuickStart = lazy(() => import('@pages/DocumentationPage/Getting-Started/QuickStart'));
+const Installation = lazy(() => import('@pages/DocumentationPage/Getting-Started/Installation'));
+
+// Lazy load troubleshooting pages
+const CommonIssues = lazy(() => import('@pages/DocumentationPage/Troubleshooting/CommonIssues'));
+const FAQ = lazy(() => import('@pages/DocumentationPage/Troubleshooting/FAQ'));
+const ErrorCodes = lazy(() => import('@pages/DocumentationPage/Troubleshooting/ErrorCodes'));
 
 // Route wrapper component
 const RouteWrapper = ({ children, title }) => (
@@ -90,6 +95,31 @@ const AppRoutes = () => {
                     element={
                         <RouteWrapper title="Installation">
                             <Installation isMobile={isMobile} />
+                        </RouteWrapper>
+                    }
+                />
+                {/* Troubleshooting Routes */}
+                <Route
+                    path="troubleshooting/common-issues"
+                    element={
+                        <RouteWrapper title="Common Issues">
+                            <CommonIssues isMobile={isMobile} />
+                        </RouteWrapper>
+                    }
+                />
+                <Route
+                    path="troubleshooting/faq"
+                    element={
+                        <RouteWrapper title="FAQ">
+                            <FAQ isMobile={isMobile} />
+                        </RouteWrapper>
+                    }
+                />
+                <Route
+                    path="troubleshooting/errors-code"
+                    element={
+                        <RouteWrapper title="Error Codes">
+                            <ErrorCodes isMobile={isMobile} />
                         </RouteWrapper>
                     }
                 />

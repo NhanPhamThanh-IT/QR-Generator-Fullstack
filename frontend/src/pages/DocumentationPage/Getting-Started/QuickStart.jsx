@@ -4,18 +4,12 @@ import {
     Typography,
     Paper,
     Grid,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Divider,
     useTheme,
     Card,
     CardContent,
     Stack,
 } from '@mui/material';
 import {
-    ArrowRight,
     Code2,
     Terminal,
     Package,
@@ -70,7 +64,7 @@ const QuickStart = ({ isMobile }) => {
                 <Container maxWidth="lg">
                     <Grid container spacing={6}>
                         {/* Quick Start Steps */}
-                        <Grid item xs={12}>
+                        <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
                                     title="Getting Started"
@@ -92,7 +86,7 @@ const QuickStart = ({ isMobile }) => {
                                     >
                                         <CardContent sx={{ p: 4 }}>
                                             <Grid container spacing={3}>
-                                                <Grid item xs={12} md={4}>
+                                                <Grid size={{ xs: 12, md: 4 }}>
                                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
                                                         <step.icon size={24} color={theme.palette.primary.main} />
                                                         <Typography variant="h6" fontWeight={600}>
@@ -103,7 +97,7 @@ const QuickStart = ({ isMobile }) => {
                                                         {step.description}
                                                     </Typography>
                                                 </Grid>
-                                                <Grid item xs={12} md={8}>
+                                                <Grid size={{ xs: 12, md: 8 }}>
                                                     <Paper
                                                         elevation={0}
                                                         sx={{
@@ -127,7 +121,7 @@ const QuickStart = ({ isMobile }) => {
                         </Grid>
 
                         {/* Next Steps */}
-                        <Grid item xs={12}>
+                        <Grid size={{ xs: 12 }}>
                             <Card
                                 elevation={0}
                                 sx={{
