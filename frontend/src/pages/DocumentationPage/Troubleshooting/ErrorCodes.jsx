@@ -1,90 +1,155 @@
-import React from 'react';
-import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip } from '@mui/material';
+import {
+    Box,
+    Container,
+    Typography,
+    Grid,
+    Card,
+    CardContent,
+    Stack,
+    useTheme,
+    Alert,
+    AlertTitle,
+    Divider,
+} from '@mui/material';
+import {
+    Code2,
+    HelpCircle,
+} from 'lucide-react';
+import { lazy, Suspense } from 'react';
+
+// Components
+const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
+
+// Constants
+import {
+    HERO_SECTION_DATA,
+    errorCodes
+} from '@constants/DocumentationPage/ErrorCodes';
 
 const ErrorCodes = ({ isMobile }) => {
-    const errorCodes = [
-        {
-            code: "E001",
-            name: "Authentication Error",
-            description: "User authentication error",
-            solution: "Check your login information and try again"
-        },
-        {
-            code: "E002",
-            name: "Permission Denied",
-            description: "Access denied",
-            solution: "Contact admin to get access permission"
-        },
-        {
-            code: "E003",
-            name: "Invalid Input",
-            description: "Invalid input data",
-            solution: "Check the input data format"
-        },
-        {
-            code: "E004",
-            name: "Server Error",
-            description: "Server error",
-            solution: "Try again later or contact support"
-        },
-        {
-            code: "E005",
-            name: "Rate Limit Exceeded",
-            description: "Request limit exceeded",
-            solution: "Wait a moment and try again later"
-        }
-    ];
+    const theme = useTheme();
 
     return (
-        <Box sx={{ maxWidth: 1200, mx: 'auto', p: isMobile ? 2 : 4 }}>
-            <Typography variant="h4" component="h1" gutterBottom>
-                Error Codes & Solutions
-            </Typography>
-            <Typography variant="body1" color="text.secondary" paragraph>
-                List of common error codes and their solutions. If you encounter an error not listed here,
-                please contact us through the Contact page.
-            </Typography>
+        <Box>
+            {/* Hero Section */}
+            <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
+                <HeroSection
+                    heroData={HERO_SECTION_DATA}
+                    isMobile={isMobile}
+                />
+            </Suspense>
 
-            <TableContainer component={Paper} sx={{ mt: 4 }}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Error Code</TableCell>
-                            <TableCell>Error Name</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Solution</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {errorCodes.map((error) => (
-                            <TableRow key={error.code}>
-                                <TableCell>
-                                    <Chip
-                                        label={error.code}
-                                        color="error"
-                                        size="small"
-                                    />
-                                </TableCell>
-                                <TableCell>{error.name}</TableCell>
-                                <TableCell>{error.description}</TableCell>
-                                <TableCell>{error.solution}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            {/* Main Content */}
+            <Box sx={{ py: { xs: 6, md: 10 } }}>
+                <Container maxWidth="lg">
+                    <Grid container spacing={6}>
+                        {/* Overview Section */}
+                        <Grid size={{ xs: 12 }}>
+                            <Suspense fallback={<Box sx={{ height: '100px' }} />}>
+                                <SectionHeading
+                                    title="Common Error Codes"
+                                    subtitle="Understanding and resolving common issues with our AI tools platform"
+                                    centered={true}
+                                />
+                            </Suspense>
+                        </Grid>
 
-            <Box sx={{ mt: 4, p: 3, bgcolor: 'background.paper', borderRadius: 1 }}>
-                <Typography variant="h6" gutterBottom>
-                    Need Additional Support?
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                    If you are still experiencing issues or need additional support, please contact our support team
-                    via email support@example.com or use the contact form in the Contact section.
-                </Typography>
+                        {/* Error Codes List */}
+                        <Grid size={{ xs: 12 }}>
+                            <Stack spacing={3}>
+                                {errorCodes.map((error) => (
+                                    <Card
+                                        key={error.code}
+                                        elevation={0}
+                                        sx={{
+                                            borderRadius: 3,
+                                            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                                            border: '1px solid',
+                                            borderColor: 'divider',
+                                            overflow: 'hidden',
+                                        }}
+                                    >
+                                        <CardContent sx={{ p: 0 }}>
+                                            <Box sx={{ p: 4, bgcolor: theme.palette[error.severity].main, color: 'white' }}>
+                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+                                                    <Code2 size={24} />
+                                                    <Typography variant="h5" fontWeight={600}>
+                                                        {error.code}
+                                                    </Typography>
+                                                </Box>
+                                                <Typography variant="h6" fontWeight={500}>
+                                                    {error.title}
+                                                </Typography>
+                                            </Box>
+                                            <Box sx={{ p: 4 }}>
+                                                <Stack spacing={3}>
+                                                    <Box>
+                                                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                                                            Description
+                                                        </Typography>
+                                                        <Typography variant="body1" color="text.secondary">
+                                                            {error.description}
+                                                        </Typography>
+                                                    </Box>
+                                                    <Divider />
+                                                    <Box>
+                                                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                                                            Solution
+                                                        </Typography>
+                                                        <Typography variant="body1" color="text.secondary">
+                                                            {error.solution}
+                                                        </Typography>
+                                                    </Box>
+                                                </Stack>
+                                            </Box>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </Stack>
+                        </Grid>
+
+                        {/* Additional Help Section */}
+                        <Grid size={{ xs: 12 }}>
+                            <Card
+                                elevation={0}
+                                sx={{
+                                    borderRadius: 3,
+                                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                                    border: '1px solid',
+                                    borderColor: 'divider',
+                                }}
+                            >
+                                <CardContent sx={{ p: 4 }}>
+                                    <Stack spacing={3}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                            <HelpCircle size={24} color={theme.palette.primary.main} />
+                                            <Typography variant="h6" fontWeight={600}>
+                                                Need Additional Help?
+                                            </Typography>
+                                        </Box>
+                                        <Typography variant="body1" color="text.secondary">
+                                            If you're still experiencing issues or can't find your error code here, please:
+                                        </Typography>
+                                        <Stack spacing={2}>
+                                            <Alert severity="info" sx={{ borderRadius: 2 }}>
+                                                <AlertTitle>Check Documentation</AlertTitle>
+                                                Visit our detailed documentation for more information about error handling and best practices.
+                                            </Alert>
+                                            <Alert severity="info" sx={{ borderRadius: 2 }}>
+                                                <AlertTitle>Contact Support</AlertTitle>
+                                                Reach out to our support team with your error code and any relevant logs for assistance.
+                                            </Alert>
+                                        </Stack>
+                                    </Stack>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Container>
             </Box>
         </Box>
     );
 };
 
-export default ErrorCodes; 
+export default ErrorCodes;

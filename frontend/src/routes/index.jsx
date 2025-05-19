@@ -32,6 +32,62 @@ const RouteWrapper = ({ children, title }) => (
     </PageLayout>
 );
 
+// Main routes configuration
+const mainRoutes = [
+    {
+        path: '/',
+        element: Home,
+        title: 'Home'
+    },
+    {
+        path: '/tools',
+        element: Tools,
+        title: 'Tools'
+    },
+    {
+        path: '/contact',
+        element: Contact,
+        title: 'Contact Us'
+    }
+];
+
+// Documentation routes configuration
+const gettingStartedRoutes = [
+    {
+        path: 'introduction',
+        element: Introduction,
+        title: 'Introduction'
+    },
+    {
+        path: 'quick-start',
+        element: QuickStart,
+        title: 'Quick Start'
+    },
+    {
+        path: 'installation',
+        element: Installation,
+        title: 'Installation'
+    }
+];
+
+const troubleshootingRoutes = [
+    {
+        path: 'common-issues',
+        element: CommonIssues,
+        title: 'Common Issues'
+    },
+    {
+        path: 'faq',
+        element: FAQ,
+        title: 'FAQ'
+    },
+    {
+        path: 'errors-code',
+        element: ErrorCodes,
+        title: 'Error Codes'
+    }
+];
+
 const AppRoutes = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -39,30 +95,17 @@ const AppRoutes = () => {
     return (
         <Routes>
             {/* Main Routes */}
-            <Route
-                path="/"
-                element={
-                    <RouteWrapper title="Home">
-                        <Home isMobile={isMobile} />
-                    </RouteWrapper>
-                }
-            />
-            <Route
-                path="/tools"
-                element={
-                    <RouteWrapper title="Tools">
-                        <Tools isMobile={isMobile} />
-                    </RouteWrapper>
-                }
-            />
-            <Route
-                path="/contact"
-                element={
-                    <RouteWrapper title="Contact Us">
-                        <Contact isMobile={isMobile} />
-                    </RouteWrapper>
-                }
-            />
+            {mainRoutes.map(({ path, element: Element, title }) => (
+                <Route
+                    key={path}
+                    path={path}
+                    element={
+                        <RouteWrapper title={title}>
+                            <Element isMobile={isMobile} />
+                        </RouteWrapper>
+                    }
+                />
+            ))}
 
             {/* Documentation Routes */}
             <Route path="/docs">
@@ -74,55 +117,34 @@ const AppRoutes = () => {
                         </RouteWrapper>
                     }
                 />
-                <Route
-                    path="introduction"
-                    element={
-                        <RouteWrapper title="Introduction">
-                            <Introduction isMobile={isMobile} />
-                        </RouteWrapper>
-                    }
-                />
-                <Route
-                    path="quick-start"
-                    element={
-                        <RouteWrapper title="Quick Start">
-                            <QuickStart isMobile={isMobile} />
-                        </RouteWrapper>
-                    }
-                />
-                <Route
-                    path="installation"
-                    element={
-                        <RouteWrapper title="Installation">
-                            <Installation isMobile={isMobile} />
-                        </RouteWrapper>
-                    }
-                />
+
+                {/* Getting Started Routes */}
+                {gettingStartedRoutes.map(({ path, element: Element, title }) => (
+                    <Route
+                        key={path}
+                        path={path}
+                        element={
+                            <RouteWrapper title={title}>
+                                <Element isMobile={isMobile} />
+                            </RouteWrapper>
+                        }
+                    />
+                ))}
+
                 {/* Troubleshooting Routes */}
-                <Route
-                    path="troubleshooting/common-issues"
-                    element={
-                        <RouteWrapper title="Common Issues">
-                            <CommonIssues isMobile={isMobile} />
-                        </RouteWrapper>
-                    }
-                />
-                <Route
-                    path="troubleshooting/faq"
-                    element={
-                        <RouteWrapper title="FAQ">
-                            <FAQ isMobile={isMobile} />
-                        </RouteWrapper>
-                    }
-                />
-                <Route
-                    path="troubleshooting/errors-code"
-                    element={
-                        <RouteWrapper title="Error Codes">
-                            <ErrorCodes isMobile={isMobile} />
-                        </RouteWrapper>
-                    }
-                />
+                <Route path="troubleshooting">
+                    {troubleshootingRoutes.map(({ path, element: Element, title }) => (
+                        <Route
+                            key={path}
+                            path={path}
+                            element={
+                                <RouteWrapper title={title}>
+                                    <Element isMobile={isMobile} />
+                                </RouteWrapper>
+                            }
+                        />
+                    ))}
+                </Route>
             </Route>
         </Routes>
     );
