@@ -52,8 +52,8 @@ export const documentationSections = [
         title: 'Troubleshooting',
         icon: HelpCircle,
         items: [
-            { title: 'Common Issues', path: '/docs/troubleshooting/common' },
-            { title: 'Error Codes', path: '/docs/troubleshooting/errors' },
+            { title: 'Common Issues', path: '/docs/troubleshooting/common-issues' },
+            { title: 'Error Codes', path: '/docs/troubleshooting/errors-code' },
             { title: 'FAQ', path: '/docs/troubleshooting/faq' },
         ],
     },

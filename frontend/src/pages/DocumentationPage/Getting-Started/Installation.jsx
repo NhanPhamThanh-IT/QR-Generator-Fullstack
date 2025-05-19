@@ -8,7 +8,6 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    Divider,
     useTheme,
     Card,
     CardContent,
@@ -16,8 +15,6 @@ import {
     Alert,
 } from '@mui/material';
 import {
-    Code2,
-    Terminal,
     Package,
     AlertTriangle,
     CheckCircle2,
@@ -74,7 +71,7 @@ const Installation = ({ isMobile }) => {
                 <Container maxWidth="lg">
                     <Grid container spacing={6}>
                         {/* Requirements */}
-                        <Grid item xs={12}>
+                        <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
                                     title="System Requirements"
@@ -107,7 +104,7 @@ const Installation = ({ isMobile }) => {
                         </Grid>
 
                         {/* Installation Methods */}
-                        <Grid item xs={12}>
+                        <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
                                     title="Installation Methods"
@@ -129,7 +126,7 @@ const Installation = ({ isMobile }) => {
                                     >
                                         <CardContent sx={{ p: 4 }}>
                                             <Grid container spacing={3}>
-                                                <Grid item xs={12} md={4}>
+                                                <Grid size={{ xs: 12, md: 4 }}>
                                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
                                                         <Package size={24} color={theme.palette.primary.main} />
                                                         <Typography variant="h6" fontWeight={600}>
@@ -140,7 +137,7 @@ const Installation = ({ isMobile }) => {
                                                         {step.description}
                                                     </Typography>
                                                 </Grid>
-                                                <Grid item xs={12} md={8}>
+                                                <Grid size={{ xs: 12, md: 8 }}>
                                                     <Paper
                                                         elevation={0}
                                                         sx={{
@@ -164,7 +161,7 @@ const Installation = ({ isMobile }) => {
                         </Grid>
 
                         {/* Important Notes */}
-                        <Grid item xs={12}>
+                        <Grid size={{ xs: 12 }}>
                             <Alert
                                 severity="info"
                                 icon={<AlertTriangle />}
