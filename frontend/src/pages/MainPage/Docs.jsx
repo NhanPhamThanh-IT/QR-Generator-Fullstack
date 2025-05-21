@@ -25,6 +25,7 @@ import { motion } from 'framer-motion';
 
 // Components
 const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const CTASection = lazy(() => import('@components/sections/CTASection'))
 
 // Constants
 import { HERO_SECTION_DATA, documentationSections } from '@constants/MainPage/DocsConstants';
@@ -355,67 +356,40 @@ const Docs = ({ isMobile }) => {
                             );
                         })}
                     </Grid>
-
-                    {/* Help Section */}
-                    <Box
-                        sx={{
-                            mt: 12,
-                            textAlign: 'center',
-                            p: { xs: 4, md: 6 },
-                            borderRadius: 4,
-                            background: `linear-gradient(145deg, ${alpha(theme.palette.primary.main, 0.08)}, ${alpha(theme.palette.primary.main, 0.15)})`,
-                            backdropFilter: 'blur(10px)',
-                        }}
-                    >
-                        <Typography
-                            variant="h4"
-                            gutterBottom
-                            fontWeight={700}
-                            sx={{
-                                background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                                backgroundClip: 'text',
-                                WebkitBackgroundClip: 'text',
-                                color: 'transparent',
-                            }}
-                        >
-                            Need more help?
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                            color="text.secondary"
-                            sx={{
-                                mb: 4,
-                                maxWidth: '600px',
-                                mx: 'auto',
-                                fontSize: '1.1rem',
-                                lineHeight: 1.6,
-                            }}
-                        >
-                            Can't find what you're looking for? Our dedicated support team is here to help you with any questions or concerns.
-                        </Typography>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            href="/contact"
-                            startIcon={<MessageCircle size={20} />}
-                            sx={{
-                                borderRadius: 28,
-                                px: 6,
-                                py: 2,
-                                fontSize: '1.1rem',
-                                background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                                boxShadow: `0 8px 16px ${alpha(theme.palette.primary.main, 0.2)}`,
-                                '&:hover': {
-                                    transform: 'translateY(-2px)',
-                                    boxShadow: `0 12px 20px ${alpha(theme.palette.primary.main, 0.3)}`,
-                                },
-                            }}
-                        >
-                            Contact Support
-                        </Button>
-                    </Box>
                 </Container>
+            </Box>
+
+            {/* CTA Section */}
+            <Box
+                sx={{
+                    mt: 6,
+                    textAlign: 'center',
+                }}
+            >
+                <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
+                    <CTASection
+                        Icon={MessageCircle}
+                        title="Need more help?"
+                        description="Can't find what you're looking for? Our dedicated support team is here to help you with any questions or concerns."
+                        buttonsChildren={
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                size="large"
+                                sx={{
+                                    px: 4,
+                                    borderRadius: 28,
+                                    boxShadow: '0 8px 20px rgba(131, 56, 236, 0.3)',
+                                    '&:hover': {
+                                        boxShadow: '0 12px 24px rgba(131, 56, 236, 0.4)',
+                                    }
+                                }}
+                            >
+                                Contact Support
+                            </Button>
+                        }
+                    />
+                </Suspense>
             </Box>
         </Box>
     );

@@ -16,7 +16,7 @@ const HeroSection = lazy(() => import('@components/sections/HeroSection'));
 const FeaturesSection = lazy(() => import('@components/sections/Homepage/FeaturesSection'));
 const StatisticsSection = lazy(() => import('@components/sections/Homepage/StatisticsSection'));
 const PopularToolsSection = lazy(() => import('@components/sections/Homepage/PopularToolsSection'));
-const CTASection = lazy(() => import('@components/sections/Homepage/CTASection'));
+const CTASection = lazy(() => import('@components/sections/CTASection'));
 
 // Hooks
 import { useRouteNavigation } from '@hooks';
@@ -145,9 +145,48 @@ const Home = ({ isMobile }) => {
 
             {/* CTA Section */}
             <Suspense fallback={<Box sx={{ height: '300px', bgcolor: 'primary.main' }} />}>
-                <CTASection />
+                <CTASection
+                    Icon={Sparkles}
+                    title="Ready to Supercharge Your Workflow?"
+                    description="Join thousands of users who are already using our AI tools to save time, boost productivity, and achieve more."
+                    buttonsChildren={
+                        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3, flexWrap: 'wrap' }}>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                size="large"
+                                sx={{
+                                    px: 4,
+                                    borderRadius: 28,
+                                    boxShadow: '0 8px 20px rgba(131, 56, 236, 0.3)',
+                                    '&:hover': {
+                                        boxShadow: '0 12px 24px rgba(131, 56, 236, 0.4)',
+                                    }
+                                }}
+                            >
+                                Get Started for Free
+                            </Button>
+
+                            <Button
+                                variant="outlined"
+                                sx={{
+                                    px: 4,
+                                    borderRadius: 28,
+                                    borderColor: 'rgba(255, 255, 255, 0.5)',
+                                    color: 'white',
+                                    '&:hover': {
+                                        borderColor: 'white',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                }}
+                            >
+                                View Pricing
+                            </Button>
+                        </Box>
+                    }
+                />
             </Suspense>
-        </Box>
+        </Box >
     );
 };
 

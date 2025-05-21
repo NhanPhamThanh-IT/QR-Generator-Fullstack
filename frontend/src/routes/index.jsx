@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -34,58 +34,22 @@ const RouteWrapper = ({ children, title }) => (
 
 // Main routes configuration
 const mainRoutes = [
-    {
-        path: '/',
-        element: Home,
-        title: 'Home'
-    },
-    {
-        path: '/tools',
-        element: Tools,
-        title: 'Tools'
-    },
-    {
-        path: '/contact',
-        element: Contact,
-        title: 'Contact Us'
-    }
+    { path: '/home', element: Home, title: 'Home' },
+    { path: '/tools', element: Tools, title: 'Tools' },
+    { path: '/contact', element: Contact, title: 'Contact Us' },
 ];
 
 // Documentation routes configuration
 const gettingStartedRoutes = [
-    {
-        path: 'introduction',
-        element: Introduction,
-        title: 'Introduction'
-    },
-    {
-        path: 'quick-start',
-        element: QuickStart,
-        title: 'Quick Start'
-    },
-    {
-        path: 'installation',
-        element: Installation,
-        title: 'Installation'
-    }
+    { path: 'introduction', element: Introduction, title: 'Introduction' },
+    { path: 'quick-start', element: QuickStart, title: 'Quick Start' },
+    { path: 'installation', element: Installation, title: 'Installation' },
 ];
 
 const troubleshootingRoutes = [
-    {
-        path: 'common-issues',
-        element: CommonIssues,
-        title: 'Common Issues'
-    },
-    {
-        path: 'faq',
-        element: FAQ,
-        title: 'FAQ'
-    },
-    {
-        path: 'errors-code',
-        element: ErrorCodes,
-        title: 'Error Codes'
-    }
+    { path: 'common-issues', element: CommonIssues, title: 'Common Issues' },
+    { path: 'faq', element: FAQ, title: 'FAQ' },
+    { path: 'errors-code', element: ErrorCodes, title: 'Error Codes' },
 ];
 
 const AppRoutes = () => {
@@ -94,6 +58,9 @@ const AppRoutes = () => {
 
     return (
         <Routes>
+            {/* Redirect / to /home */}
+            <Route path="/" element={<Navigate to="/home" replace />} />
+
             {/* Main Routes */}
             {mainRoutes.map(({ path, element: Element, title }) => (
                 <Route

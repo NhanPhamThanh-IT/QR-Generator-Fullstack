@@ -1,5 +1,43 @@
+/**
+ * @file MapSection.jsx
+ * @description A React component that renders an embedded Google Maps iframe showing the MIT location.
+ * This component is part of the website's sections and provides an interactive map view.
+ * 
+ * @component
+ * @example
+ * ```jsx
+ * import { MapSection } from './components/sections/MapSection';
+ * 
+ * function App() {
+ *   return <MapSection />;
+ * }
+ * ```
+ */
+
 import { Box } from '@mui/material'
 
+/**
+ * MapSection Component
+ * 
+ * @component
+ * @description Renders a full-width Google Maps iframe embedded in a Material-UI Box container.
+ * The map is centered on the Massachusetts Institute of Technology campus.
+ * 
+ * @returns {JSX.Element} A Box component containing an iframe with the embedded Google Map
+ * 
+ * @property {Object} Box.sx - Material-UI Box styling properties
+ * @property {string} Box.sx.height - Fixed height of 550px for the map container
+ * @property {string} Box.sx.width - Full width (100%) for the map container
+ * 
+ * @property {Object} iframe - Google Maps iframe properties
+ * @property {string} iframe.src - Google Maps embed URL with MIT location coordinates
+ * @property {string} iframe.width - Full width (100%) for the iframe
+ * @property {string} iframe.height - Full height (100%) for the iframe
+ * @property {Object} iframe.style - Inline styles for the iframe
+ * @property {boolean} iframe.allowFullScreen - Enables fullscreen mode for the map
+ * @property {string} iframe.loading - Lazy loading attribute for better performance
+ * @property {string} iframe.title - Accessibility title for the iframe
+ */
 export const MapSection = () => {
     return (
         <Box sx={{ height: '550px', width: '100%' }}>
