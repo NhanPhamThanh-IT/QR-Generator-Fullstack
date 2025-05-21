@@ -1,15 +1,17 @@
-export const HERO_SECTION_DATA = {
-    title: "Text Generation",
-    subtitle: "Harness the power of advanced language models for content creation, summarization, and text analysis",
-    backgroundImage: "/images/text-generation-hero.jpg"
-};
-
 import {
     FileText,
     MessageSquare,
     Sparkles,
     Brain,
+    Wand2,
+    BookOpen
 } from 'lucide-react';
+
+export const HERO_SECTION_DATA = {
+    title: "Text Generation",
+    description: "Harness the power of advanced language models for content creation, summarization, and text analysis",
+    backgroundImage: "/images/text-generation-hero.jpg",
+};
 
 export const features = [
     {
@@ -35,5 +37,20 @@ export const features = [
         description: "Advanced sentiment analysis and content optimization tools",
         icon: Brain,
         color: "#FF9800"
+    }
+];
+
+export const OVERVIEW_SECTION_DATA = [
+    {
+        icon: Wand2,
+        title: "Advanced Language Models",
+        description: "Our platform utilizes cutting-edge language models to provide powerful text generation and analysis capabilities. From content creation to translation, our AI ensures high-quality, contextually appropriate results.",
+        iconColor: "#4CAF50"
+    },
+    {
+        icon: BookOpen,
+        title: "Comprehensive Text Tools",
+        description: "Access a complete suite of text processing tools including summarization, translation, and analysis. Our AI-powered solutions help you create, optimize, and understand text content with ease.",
+        iconColor: "#9C27B0"
     }
 ]; 

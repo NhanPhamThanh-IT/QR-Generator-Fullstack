@@ -1,15 +1,17 @@
-export const HERO_SECTION_DATA = {
-    title: "Image Processing",
-    subtitle: "Transform and enhance your images with our advanced AI-powered image processing tools",
-    backgroundImage: "/images/image-processing-hero.jpg"
-};
-
 import {
     Wand2,
     Sparkles,
     Palette,
     Camera,
+    Brain,
+    Image
 } from 'lucide-react';
+
+export const HERO_SECTION_DATA = {
+    title: "Image Processing",
+    subtitle: "Transform and enhance your images with our advanced AI-powered image processing tools",
+    backgroundImage: "/images/image-processing-hero.jpg"
+};
 
 export const features = [
     {
@@ -35,5 +37,20 @@ export const features = [
         description: "Identify and analyze objects within images with high accuracy",
         icon: Camera,
         color: "#FF9800"
+    }
+];
+
+export const OVERVIEW_SECTION_DATA = [
+    {
+        icon: Brain,
+        title: "Advanced Image AI",
+        description: "Our platform leverages state-of-the-art AI models to provide powerful image processing capabilities. From generating new images to enhancing existing ones, our technology ensures high-quality results for all your visual needs.",
+        iconColor: "#4CAF50"
+    },
+    {
+        icon: Image,
+        title: "Comprehensive Image Tools",
+        description: "Access a full suite of image processing tools including style transfer, object detection, and image enhancement. Our AI-powered solutions help you achieve professional-quality results with minimal effort.",
+        iconColor: "#9C27B0"
     }
 ]; 

@@ -25,7 +25,7 @@ const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 import {
     HERO_SECTION_DATA,
     errorCodes
-} from '@constants/DocumentationPage/ErrorCodes';
+} from '@constants/DocumentationPage/Troubleshooting/ErrorCodes';
 
 const ErrorCodes = ({ isMobile }) => {
     const theme = useTheme();

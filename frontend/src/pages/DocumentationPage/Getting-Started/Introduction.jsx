@@ -2,10 +2,8 @@ import {
     Box,
     Container,
     Typography,
-    Paper,
     Grid,
     List,
-    ListItem,
     ListItemIcon,
     ListItemText,
     Divider,
@@ -30,7 +28,7 @@ const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 
 // Constants
-import { HERO_SECTION_DATA, features } from '@constants/DocumentationPage/IntroductionConstants';
+import { HERO_SECTION_DATA, features } from '@constants/DocumentationPage/Getting-Started/IntroductionConstants';
 
 const Introduction = ({ isMobile }) => {
     const theme = useTheme();

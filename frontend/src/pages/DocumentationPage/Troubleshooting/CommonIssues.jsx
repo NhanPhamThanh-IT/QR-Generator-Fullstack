@@ -27,7 +27,7 @@ const HeroSection = lazy(() => import('@components/sections/HeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants
-import { commonIssues } from '@constants/DocumentationPage/CommonIssues.jsx'
+import { commonIssues } from '@constants/DocumentationPage/Troubleshooting/CommonIssues.jsx'
 
 const CommonIssues = ({ isMobile }) => {
     const theme = useTheme();

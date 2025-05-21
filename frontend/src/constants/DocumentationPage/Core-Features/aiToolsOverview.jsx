@@ -1,15 +1,17 @@
-export const HERO_SECTION_DATA = {
-    title: "AI Tools Overview",
-    subtitle: "Discover our comprehensive suite of AI-powered tools designed to enhance your productivity and creativity",
-    backgroundImage: "/images/ai-tools-hero.jpg"
-};
-
 import {
     MessageSquare,
     Image,
     Code2,
     FileText,
+    Brain,
+    Sparkles
 } from 'lucide-react';
+
+export const HERO_SECTION_DATA = {
+    title: "AI Tools Overview",
+    description: "Discover our comprehensive suite of AI-powered tools designed to enhance your productivity and creativity",
+    backgroundImage: "/images/ai-tools-hero.jpg"
+};
 
 export const aiTools = [
     {
@@ -36,4 +38,19 @@ export const aiTools = [
         icon: FileText,
         color: "#FF9800"
     }
-]; 
+];
+
+export const OVERVIEW_SECTION_DATA = [
+    {
+        icon: Brain,
+        title: "Advanced AI Capabilities",
+        description: "Our platform leverages cutting-edge artificial intelligence to provide powerful tools for text generation, image processing, code assistance, and document analysis. Each tool is designed to enhance your productivity and creativity.",
+        iconColor: "#4CAF50"
+    },
+    {
+        icon: Sparkles,
+        title: "State-of-the-Art Technology",
+        description: "Our image processing tools leverage advanced AI models and neural networks to deliver exceptional results. From generating new images to enhancing existing ones, our technology ensures high-quality output for all your visual needs.",
+        iconColor: "#9C27B0"
+    }
+];
