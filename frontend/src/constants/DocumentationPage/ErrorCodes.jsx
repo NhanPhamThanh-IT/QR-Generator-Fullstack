@@ -26,13 +26,13 @@ export const errorCodes = [
         title: "Invalid Request Format",
         description: "The request body format is incorrect",
         solution: "Verify that your request follows the API documentation format and includes all required fields.",
-        severity: "error"
+        severity: "warning"
     },
     {
         code: "SYS_004",
         title: "Service Unavailable",
         description: "The AI service is temporarily unavailable",
         solution: "Please try again later or check our status page for updates.",
-        severity: "warning"
+        severity: "error"
     }
 ];

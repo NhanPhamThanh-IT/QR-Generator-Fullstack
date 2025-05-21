@@ -56,11 +56,10 @@ const ErrorCodes = ({ isMobile }) => {
                         </Grid>
 
                         {/* Error Codes List */}
-                        <Grid size={{ xs: 12 }}>
-                            <Stack spacing={3}>
-                                {errorCodes.map((error) => (
+                        <Grid container spacing={3}>
+                            {errorCodes.map((error) => (
+                                <Grid size={{ xs: 12, md: 6 }} key={error.code}>
                                     <Card
-                                        key={error.code}
                                         elevation={0}
                                         sx={{
                                             borderRadius: 3,
@@ -68,6 +67,7 @@ const ErrorCodes = ({ isMobile }) => {
                                             border: '1px solid',
                                             borderColor: 'divider',
                                             overflow: 'hidden',
+                                            height: '100%'
                                         }}
                                     >
                                         <CardContent sx={{ p: 0 }}>
@@ -105,8 +105,8 @@ const ErrorCodes = ({ isMobile }) => {
                                             </Box>
                                         </CardContent>
                                     </Card>
-                                ))}
-                            </Stack>
+                                </Grid>
+                            ))}
                         </Grid>
 
                         {/* Additional Help Section */}
