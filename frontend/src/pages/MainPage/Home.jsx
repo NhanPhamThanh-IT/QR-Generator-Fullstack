@@ -38,15 +38,6 @@ const Home = ({ isMobile }) => {
         }
     };
 
-    const primaryButtonText = "Explore Tools"
-    const primaryButtonLink = "/tools"
-    const secondaryButtonText = "Learn More"
-    const secondaryButtonLink = "/contact"
-    const cardTitle = "AI-Powered Tools"
-    const cardDescription = "Unlock the power of artificial intelligence with our suite of tools designed to enhance productivity and creativity."
-    const cardButtonText = "Get Started"
-    const cardButtonLink = "/tools"
-
     return (
         <Box>
             {/* Hero Section */}
@@ -67,11 +58,11 @@ const Home = ({ isMobile }) => {
                                     boxShadow: '0 6px 20px rgba(131, 56, 236, 0.6)'
                                 }
                             }}
-                            onClick={() => handleButtonClick(primaryButtonLink)}
+                            onClick={() => handleButtonClick(HERO_SECTION_DATA.primaryButtonLink)}
                         >
-                            {primaryButtonText}
+                            {HERO_SECTION_DATA.primaryButtonText}
                         </Button>
-                        {secondaryButtonText && (
+                        {HERO_SECTION_DATA.secondaryButtonText && (
                             <Button
                                 variant="outlined"
                                 size="large"
@@ -83,9 +74,9 @@ const Home = ({ isMobile }) => {
                                         bgcolor: 'rgba(255, 255, 255, 0.1)'
                                     }
                                 }}
-                                onClick={() => handleButtonClick(secondaryButtonLink)}
+                                onClick={() => handleButtonClick(HERO_SECTION_DATA.secondaryButtonLink)}
                             >
-                                {secondaryButtonText}
+                                {HERO_SECTION_DATA.secondaryButtonText}
                             </Button>
                         )}
                     </Box>}
@@ -110,14 +101,14 @@ const Home = ({ isMobile }) => {
                             <Sparkles size={50} color={theme.palette.primary.main} />
                         </Box>
                         <Typography variant="h5" align="center" fontWeight={600} gutterBottom>
-                            {cardTitle}
+                            {HERO_SECTION_DATA.cardTitle}
                         </Typography>
                         <Typography variant="body2" align="center" color="text.secondary">
-                            {cardDescription}
+                            {HERO_SECTION_DATA.cardDescription}
                         </Typography>
                         <Box sx={{ textAlign: 'center', mt: 2 }}>
-                            <Button variant="contained" color="primary" onClick={() => handleButtonClick(cardButtonLink)} endIcon={<ChevronRight />}>
-                                {cardButtonText}
+                            <Button variant="contained" color="primary" onClick={() => handleButtonClick(HERO_SECTION_DATA.cardButtonLink)} endIcon={<ChevronRight />}>
+                                {HERO_SECTION_DATA.cardButtonText}
                             </Button>
                         </Box>
                     </Paper>}
