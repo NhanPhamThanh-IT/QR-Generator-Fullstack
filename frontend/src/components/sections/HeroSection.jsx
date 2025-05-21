@@ -1,3 +1,37 @@
+/**
+ * HeroSection Component
+ * 
+ * A versatile and responsive hero section component that displays a prominent header section
+ * with customizable content, background, and layout options. The component supports both
+ * mobile and desktop layouts with different styling and content arrangements.
+ * 
+ * @component
+ * @example
+ * ```jsx
+ * <HeroSection
+ *   heroData={{
+ *     title: "Welcome to Our Platform",
+ *     description: "Discover amazing features and possibilities"
+ *   }}
+ *   leftChildren={<Button>Get Started</Button>}
+ *   rightChildren={<img src="hero-image.png" alt="Hero" />}
+ *   isMobile={false}
+ *   backgroundImage="/path/to/image.jpg"
+ * />
+ * ```
+ * 
+ * @param {Object} props - Component props
+ * @param {Object} props.heroData - Data object containing hero section content
+ * @param {string} props.heroData.title - Main heading text for the hero section
+ * @param {string} props.heroData.description - Subheading or descriptive text
+ * @param {React.ReactNode} props.leftChildren - React elements to be rendered in the left column
+ * @param {React.ReactNode} props.rightChildren - React elements to be rendered in the right column
+ * @param {boolean} props.isMobile - Flag indicating if the component is being rendered on mobile
+ * @param {string} [props.backgroundImage] - Optional URL for the background image. If not provided,
+ *                                          a gradient background using theme colors will be used
+ * 
+ * @returns {JSX.Element} A responsive hero section with customizable content and styling
+ */
 import {
     Box,
     Container,

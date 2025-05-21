@@ -40,15 +40,6 @@ export const documentationSections = [
         ],
     },
     {
-        title: 'Configuration',
-        icon: Settings,
-        items: [
-            { title: 'Environment Setup', path: '/docs/config/env' },
-            { title: 'API Keys', path: '/docs/config/api-keys' },
-            { title: 'Custom Settings', path: '/docs/config/settings' },
-        ],
-    },
-    {
         title: 'Troubleshooting',
         icon: HelpCircle,
         items: [

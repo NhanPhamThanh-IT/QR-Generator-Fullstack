@@ -1,33 +1,29 @@
 import {
     Box,
+    Button,
     Container,
     Typography,
     Grid,
-    Card,
-    CardContent,
     Stack,
     useTheme,
     Accordion,
     AccordionSummary,
     AccordionDetails,
     alpha,
-    Button,
 } from '@mui/material';
 import {
     HelpCircle,
     ChevronDown,
-    Mail,
-    MessageCircle,
 } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 
 // Components
 const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const CTASection = lazy(() => import('@components/sections/CTASection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants
 import { faqData } from '@constants/DocumentationPage/FAQ';
-
 
 const FAQ = ({ isMobile }) => {
     const theme = useTheme();
@@ -167,113 +163,26 @@ const FAQ = ({ isMobile }) => {
                                 </Stack>
                             </Grid>
                         ))}
-
-                        {/* Contact Support */}
-                        <Grid size={{ xs: 12 }}>
-                            <Card
-                                elevation={0}
-                                sx={{
-                                    borderRadius: 4,
-                                    boxShadow: `0 20px 40px ${alpha(theme.palette.primary.main, 0.1)}`,
-                                    border: '1px solid',
-                                    borderColor: 'divider',
-                                    bgcolor: theme.palette.primary.main,
-                                    color: 'white',
-                                    overflow: 'hidden',
-                                    position: 'relative',
-                                    '&::before': {
-                                        content: '""',
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0,
-                                        right: 0,
-                                        bottom: 0,
-                                        background: `radial-gradient(circle at top right, ${alpha('#fff', 0.1)}, transparent 70%)`,
-                                        pointerEvents: 'none',
-                                    }
-                                }}
-                            >
-                                <CardContent sx={{ p: { xs: 4, md: 6 } }}>
-                                    <Box sx={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: 2,
-                                        mb: 3
-                                    }}>
-                                        <Box sx={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            width: 48,
-                                            height: 48,
-                                            borderRadius: '14px',
-                                            bgcolor: alpha('#fff', 0.1),
-                                        }}>
-                                            <HelpCircle size={24} />
-                                        </Box>
-                                        <Typography variant="h4" fontWeight={700}>
-                                            Still Have Questions?
-                                        </Typography>
-                                    </Box>
-                                    <Typography
-                                        variant="body1"
-                                        sx={{
-                                            opacity: 0.9,
-                                            mb: 4,
-                                            fontSize: { xs: '1rem', md: '1.1rem' },
-                                            lineHeight: 1.7,
-                                        }}
-                                    >
-                                        Can't find what you're looking for? Our support team is here to help. Contact us through our support portal or email us at support@aitoolsplatform.com
-                                    </Typography>
-                                    <Stack
-                                        direction={{ xs: 'column', sm: 'row' }}
-                                        spacing={2}
-                                        width="100%"
-                                        display="flex"
-                                        justifyContent="flex-end"
-                                    >
-                                        <Button
-                                            variant="contained"
-                                            startIcon={<MessageCircle size={20} />}
-                                            sx={{
-                                                bgcolor: 'white',
-                                                color: 'primary.main',
-                                                '&:hover': {
-                                                    bgcolor: alpha('#fff', 0.9),
-                                                },
-                                                py: 1.5,
-                                                px: 3,
-                                                borderRadius: 2,
-                                            }}
-                                        >
-                                            Live Chat
-                                        </Button>
-                                        <Button
-                                            variant="outlined"
-                                            startIcon={<Mail size={20} />}
-                                            sx={{
-                                                borderColor: 'white',
-                                                color: 'white',
-                                                '&:hover': {
-                                                    borderColor: 'white',
-                                                    bgcolor: alpha('#fff', 0.1),
-                                                },
-                                                py: 1.5,
-                                                px: 3,
-                                                borderRadius: 2,
-                                            }}
-                                        >
-                                            Email Support
-                                        </Button>
-                                    </Stack>
-                                </CardContent>
-                            </Card>
-                        </Grid>
                     </Grid>
                 </Container>
+
+                {/* Helps Section */}
+                <Suspense fallback={<Box sx={{ height: '100px' }} />}>
+                    <CTASection
+                        icon={<HelpCircle size={40} color="white" />}
+                        title="Need more help?"
+                        description="If you have any questions or need assistance, feel free to reach out to our support team."
+                        buttonsChildren={
+                            <Box sx={{ mt: 3 }}>
+                                <Button variant="contained" color="primary">
+                                    Contact Support
+                                </Button>
+                            </Box>
+                        }
+                    />
+                </Suspense>
             </Box>
-        </Box>
+        </Box >
     );
 };
 
