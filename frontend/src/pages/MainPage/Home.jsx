@@ -13,9 +13,9 @@ import { lazy, Suspense } from 'react';
 
 // Components
 const HeroSection = lazy(() => import('@components/sections/HeroSection'));
-const FeaturesSection = lazy(() => import('@components/sections/Homepage/FeaturesSection'));
-const StatisticsSection = lazy(() => import('@components/sections/Homepage/StatisticsSection'));
-const PopularToolsSection = lazy(() => import('@components/sections/Homepage/PopularToolsSection'));
+const FeaturesSection = lazy(() => import('@components/sections/HomePage/FeaturesSection'));
+const StatisticsSection = lazy(() => import('@components/sections/HomePage/StatisticsSection'));
+const PopularToolsSection = lazy(() => import('@components/sections/HomePage/PopularToolsSection'));
 const CTASection = lazy(() => import('@components/sections/CTASection'));
 
 // Hooks
