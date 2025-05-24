@@ -2,10 +2,8 @@ import {
     Box,
     Container,
     Typography,
-    Paper,
     Grid,
     List,
-    ListItem,
     ListItemIcon,
     ListItemText,
     Divider,
@@ -25,12 +23,12 @@ import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Components
-const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 
 // Constants
-import { HERO_SECTION_DATA, features } from '@constants/DocumentationPage/IntroductionConstants';
+import { HERO_SECTION_DATA, features } from '@constants/DocumentationPage/Getting-Started/IntroductionConstants';
 
 const Introduction = ({ isMobile }) => {
     const theme = useTheme();
@@ -44,8 +42,11 @@ const Introduction = ({ isMobile }) => {
         <Box>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <HeroSection
-                    heroData={HERO_SECTION_DATA}
+                <DocumentationHeroSection
+                    title={HERO_SECTION_DATA.title}
+                    description={HERO_SECTION_DATA.description}
+                    leftChildren={HERO_SECTION_DATA.leftChildren}
+                    rightChildren={HERO_SECTION_DATA.rightChildren}
                     isMobile={isMobile}
                 />
             </Suspense>
@@ -229,7 +230,7 @@ const Introduction = ({ isMobile }) => {
                     </Grid>
                 </Container>
             </Box>
-        </Box>
+        </Box >
     );
 };
 

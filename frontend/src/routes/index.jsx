@@ -18,6 +18,11 @@ const Introduction = lazy(() => import('@pages/DocumentationPage/Getting-Started
 const QuickStart = lazy(() => import('@pages/DocumentationPage/Getting-Started/QuickStart'));
 const Installation = lazy(() => import('@pages/DocumentationPage/Getting-Started/Installation'));
 
+// Lazy load core features pages
+const AIToolsOverview = lazy(() => import('@pages/DocumentationPage/Core-Features/AIToolsOverview'));
+const TextGeneration = lazy(() => import('@pages/DocumentationPage/Core-Features/TextGeneration'));
+const ImageProcessing = lazy(() => import('@pages/DocumentationPage/Core-Features/ImageProcessing'));
+
 // Lazy load troubleshooting pages
 const CommonIssues = lazy(() => import('@pages/DocumentationPage/Troubleshooting/CommonIssues'));
 const FAQ = lazy(() => import('@pages/DocumentationPage/Troubleshooting/FAQ'));
@@ -44,6 +49,12 @@ const gettingStartedRoutes = [
     { path: 'introduction', element: Introduction, title: 'Introduction' },
     { path: 'quick-start', element: QuickStart, title: 'Quick Start' },
     { path: 'installation', element: Installation, title: 'Installation' },
+];
+
+const coreFeaturesRoutes = [
+    { path: 'ai-tools', element: AIToolsOverview, title: 'AI Tools Overview' },
+    { path: 'text-generation', element: TextGeneration, title: 'Text Generation' },
+    { path: 'image-processing', element: ImageProcessing, title: 'Image Processing' },
 ];
 
 const troubleshootingRoutes = [
@@ -87,6 +98,19 @@ const AppRoutes = () => {
 
                 {/* Getting Started Routes */}
                 {gettingStartedRoutes.map(({ path, element: Element, title }) => (
+                    <Route
+                        key={path}
+                        path={path}
+                        element={
+                            <RouteWrapper title={title}>
+                                <Element isMobile={isMobile} />
+                            </RouteWrapper>
+                        }
+                    />
+                ))}
+
+                {/* Core Features Routes */}
+                {coreFeaturesRoutes.map(({ path, element: Element, title }) => (
                     <Route
                         key={path}
                         path={path}

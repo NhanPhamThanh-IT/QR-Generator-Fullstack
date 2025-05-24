@@ -6,12 +6,14 @@ let theme = createTheme({
         primary: {
             main: '#3a86ff',
             light: '#6ea8ff',
+            lighter: '#9ecaff', // Added lighter shade
             dark: '#0066cc',
             contrastText: '#ffffff',
         },
         secondary: {
             main: '#8338ec',
             light: '#a66ef9',
+            lighter: '#c79eff', // Added lighter shade
             dark: '#6020b0',
             contrastText: '#ffffff',
         },

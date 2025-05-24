@@ -22,8 +22,11 @@ import {
 import { lazy, Suspense } from 'react';
 
 // Components
-const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
+
+// Constants
+import { HERO_SECTION_DATA } from './constants'
 
 const Installation = ({ isMobile }) => {
     const theme = useTheme();
@@ -56,12 +59,9 @@ const Installation = ({ isMobile }) => {
         <Box>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <HeroSection
-                    heroData={{
-                        title: "Installation Guide",
-                        subtitle: "Learn how to install and set up our AI tools platform",
-                        description: "Follow our step-by-step guide to get started with our platform"
-                    }}
+                <DocumentationHeroSection
+                    title={HERO_SECTION_DATA.title}
+                    description={HERO_SECTION_DATA.description}
                     isMobile={isMobile}
                 />
             </Suspense>

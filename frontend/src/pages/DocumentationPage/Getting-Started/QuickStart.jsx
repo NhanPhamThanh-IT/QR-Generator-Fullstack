@@ -11,50 +11,29 @@ import {
 } from '@mui/material';
 import {
     Code2,
-    Terminal,
-    Package,
-    Play,
 } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 
 // Components
-const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
+
+// Constants
+import { 
+    HERO_SECTION_DATA,
+    steps
+} from '@constants/DocumentationPage/Getting-Started/QuickStart';
 
 const QuickStart = ({ isMobile }) => {
     const theme = useTheme();
-
-    const steps = [
-        {
-            title: "Installation",
-            description: "Install our package using npm or yarn",
-            icon: Package,
-            code: "npm install ai-tools-platform\n# or\nyarn add ai-tools-platform"
-        },
-        {
-            title: "Configuration",
-            description: "Set up your API key and configuration",
-            icon: Terminal,
-            code: "import { AITools } from 'ai-tools-platform';\n\nconst aiTools = new AITools({\n  apiKey: 'your-api-key'\n});"
-        },
-        {
-            title: "Start Using",
-            description: "Begin using our tools in your project",
-            icon: Play,
-            code: "// Example usage\nconst result = await aiTools.text.generate({\n  prompt: 'Hello, world!'\n});"
-        }
-    ];
 
     return (
         <Box>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <HeroSection
-                    heroData={{
-                        title: "Quick Start Guide",
-                        subtitle: "Get up and running with our AI tools platform in minutes",
-                        description: "Follow these simple steps to integrate our powerful AI tools into your project"
-                    }}
+                <DocumentationHeroSection
+                    title={HERO_SECTION_DATA.title}
+                    description={HERO_SECTION_DATA.description}
                     isMobile={isMobile}
                 />
             </Suspense>

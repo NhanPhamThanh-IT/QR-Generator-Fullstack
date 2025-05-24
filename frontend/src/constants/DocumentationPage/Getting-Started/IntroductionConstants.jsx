@@ -1,6 +1,9 @@
 export const HERO_SECTION_DATA = {
     title: 'Welcome to Our AI Tools Platform',
     description: 'Our platform offers advanced AI capabilities designed to transform how you work, create, and interact with technology.',
+    backgroundImage: '/images/documentation-hero.jpg',
+    leftChildren: null,
+    rightChildren: null
 }
 
 import {

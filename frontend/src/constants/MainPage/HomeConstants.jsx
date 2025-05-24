@@ -1,6 +1,14 @@
 export const HERO_SECTION_DATA = {
     title: "Powerful AI Tools for Your Everyday Tasks",
-    description: "Simplify complex tasks, boost productivity, and unlock new possibilities with our cutting-edge AI tools."
+    description: "Simplify complex tasks, boost productivity, and unlock new possibilities with our cutting-edge AI tools.",
+    primaryButtonText: "Explore Tools",
+    primaryButtonLink: "/tools",
+    secondaryButtonText: "Learn More",
+    secondaryButtonLink: "/docs",
+    cardTitle: "AI-Powered Tools",
+    cardDescription: "Unlock the power of artificial intelligence with our suite of tools designed to enhance productivity and creativity.",
+    cardButtonText: "Get Started",
+    cardButtonLink: "/tools"
 }
 
 import { Brain, Cpu, MessageSquare, Zap } from 'lucide-react';
