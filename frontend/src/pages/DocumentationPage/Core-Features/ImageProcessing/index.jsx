@@ -3,12 +3,7 @@ import {
     Container,
     Grid,
 } from '@mui/material';
-import {
-    Brain,
-    Sparkles,
-} from 'lucide-react';
 import { lazy, Suspense } from 'react';
-import { useTheme } from '@mui/material/styles';
 
 // Components
 const HeroSection = lazy(() => import('@components/sections/HeroSection'));
@@ -17,11 +12,13 @@ const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));
 
 // Constants
-import { HERO_SECTION_DATA, aiTools, OVERVIEW_SECTION_DATA } from '@constants/DocumentationPage/Core-Features/aiToolsOverview';
+import {
+    HERO_SECTION_DATA,
+    features,
+    OVERVIEW_SECTION_DATA
+} from './constants';
 
-const AIToolsOverview = ({ isMobile }) => {
-    const theme = useTheme();
-
+const ImageProcessing = ({ isMobile }) => {
     return (
         <Box>
             {/* Hero Section */}
@@ -40,8 +37,8 @@ const AIToolsOverview = ({ isMobile }) => {
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="AI Tools Platform"
-                                    subtitle="Our platform offers a comprehensive suite of AI-powered tools designed to streamline your workflow and enhance productivity."
+                                    title="Advanced Image Processing"
+                                    subtitle="Our image processing tools combine cutting-edge AI technology with powerful algorithms to help you create, enhance, and analyze images with unprecedented precision."
                                     centered={true}
                                 />
                             </Suspense>
@@ -61,25 +58,25 @@ const AIToolsOverview = ({ isMobile }) => {
                             </Grid>
                         </Grid>
 
-                        {/* AI Tools Section */}
+                        {/* Features Section */}
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Available AI Tools"
-                                    subtitle="Explore our range of AI-powered tools designed to enhance your productivity"
+                                    title="Key Features"
+                                    subtitle="Discover the powerful capabilities of our image processing tools"
                                     centered={true}
                                 />
                             </Suspense>
                             <Grid container spacing={3}>
-                                {aiTools.map((tool) => {
+                                {features.map((feature) => {
                                     return (
-                                        <Grid size={{ xs: 12, md: 6, lg: 3 }} key={tool.title}>
+                                        <Grid size={{ xs: 12, md: 6, lg: 3 }} key={feature.title}>
                                             <Suspense fallback={<Box sx={{ height: '200px', bgcolor: 'grey.100' }} />}>
                                                 <FeatureCard
-                                                    title={tool.title}
-                                                    description={tool.description}
-                                                    icon={tool.icon}
-                                                    accentColor={tool.color}
+                                                    title={feature.title}
+                                                    description={feature.description}
+                                                    icon={feature.icon}
+                                                    accentColor={feature.color}
                                                 />
                                             </Suspense>
                                         </Grid>
@@ -94,4 +91,4 @@ const AIToolsOverview = ({ isMobile }) => {
     );
 };
 
-export default AIToolsOverview;
+export default ImageProcessing;

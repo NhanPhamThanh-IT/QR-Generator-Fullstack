@@ -4,6 +4,7 @@ import {
     Grid,
 } from '@mui/material';
 import { lazy, Suspense } from 'react';
+import { useTheme } from '@mui/material/styles';
 
 // Components
 const HeroSection = lazy(() => import('@components/sections/HeroSection'));
@@ -12,9 +13,15 @@ const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));
 
 // Constants
-import { HERO_SECTION_DATA, features, OVERVIEW_SECTION_DATA } from '@constants/DocumentationPage/Core-Features/textGeneration';
+import {
+    HERO_SECTION_DATA,
+    aiTools,
+    OVERVIEW_SECTION_DATA
+} from './constants';
 
-const TextGeneration = ({ isMobile }) => {
+const AIToolsOverview = ({ isMobile }) => {
+    const theme = useTheme();
+
     return (
         <Box>
             {/* Hero Section */}
@@ -33,8 +40,8 @@ const TextGeneration = ({ isMobile }) => {
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Advanced Text Generation"
-                                    subtitle="Our text generation tools combine cutting-edge AI technology with powerful language models to help you create, analyze, and optimize text content with unprecedented precision."
+                                    title="AI Tools Platform"
+                                    subtitle="Our platform offers a comprehensive suite of AI-powered tools designed to streamline your workflow and enhance productivity."
                                     centered={true}
                                 />
                             </Suspense>
@@ -54,25 +61,25 @@ const TextGeneration = ({ isMobile }) => {
                             </Grid>
                         </Grid>
 
-                        {/* Features Section */}
+                        {/* AI Tools Section */}
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Key Features"
-                                    subtitle="Discover the powerful capabilities of our text generation tools"
+                                    title="Available AI Tools"
+                                    subtitle="Explore our range of AI-powered tools designed to enhance your productivity"
                                     centered={true}
                                 />
                             </Suspense>
                             <Grid container spacing={3}>
-                                {features.map((feature) => {
+                                {aiTools.map((tool) => {
                                     return (
-                                        <Grid size={{ xs: 12, md: 6, lg: 3 }} key={feature.title}>
+                                        <Grid size={{ xs: 12, md: 6, lg: 3 }} key={tool.title}>
                                             <Suspense fallback={<Box sx={{ height: '200px', bgcolor: 'grey.100' }} />}>
                                                 <FeatureCard
-                                                    title={feature.title}
-                                                    description={feature.description}
-                                                    icon={feature.icon}
-                                                    accentColor={feature.color}
+                                                    title={tool.title}
+                                                    description={tool.description}
+                                                    icon={tool.icon}
+                                                    accentColor={tool.color}
                                                 />
                                             </Suspense>
                                         </Grid>
@@ -87,4 +94,4 @@ const TextGeneration = ({ isMobile }) => {
     );
 };
 
-export default TextGeneration;
+export default AIToolsOverview;

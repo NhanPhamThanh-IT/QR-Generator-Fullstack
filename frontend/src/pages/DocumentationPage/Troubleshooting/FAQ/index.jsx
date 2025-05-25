@@ -23,7 +23,7 @@ const CTASection = lazy(() => import('@components/sections/CTASection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants
-import { faqData } from '@constants/DocumentationPage/Troubleshooting/FAQ';
+import { faqData } from './constants';
 
 const FAQ = ({ isMobile }) => {
     const theme = useTheme();

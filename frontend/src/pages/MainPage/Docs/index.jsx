@@ -28,7 +28,7 @@ import {
     HERO_SECTION_DATA,
     CTA_SECTION_DATA,
     documentationSections
-} from '@constants/MainPage/DocsConstants';
+} from './constants';
 
 // Hooks
 import { useRouteNavigation } from '@hooks';

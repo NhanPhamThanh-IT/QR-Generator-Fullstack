@@ -10,7 +10,7 @@ const MapSection = lazy(() => import('@components/sections/MapSection'));
 const HeroSection = lazy(() => import('@components/sections/HeroSection'));
 
 // Constants
-import { HERO_SECTION_DATA, contactInfo, faqData } from '@constants/MainPage/ContactConstants';
+import { HERO_SECTION_DATA, contactInfo, faqData } from './constants';
 
 const Contact = ({ isMobile }) => {
     return (

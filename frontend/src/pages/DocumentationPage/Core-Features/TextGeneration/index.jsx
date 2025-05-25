@@ -12,9 +12,13 @@ const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));
 
 // Constants
-import { HERO_SECTION_DATA, features, OVERVIEW_SECTION_DATA } from '@constants/DocumentationPage/Core-Features/imageProcessing';
+import {
+    HERO_SECTION_DATA,
+    features,
+    OVERVIEW_SECTION_DATA
+} from './constants';
 
-const ImageProcessing = ({ isMobile }) => {
+const TextGeneration = ({ isMobile }) => {
     return (
         <Box>
             {/* Hero Section */}
@@ -33,8 +37,8 @@ const ImageProcessing = ({ isMobile }) => {
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Advanced Image Processing"
-                                    subtitle="Our image processing tools combine cutting-edge AI technology with powerful algorithms to help you create, enhance, and analyze images with unprecedented precision."
+                                    title="Advanced Text Generation"
+                                    subtitle="Our text generation tools combine cutting-edge AI technology with powerful language models to help you create, analyze, and optimize text content with unprecedented precision."
                                     centered={true}
                                 />
                             </Suspense>
@@ -59,7 +63,7 @@ const ImageProcessing = ({ isMobile }) => {
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
                                     title="Key Features"
-                                    subtitle="Discover the powerful capabilities of our image processing tools"
+                                    subtitle="Discover the powerful capabilities of our text generation tools"
                                     centered={true}
                                 />
                             </Suspense>
@@ -87,4 +91,4 @@ const ImageProcessing = ({ isMobile }) => {
     );
 };
 
-export default ImageProcessing;
+export default TextGeneration;
