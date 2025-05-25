@@ -1,4 +1,5 @@
 import {
+    ButtonBase,
     Box,
     Container,
     Typography,
@@ -12,7 +13,6 @@ import {
     Card,
     CardContent,
     Stack,
-    Alert,
 } from '@mui/material';
 import {
     CheckCircle2,
@@ -20,29 +20,85 @@ import {
     Settings,
     HelpCircle,
 } from 'lucide-react';
-import { lazy, Suspense } from 'react';
+import {
+    lazy,
+    Suspense
+} from 'react';
 
 // Components
-const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants
-import { commonIssues } from './constants';
+import {
+    HERO_SECTION_DATA,
+    REQUIREMENTS_SECTION_DATA,
+    ISSUES_SECTION_DATA,
+    HELPS_SECTION_DATA
+} from './constants';
+
+// Hooks
+import { useRouteNavigation } from '@hooks';
 
 const CommonIssues = ({ isMobile }) => {
     const theme = useTheme();
+    const { navigateTo } = useRouteNavigation();
 
     return (
         <Box>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <HeroSection
-                    heroData={{
-                        title: "Common Web Interface Issues",
-                        subtitle: "Solutions for common website interface problems",
-                        description: "Find quick solutions to common issues you might encounter while using our web interface"
-                    }}
+                <DocumentationHeroSection
+                    title={HERO_SECTION_DATA.title}
+                    description={HERO_SECTION_DATA.description}
                     isMobile={isMobile}
+                    rightChildren={
+                        <Paper
+                            elevation={0}
+                            sx={{
+                                p: { xs: 2, md: 3 },
+                                borderRadius: 4,
+                                border: '1px solid',
+                                borderColor: 'divider',
+                                bgcolor: 'background.paper',
+                                boxShadow: '0 6px 16px rgba(0,0,0,0.06)',
+                                display: 'flex',
+                                alignItems: 'flex-start',
+                                flexDirection: { xs: 'column', md: 'row' },
+                                gap: 2,
+                            }}
+                        >
+                            <Box>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-start',
+                                        gap: 1,
+                                        mb: 1
+                                    }}
+                                >
+                                    <HelpCircle size={24} color={theme.palette.info.main} />
+                                    <Typography variant="h6" fontWeight={700}>
+                                        {REQUIREMENTS_SECTION_DATA.title}
+                                    </Typography>
+                                </Box>
+                                <Box component="ul" sx={{ m: 0 }}>
+                                    {REQUIREMENTS_SECTION_DATA.requirements.map((tip, index) => (
+                                        <Typography
+                                            key={index}
+                                            component="li"
+                                            variant="body2"
+                                            color="text.secondary"
+                                            sx={{ mb: 0.5, textAlign: 'justify' }}
+                                        >
+                                            {tip}
+                                        </Typography>
+                                    ))}
+                                </Box>
+                            </Box>
+                        </Paper>
+                    }
                 />
             </Suspense>
 
@@ -50,35 +106,8 @@ const CommonIssues = ({ isMobile }) => {
             <Box sx={{ py: { xs: 6, md: 10 } }}>
                 <Container maxWidth="lg">
                     <Grid container spacing={6}>
-                        {/* Quick Tips */}
-                        <Grid size={{ xs: 12 }}>
-                            <Alert
-                                severity="info"
-                                icon={<HelpCircle />}
-                                sx={{
-                                    borderRadius: 3,
-                                    '& .MuiAlert-icon': {
-                                        color: theme.palette.info.main,
-                                    },
-                                }}
-                            >
-                                <Typography variant="subtitle1" fontWeight={600} gutterBottom>
-                                    Quick Tips for Web Interface
-                                </Typography>
-                                <Typography variant="body2">
-                                    • Keep your browser updated to the latest version
-                                    <br />
-                                    • Clear browser cache regularly for optimal performance
-                                    <br />
-                                    • Ensure JavaScript is enabled in your browser
-                                    <br />
-                                    • Use a modern, supported browser (Chrome, Firefox, Safari, Edge)
-                                </Typography>
-                            </Alert>
-                        </Grid>
-
                         {/* Common Issues Sections */}
-                        {commonIssues.map((category) => (
+                        {ISSUES_SECTION_DATA.issues.map((category) => (
                             <Grid size={{ xs: 12 }} key={category.category}>
                                 <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                     <SectionHeading
@@ -149,29 +178,33 @@ const CommonIssues = ({ isMobile }) => {
 
                         {/* Need More Help */}
                         <Grid size={{ xs: 12 }}>
-                            <Card
-                                elevation={0}
-                                sx={{
-                                    borderRadius: 3,
-                                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                                    border: '1px solid',
-                                    borderColor: 'divider',
-                                    bgcolor: theme.palette.primary.main,
-                                    color: 'white',
-                                }}
+                            <ButtonBase
+                                onClick={() => navigateTo(HELPS_SECTION_DATA.link)} // Use navigateTo here
                             >
-                                <CardContent sx={{ p: 4 }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-                                        <Settings size={24} />
-                                        <Typography variant="h5" fontWeight={600}>
-                                            Need More Help?
+                                <Card
+                                    elevation={0}
+                                    sx={{
+                                        borderRadius: 3,
+                                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                                        border: '1px solid',
+                                        borderColor: 'divider',
+                                        bgcolor: theme.palette.primary.main,
+                                        color: 'white',
+                                    }}
+                                >
+                                    <CardContent sx={{ p: 4 }}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+                                            <Settings size={24} />
+                                            <Typography variant="h5" fontWeight={600}>
+                                                {HELPS_SECTION_DATA.title}
+                                            </Typography>
+                                        </Box>
+                                        <Typography variant="body1" sx={{ opacity: 0.9, textAlign: 'justify' }}>
+                                            {HELPS_SECTION_DATA.description}
                                         </Typography>
-                                    </Box>
-                                    <Typography variant="body1" sx={{ opacity: 0.9 }}>
-                                        If you're still experiencing issues with our web interface, our support team is here to help. Contact us through our support portal or check our detailed documentation for more information.
-                                    </Typography>
-                                </CardContent>
-                            </Card>
+                                    </CardContent>
+                                </Card>
+                            </ButtonBase>
                         </Grid>
                     </Grid>
                 </Container>

@@ -6,6 +6,11 @@ export const HERO_SECTION_DATA = {
     icon: AlertTriangle,
 };
 
+export const OVERVIEW_SECTION_DATA = {
+    title: "Common Error Codes",
+    description: "Understanding and resolving common issues with our AI tools platform",
+};
+
 export const errorCodes = [
     {
         code: "AUTH_001",

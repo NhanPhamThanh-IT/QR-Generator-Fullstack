@@ -3,10 +3,13 @@ import {
     Container,
     Grid,
 } from '@mui/material';
-import { lazy, Suspense } from 'react';
+import {
+    lazy,
+    Suspense
+} from 'react';
 
 // Components
-const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));
@@ -14,8 +17,8 @@ const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));
 // Constants
 import {
     HERO_SECTION_DATA,
-    features,
-    OVERVIEW_SECTION_DATA
+    OVERVIEW_SECTION_DATA,
+    FEATURES_SECTION_DATA
 } from './constants';
 
 const TextGeneration = ({ isMobile }) => {
@@ -23,8 +26,9 @@ const TextGeneration = ({ isMobile }) => {
         <Box>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <HeroSection
-                    heroData={HERO_SECTION_DATA}
+                <DocumentationHeroSection
+                    title={HERO_SECTION_DATA.title}
+                    description={HERO_SECTION_DATA.description}
                     isMobile={isMobile}
                 />
             </Suspense>
@@ -37,13 +41,13 @@ const TextGeneration = ({ isMobile }) => {
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Advanced Text Generation"
-                                    subtitle="Our text generation tools combine cutting-edge AI technology with powerful language models to help you create, analyze, and optimize text content with unprecedented precision."
+                                    title={OVERVIEW_SECTION_DATA.title}
+                                    subtitle={OVERVIEW_SECTION_DATA.description}
                                     centered={true}
                                 />
                             </Suspense>
                             <Grid container spacing={3}>
-                                {OVERVIEW_SECTION_DATA.map((section, index) => (
+                                {OVERVIEW_SECTION_DATA.features.map((section, index) => (
                                     <Grid size={{ xs: 12, md: 6 }} key={index}>
                                         <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                             <LargeFeatureCard
@@ -62,13 +66,13 @@ const TextGeneration = ({ isMobile }) => {
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Key Features"
-                                    subtitle="Discover the powerful capabilities of our text generation tools"
+                                    title={FEATURES_SECTION_DATA.title}
+                                    subtitle={FEATURES_SECTION_DATA.description}
                                     centered={true}
                                 />
                             </Suspense>
                             <Grid container spacing={3}>
-                                {features.map((feature) => {
+                                {FEATURES_SECTION_DATA.features.map((feature) => {
                                     return (
                                         <Grid size={{ xs: 12, md: 6, lg: 3 }} key={feature.title}>
                                             <Suspense fallback={<Box sx={{ height: '200px', bgcolor: 'grey.100' }} />}>

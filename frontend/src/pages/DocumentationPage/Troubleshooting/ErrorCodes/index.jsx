@@ -15,15 +15,19 @@ import {
     Code2,
     HelpCircle,
 } from 'lucide-react';
-import { lazy, Suspense } from 'react';
+import {
+    lazy,
+    Suspense
+} from 'react';
 
 // Components
-const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants
 import {
     HERO_SECTION_DATA,
+    OVERVIEW_SECTION_DATA,
     errorCodes
 } from './constants';;
 
@@ -34,8 +38,9 @@ const ErrorCodes = ({ isMobile }) => {
         <Box>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <HeroSection
-                    heroData={HERO_SECTION_DATA}
+                <DocumentationHeroSection
+                    title={HERO_SECTION_DATA.title}
+                    description={HERO_SECTION_DATA.description}
                     isMobile={isMobile}
                 />
             </Suspense>
@@ -48,8 +53,8 @@ const ErrorCodes = ({ isMobile }) => {
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Common Error Codes"
-                                    subtitle="Understanding and resolving common issues with our AI tools platform"
+                                    title={OVERVIEW_SECTION_DATA.title}
+                                    subtitle={OVERVIEW_SECTION_DATA.description}
                                     centered={true}
                                 />
                             </Suspense>
