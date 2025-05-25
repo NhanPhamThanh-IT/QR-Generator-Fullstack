@@ -27,7 +27,7 @@ import {
 } from 'react-router-dom';
 
 // Components
-const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
+const HeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));
 const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
@@ -52,7 +52,7 @@ const Introduction = ({ isMobile }) => {
         <Box>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <DocumentationHeroSection
+                <HeroSection
                     title={HERO_SECTION_DATA.title}
                     description={HERO_SECTION_DATA.description}
                     leftChildren={HERO_SECTION_DATA.leftChildren}

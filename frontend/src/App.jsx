@@ -4,6 +4,8 @@ import theme from './theme';
 
 // Layout components
 import Layout from '@components/layout/Layout';
+
+// Routes configuration
 import AppRoutes from './routes';
 
 function App() {

@@ -17,8 +17,8 @@ import {
 import { lazy, Suspense } from 'react';
 
 // Components
-const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
-const DocumentationHelpSection = lazy(() => import('@components/sections/DocumentationPage/HelpSection'));
+const HeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
+const HelpSection = lazy(() => import('@components/sections/DocumentationPage/HelpSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants
@@ -34,7 +34,7 @@ const FAQ = ({ isMobile }) => {
         <Box sx={{ bgcolor: alpha(theme.palette.background.default, 0.8) }}>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <DocumentationHeroSection
+                <HeroSection
                     title={HERO_SECTION_DATA.title}
                     description={HERO_SECTION_DATA.description}
                     isMobile={isMobile}
@@ -168,7 +168,7 @@ const FAQ = ({ isMobile }) => {
 
             {/* Helps Section */}
             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
-                <DocumentationHelpSection />
+                <HelpSection />
             </Suspense>
         </Box >
     );

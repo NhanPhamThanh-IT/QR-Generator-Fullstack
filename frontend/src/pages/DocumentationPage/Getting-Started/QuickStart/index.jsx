@@ -18,7 +18,7 @@ import {
 } from 'react';
 
 // Components
-const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
+const HeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants
@@ -34,7 +34,7 @@ const QuickStart = ({ isMobile }) => {
         <Box>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <DocumentationHeroSection
+                <HeroSection
                     title={HERO_SECTION_DATA.title}
                     description={HERO_SECTION_DATA.description}
                     isMobile={isMobile}

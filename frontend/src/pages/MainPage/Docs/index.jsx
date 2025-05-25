@@ -20,7 +20,7 @@ import { motion } from 'framer-motion';
 
 // Components
 const HeroSection = lazy(() => import('@components/sections/HeroSection'));
-const DocumentationHelpSection = lazy(() => import('@components/sections/DocumentationPage/HelpSection'));
+const HelpSection = lazy(() => import('@components/sections/DocumentationPage/HelpSection'));
 
 // Constants
 import {
@@ -299,7 +299,7 @@ const Docs = ({ isMobile }) => {
 
             <Box sx={{ mt: 6, textAlign: 'center' }}>
                 <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                    <DocumentationHelpSection />
+                    <HelpSection />
                 </Suspense>
             </Box>
         </Box>
