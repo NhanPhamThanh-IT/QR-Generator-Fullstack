@@ -1,3 +1,8 @@
+export const HERO_SECTION_DATA = {
+    title: "FAQ - Frequently Asked Questions",
+    description: "Everything you need to know about using our AI tools platform effectively",
+}
+
 export const faqData = [
     {
         category: "General Questions",

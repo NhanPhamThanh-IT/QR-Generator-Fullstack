@@ -52,10 +52,3 @@ export const documentationSections = [
         ],
     },
 ];
-
-export const CTA_SECTION_DATA = {
-    title: "Need more help?",
-    description: "Can't find what you're looking for? Our dedicated support team is here to help you with any questions or concerns.",
-    buttonText: "Contact To Support",
-    buttonLink: "/contact"
-};

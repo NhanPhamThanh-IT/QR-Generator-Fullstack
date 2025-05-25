@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 import {
     ChevronRight,
-    MessageCircle,
     Sparkles
 } from 'lucide-react';
 import { lazy, Suspense } from 'react';
@@ -21,12 +20,11 @@ import { motion } from 'framer-motion';
 
 // Components
 const HeroSection = lazy(() => import('@components/sections/HeroSection'));
-const CTASection = lazy(() => import('@components/sections/CTASection'));
+const DocumentationHelpSection = lazy(() => import('@components/sections/DocumentationPage/HelpSection'));
 
 // Constants
 import {
     HERO_SECTION_DATA,
-    CTA_SECTION_DATA,
     documentationSections
 } from './constants';
 
@@ -301,26 +299,7 @@ const Docs = ({ isMobile }) => {
 
             <Box sx={{ mt: 6, textAlign: 'center' }}>
                 <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                    <CTASection
-                        Icon={MessageCircle}
-                        title={CTA_SECTION_DATA.title}
-                        description={CTA_SECTION_DATA.description}
-                        buttonsChildren={
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                size="large"
-                                sx={{
-                                    px: 4,
-                                    borderRadius: 28,
-                                    boxShadow: '0 8px 20px rgba(131, 56, 236, 0.3)',
-                                }}
-                                onClick={() => navigateTo(CTA_SECTION_DATA.buttonLink)}
-                            >
-                                {CTA_SECTION_DATA.buttonText}
-                            </Button>
-                        }
-                    />
+                    <DocumentationHelpSection />
                 </Suspense>
             </Box>
         </Box>

@@ -21,7 +21,7 @@ import {
 } from 'react';
 
 // Components
-const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants

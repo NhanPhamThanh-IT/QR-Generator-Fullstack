@@ -9,7 +9,7 @@ import {
 } from 'react';
 
 // Components
-const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));

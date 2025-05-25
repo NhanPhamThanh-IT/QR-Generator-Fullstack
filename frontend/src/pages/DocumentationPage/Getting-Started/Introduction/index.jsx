@@ -11,7 +11,6 @@ import {
     ListItemButton,
     Card,
     CardContent,
-    Stack,
 } from '@mui/material';
 import {
     ArrowRight,
@@ -28,7 +27,7 @@ import {
 } from 'react-router-dom';
 
 // Components
-const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));
 const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
