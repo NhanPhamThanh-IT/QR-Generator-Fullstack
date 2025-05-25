@@ -19,16 +19,27 @@ import {
     Code2,
     Rocket,
 } from 'lucide-react';
-import { lazy, Suspense } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {
+    lazy,
+    Suspense
+} from 'react';
+import {
+    useNavigate
+} from 'react-router-dom';
 
 // Components
 const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
+const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));
 const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 
 // Constants
-import { HERO_SECTION_DATA, features } from '@constants/DocumentationPage/Getting-Started/IntroductionConstants';
+import {
+    HERO_SECTION_DATA,
+    OVERVIEW_SECTION_DATA,
+    FEATURES_SECTION_DATA,
+    GETTING_STARTED_SECTION_DATA
+} from './constants';
 
 const Introduction = ({ isMobile }) => {
     const theme = useTheme();
@@ -59,72 +70,25 @@ const Introduction = ({ isMobile }) => {
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Overview"
-                                    subtitle="Our platform provides a comprehensive suite of AI-powered tools designed to streamline your workflow and enhance productivity."
+                                    title={OVERVIEW_SECTION_DATA.title}
+                                    subtitle={OVERVIEW_SECTION_DATA.description}
                                     centered={true}
                                 />
                             </Suspense>
                             <Grid container spacing={3}>
-                                <Grid size={{ xs: 12, md: 6 }}>
-                                    <Card
-                                        elevation={0}
-                                        sx={{
-                                            height: '100%',
-                                            borderRadius: 3,
-                                            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                                            border: '1px solid',
-                                            borderColor: 'divider',
-                                            transition: 'transform 0.2s ease-in-out',
-                                            '&:hover': {
-                                                transform: 'translateY(-4px)',
-                                            },
-                                        }}
-                                    >
-                                        <CardContent sx={{ p: 4 }}>
-                                            <Stack spacing={3}>
-                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                                    <BookOpen size={24} color={theme.palette.primary.main} />
-                                                    <Typography variant="h6" fontWeight={600}>
-                                                        What is AI Tools Platform?
-                                                    </Typography>
-                                                </Box>
-                                                <Typography variant="body1" color="text.secondary">
-                                                    Our platform is a comprehensive suite of AI-powered tools designed to help you work smarter, not harder. From text generation to image processing, we provide the tools you need to enhance your productivity and creativity.
-                                                </Typography>
-                                            </Stack>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                                <Grid size={{ xs: 12, md: 6 }}>
-                                    <Card
-                                        elevation={0}
-                                        sx={{
-                                            height: '100%',
-                                            borderRadius: 3,
-                                            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                                            border: '1px solid',
-                                            borderColor: 'divider',
-                                            transition: 'transform 0.2s ease-in-out',
-                                            '&:hover': {
-                                                transform: 'translateY(-4px)',
-                                            },
-                                        }}
-                                    >
-                                        <CardContent sx={{ p: 4 }}>
-                                            <Stack spacing={3}>
-                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                                    <Rocket size={24} color={theme.palette.secondary.main} />
-                                                    <Typography variant="h6" fontWeight={600}>
-                                                        Why Choose Us?
-                                                    </Typography>
-                                                </Box>
-                                                <Typography variant="body1" color="text.secondary">
-                                                    With state-of-the-art AI technology, intuitive interfaces, and comprehensive documentation, we make it easy for you to leverage the power of artificial intelligence in your projects.
-                                                </Typography>
-                                            </Stack>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
+                                {OVERVIEW_SECTION_DATA.features.map((feature) => {
+                                    const Icon = feature.icon === "BookOpen" ? BookOpen : feature.icon === "Rocket" ? Rocket : null;
+                                    return (
+                                        <Grid size={{ xs: 12, md: 6 }} key={feature.title}>
+                                            <LargeFeatureCard
+                                                icon={Icon}
+                                                iconColor={theme.palette[feature.iconColorKey.split('.')[0]][feature.iconColorKey.split('.')[1]]}
+                                                title={feature.title}
+                                                description={feature.description}
+                                            />
+                                        </Grid>
+                                    );
+                                })}
                             </Grid>
                         </Grid>
 
@@ -132,13 +96,13 @@ const Introduction = ({ isMobile }) => {
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Key Features"
-                                    subtitle="Our platform offers a range of powerful AI tools designed to streamline your workflow and enhance productivity."
+                                    title={FEATURES_SECTION_DATA.title}
+                                    subtitle={FEATURES_SECTION_DATA.description}
                                     centered={true}
                                 />
                             </Suspense>
                             <Grid container spacing={3}>
-                                {features.map((feature) => {
+                                {FEATURES_SECTION_DATA.features.map((feature) => {
                                     const Icon = feature.icon;
                                     return (
                                         <Grid size={{ xs: 12, md: 6, lg: 3 }} key={feature.title}>
@@ -173,11 +137,11 @@ const Introduction = ({ isMobile }) => {
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
                                             <Code2 size={24} />
                                             <Typography variant="h5" fontWeight={600}>
-                                                Getting Started
+                                                {GETTING_STARTED_SECTION_DATA.title}
                                             </Typography>
                                         </Box>
                                         <Typography variant="body1" sx={{ opacity: 0.9 }}>
-                                            Follow these steps to begin your journey with our AI tools platform
+                                            {GETTING_STARTED_SECTION_DATA.description}
                                         </Typography>
                                     </Box>
                                     <List sx={{ p: 3 }}>

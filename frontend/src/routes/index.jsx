@@ -14,7 +14,7 @@ const Contact = lazy(() => import('@pages/MainPage/Contact'));
 const Docs = lazy(() => import('@pages/MainPage/Docs'));
 
 // Lazy load documentation pages
-const Introduction = lazy(() => import('@pages/DocumentationPage/Getting-Started/Introduction'));
+const Introduction = lazy(() => import('@pages/DocumentationPage/Getting-Started/Introduction/index'));
 const QuickStart = lazy(() => import('@pages/DocumentationPage/Getting-Started/QuickStart'));
 const Installation = lazy(() => import('@pages/DocumentationPage/Getting-Started/Installation'));
 
