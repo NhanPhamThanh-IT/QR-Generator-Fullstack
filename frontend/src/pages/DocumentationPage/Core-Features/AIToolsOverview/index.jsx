@@ -3,24 +3,32 @@ import {
     Container,
     Grid,
 } from '@mui/material';
-import { lazy, Suspense } from 'react';
+import {
+    lazy,
+    Suspense
+} from 'react';
 
 // Components
-const HeroSection = lazy(() => import('@components/sections/HeroSection'));
+const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 const FeatureCard = lazy(() => import('@components/ui/FeatureCard'));
 const LargeFeatureCard = lazy(() => import('@components/ui/LargeFeatureCard'));
 
 // Constants
-import { HERO_SECTION_DATA, features, OVERVIEW_SECTION_DATA } from '@constants/DocumentationPage/Core-Features/imageProcessing';
+import {
+    HERO_SECTION_DATA,
+    OVERVIEW_SECTION_DATA,
+    FEATURES_SECTION_DATA
+} from './constants';
 
-const ImageProcessing = ({ isMobile }) => {
+const AIToolsOverview = ({ isMobile }) => {
     return (
         <Box>
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
-                <HeroSection
-                    heroData={HERO_SECTION_DATA}
+                <DocumentationHeroSection
+                    title={HERO_SECTION_DATA.title}
+                    description={HERO_SECTION_DATA.description}
                     isMobile={isMobile}
                 />
             </Suspense>
@@ -33,13 +41,13 @@ const ImageProcessing = ({ isMobile }) => {
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Advanced Image Processing"
-                                    subtitle="Our image processing tools combine cutting-edge AI technology with powerful algorithms to help you create, enhance, and analyze images with unprecedented precision."
+                                    title={OVERVIEW_SECTION_DATA.title}
+                                    subtitle={OVERVIEW_SECTION_DATA.description}
                                     centered={true}
                                 />
                             </Suspense>
                             <Grid container spacing={3}>
-                                {OVERVIEW_SECTION_DATA.map((section, index) => (
+                                {OVERVIEW_SECTION_DATA.features.map((section, index) => (
                                     <Grid size={{ xs: 12, md: 6 }} key={index}>
                                         <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                             <LargeFeatureCard
@@ -54,25 +62,25 @@ const ImageProcessing = ({ isMobile }) => {
                             </Grid>
                         </Grid>
 
-                        {/* Features Section */}
+                        {/* AI Tools Section */}
                         <Grid size={{ xs: 12 }}>
                             <Suspense fallback={<Box sx={{ height: '100px' }} />}>
                                 <SectionHeading
-                                    title="Key Features"
-                                    subtitle="Discover the powerful capabilities of our image processing tools"
+                                    title={FEATURES_SECTION_DATA.title}
+                                    subtitle={FEATURES_SECTION_DATA.description}
                                     centered={true}
                                 />
                             </Suspense>
                             <Grid container spacing={3}>
-                                {features.map((feature) => {
+                                {FEATURES_SECTION_DATA.features.map((tool) => {
                                     return (
-                                        <Grid size={{ xs: 12, md: 6, lg: 3 }} key={feature.title}>
+                                        <Grid size={{ xs: 12, md: 6, lg: 3 }} key={tool.title}>
                                             <Suspense fallback={<Box sx={{ height: '200px', bgcolor: 'grey.100' }} />}>
                                                 <FeatureCard
-                                                    title={feature.title}
-                                                    description={feature.description}
-                                                    icon={feature.icon}
-                                                    accentColor={feature.color}
+                                                    title={tool.title}
+                                                    description={tool.description}
+                                                    icon={tool.icon}
+                                                    accentColor={tool.color}
                                                 />
                                             </Suspense>
                                         </Grid>
@@ -87,4 +95,4 @@ const ImageProcessing = ({ isMobile }) => {
     );
 };
 
-export default ImageProcessing;
+export default AIToolsOverview;

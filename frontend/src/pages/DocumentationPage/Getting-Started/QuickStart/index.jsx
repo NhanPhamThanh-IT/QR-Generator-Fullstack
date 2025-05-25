@@ -12,17 +12,20 @@ import {
 import {
     Code2,
 } from 'lucide-react';
-import { lazy, Suspense } from 'react';
+import {
+    lazy,
+    Suspense
+} from 'react';
 
 // Components
 const DocumentationHeroSection = lazy(() => import('@components/sections/DocumentationHeroSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants
-import { 
+import {
     HERO_SECTION_DATA,
     steps
-} from '@constants/DocumentationPage/Getting-Started/QuickStart';
+} from './constants';
 
 const QuickStart = ({ isMobile }) => {
     const theme = useTheme();

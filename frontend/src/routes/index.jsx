@@ -8,25 +8,25 @@ import PageLayout from '@components/layout/PageLayout';
 import LoadingFallback from '@components/ui/LoadingFallback';
 
 // Lazy load main pages
-const Home = lazy(() => import('@pages/MainPage/Home'));
-const Tools = lazy(() => import('@pages/MainPage/Tools'));
-const Contact = lazy(() => import('@pages/MainPage/Contact'));
-const Docs = lazy(() => import('@pages/MainPage/Docs'));
+const Home = lazy(() => import('@pages/MainPage/Home/index'));
+const Tools = lazy(() => import('@pages/MainPage/Tools/index'));
+const Contact = lazy(() => import('@pages/MainPage/Contact/index'));
+const Docs = lazy(() => import('@pages/MainPage/Docs/index'));
 
 // Lazy load documentation pages
 const Introduction = lazy(() => import('@pages/DocumentationPage/Getting-Started/Introduction/index'));
-const QuickStart = lazy(() => import('@pages/DocumentationPage/Getting-Started/QuickStart'));
-const Installation = lazy(() => import('@pages/DocumentationPage/Getting-Started/Installation'));
+const QuickStart = lazy(() => import('@pages/DocumentationPage/Getting-Started/QuickStart/index'));
+const Installation = lazy(() => import('@pages/DocumentationPage/Getting-Started/Installation/index'));
 
 // Lazy load core features pages
-const AIToolsOverview = lazy(() => import('@pages/DocumentationPage/Core-Features/AIToolsOverview'));
-const TextGeneration = lazy(() => import('@pages/DocumentationPage/Core-Features/TextGeneration'));
-const ImageProcessing = lazy(() => import('@pages/DocumentationPage/Core-Features/ImageProcessing'));
+const AIToolsOverview = lazy(() => import('@pages/DocumentationPage/Core-Features/AIToolsOverview/index'));
+const TextGeneration = lazy(() => import('@pages/DocumentationPage/Core-Features/TextGeneration/index'));
+const ImageProcessing = lazy(() => import('@pages/DocumentationPage/Core-Features/ImageProcessing/index'));
 
 // Lazy load troubleshooting pages
-const CommonIssues = lazy(() => import('@pages/DocumentationPage/Troubleshooting/CommonIssues'));
-const FAQ = lazy(() => import('@pages/DocumentationPage/Troubleshooting/FAQ'));
-const ErrorCodes = lazy(() => import('@pages/DocumentationPage/Troubleshooting/ErrorCodes'));
+const CommonIssues = lazy(() => import('@pages/DocumentationPage/Troubleshooting/CommonIssues/index'));
+const FAQ = lazy(() => import('@pages/DocumentationPage/Troubleshooting/FAQ/index'));
+const ErrorCodes = lazy(() => import('@pages/DocumentationPage/Troubleshooting/ErrorCodes/index'));
 
 // Route wrapper component
 const RouteWrapper = ({ children, title }) => (

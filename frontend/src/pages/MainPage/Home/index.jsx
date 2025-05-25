@@ -25,8 +25,8 @@ import { useRouteNavigation } from '@hooks';
 import {
     featuresData,
     popularToolsData
-} from '@constants/MainPage/HomeConstants';
-import { HERO_SECTION_DATA } from '@constants/MainPage/HomeConstants';
+} from './constants';
+import { HERO_SECTION_DATA } from './constants';
 
 const Home = ({ isMobile }) => {
     const theme = useTheme();
