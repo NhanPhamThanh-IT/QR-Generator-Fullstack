@@ -15,14 +15,19 @@ const Contact = lazy(() => import('@pages/MainPage/Contact'));
 const Docs = lazy(() => import('@pages/MainPage/Docs'));
 
 // Getting Started Pages
-const Introduction = lazy(() => import('@pages/DocumentationPage/Getting-Started/Introduction'));
-const QuickStart = lazy(() => import('@pages/DocumentationPage/Getting-Started/QuickStart'));
-const Installation = lazy(() => import('@pages/DocumentationPage/Getting-Started/Installation'));
+const Introduction = lazy(() => import('@pages/DocumentationPage/GettingStarted/Introduction'));
+const QuickStart = lazy(() => import('@pages/DocumentationPage/GettingStarted/QuickStart'));
+const Installation = lazy(() => import('@pages/DocumentationPage/GettingStarted/Installation'));
 
 // Core Features Pages
-const AIToolsOverview = lazy(() => import('@pages/DocumentationPage/Core-Features/AIToolsOverview'));
-const TextGeneration = lazy(() => import('@pages/DocumentationPage/Core-Features/TextGeneration'));
-const ImageProcessing = lazy(() => import('@pages/DocumentationPage/Core-Features/ImageProcessing'));
+const AIToolsOverview = lazy(() => import('@pages/DocumentationPage/CoreFeatures/AIToolsOverview'));
+const TextGeneration = lazy(() => import('@pages/DocumentationPage/CoreFeatures/TextGeneration'));
+const ImageProcessing = lazy(() => import('@pages/DocumentationPage/CoreFeatures/ImageProcessing'));
+
+// Advanced Guides Pages
+const ToolCombinations = lazy(() => import('@pages/DocumentationPage/AdvancedGuides/ToolCombinations'));
+const MaxAccuracy = lazy(() => import('@pages/DocumentationPage/AdvancedGuides/MaxAccuracy'));
+const Personalization = lazy(() => import('@pages/DocumentationPage/AdvancedGuides/Personalization'));
 
 // Troubleshooting Pages
 const CommonIssues = lazy(() => import('@pages/DocumentationPage/Troubleshooting/CommonIssues'));
@@ -53,6 +58,12 @@ const coreFeaturesRoutes = [
     { path: routePaths.docsAITools, element: AIToolsOverview, title: 'AI Tools Overview' },
     { path: routePaths.docsTextGeneration, element: TextGeneration, title: 'Text Generation' },
     { path: routePaths.docsImageProcessing, element: ImageProcessing, title: 'Image Processing' },
+];
+
+const advancedGuidesRoutes = [
+    { path: routePaths.docsToolCombinations, element: ToolCombinations, title: 'Tool Combinations' },
+    { path: routePaths.docsMaxAccuracy, element: MaxAccuracy, title: 'Maximizing Accuracy' },
+    { path: routePaths.docsPersonalization, element: Personalization, title: 'Personalization' },
 ];
 
 const troubleshootingRoutes = [
@@ -101,6 +112,10 @@ const AppRoutes = () => {
 
                 <Route path={routePaths.docsCoreFeatures}>
                     {renderRoutes(coreFeaturesRoutes, isMobile)}
+                </Route>
+
+                <Route path={routePaths.docsAdvancedGuides}>
+                    {renderRoutes(advancedGuidesRoutes, isMobile)}
                 </Route>
 
                 <Route path={routePaths.docsTroubleshooting}>
