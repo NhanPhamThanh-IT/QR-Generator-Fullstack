@@ -1,6 +1,5 @@
 import {
     Box,
-    Button,
     Container,
     Typography,
     Grid,
@@ -18,12 +17,15 @@ import {
 import { lazy, Suspense } from 'react';
 
 // Components
-const HeroSection = lazy(() => import('@components/sections/HeroSection'));
-const CTASection = lazy(() => import('@components/sections/CTASection'));
+const HeroSection = lazy(() => import('@components/sections/DocumentationPage/HeroSection'));
+const HelpSection = lazy(() => import('@components/sections/DocumentationPage/HelpSection'));
 const SectionHeading = lazy(() => import('@components/ui/SectionHeading'));
 
 // Constants
-import { faqData } from './constants';
+import {
+    HERO_SECTION_DATA,
+    faqData
+} from './constants';
 
 const FAQ = ({ isMobile }) => {
     const theme = useTheme();
@@ -33,11 +35,8 @@ const FAQ = ({ isMobile }) => {
             {/* Hero Section */}
             <Suspense fallback={<Box sx={{ height: '400px', bgcolor: 'primary.main' }} />}>
                 <HeroSection
-                    heroData={{
-                        title: "Frequently Asked Questions",
-                        subtitle: "Find answers to common questions about our platform",
-                        description: "Everything you need to know about using our AI tools platform effectively"
-                    }}
+                    title={HERO_SECTION_DATA.title}
+                    description={HERO_SECTION_DATA.description}
                     isMobile={isMobile}
                 />
             </Suspense>
@@ -165,23 +164,12 @@ const FAQ = ({ isMobile }) => {
                         ))}
                     </Grid>
                 </Container>
-
-                {/* Helps Section */}
-                <Suspense fallback={<Box sx={{ height: '100px' }} />}>
-                    <CTASection
-                        icon={<HelpCircle size={40} color="white" />}
-                        title="Need more help?"
-                        description="If you have any questions or need assistance, feel free to reach out to our support team."
-                        buttonsChildren={
-                            <Box sx={{ mt: 3 }}>
-                                <Button variant="contained" color="primary">
-                                    Contact Support
-                                </Button>
-                            </Box>
-                        }
-                    />
-                </Suspense>
             </Box>
+
+            {/* Helps Section */}
+            <Suspense fallback={<Box sx={{ height: '100px' }} />}>
+                <HelpSection />
+            </Suspense>
         </Box >
     );
 };
