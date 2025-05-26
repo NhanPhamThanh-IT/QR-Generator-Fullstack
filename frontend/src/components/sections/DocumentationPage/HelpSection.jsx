@@ -8,17 +8,27 @@ import { MessageCircle } from 'lucide-react';
 // Components
 import CTASection from '../CTASection';
 
+// Constants
+import { routePaths } from '@constants/routePaths';
+
 // Hooks
 import { useRouteNavigation } from '@hooks'
 
-export const DocumentationHelpSection = () => {
+export const DocumentationHelpSection = ({
+    title = "Need more help?",
+    description = "Can't find what you're looking for? Our dedicated support team is here to help you with any questions or concerns."
+}) => {
     const { navigateTo } = useRouteNavigation();
+
+    const handleButtonClick = () => {
+        navigateTo(routePaths.contact);
+    }
 
     return (
         <CTASection
             Icon={MessageCircle}
-            title="Need more help?"
-            description="Can't find what you're looking for? Our dedicated support team is here to help you with any questions or concerns."
+            title={title}
+            description={description}
             buttonsChildren={
                 <Button
                     variant="contained"
@@ -29,7 +39,7 @@ export const DocumentationHelpSection = () => {
                         borderRadius: 28,
                         boxShadow: '0 8px 20px rgba(131, 56, 236, 0.3)',
                     }}
-                    onClick={() => navigateTo("/contact")}
+                    onClick={handleButtonClick}
                 >
                     Contact To Support
                 </Button>

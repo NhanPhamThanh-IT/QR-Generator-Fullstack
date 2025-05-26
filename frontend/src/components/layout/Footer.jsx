@@ -15,7 +15,7 @@ import {
   IconButton,
   useTheme
 } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, Routes } from 'react-router-dom';
 import {
   Sparkles,
   TwitterIcon,
@@ -24,6 +24,9 @@ import {
   LinkedinIcon,
   GithubIcon
 } from 'lucide-react';
+
+// Constants
+import { routePaths } from '@constants/routePaths'
 
 /**
  * Footer component that displays the website's footer section
@@ -102,13 +105,13 @@ const Footer = () => {
               Pages
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Link component={RouterLink} to="/" color="text.secondary" underline="hover">
+              <Link component={RouterLink} to={routePaths.home} color="text.secondary" underline="hover">
                 Home
               </Link>
-              <Link component={RouterLink} to="/tools" color="text.secondary" underline="hover">
+              <Link component={RouterLink} to={routePaths.tools} color="text.secondary" underline="hover">
                 Tools
               </Link>
-              <Link component={RouterLink} to="/contact" color="text.secondary" underline="hover">
+              <Link component={RouterLink} to={routePaths.contact} color="text.secondary" underline="hover">
                 Contact
               </Link>
             </Box>
@@ -119,16 +122,16 @@ const Footer = () => {
               Resources
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Link component="a" href="/docs" color="text.secondary" underline="hover">
+              <Link component="a" href={routePaths.docs} color="text.secondary" underline="hover">
                 Documentation
               </Link>
-              <Link component="a" href="/docs" color="text.secondary" underline="hover">
+              <Link component="a" href={routePaths.docs} color="text.secondary" underline="hover">
                 API Reference
               </Link>
-              <Link component="a" href="#" color="text.secondary" underline="hover">
+              <Link component="a" href={routePaths.docs} color="text.secondary" underline="hover">
                 Blog
               </Link>
-              <Link component="a" href="/docs" color="text.secondary" underline="hover">
+              <Link component="a" href={routePaths.docs} color="text.secondary" underline="hover">
                 Tutorials
               </Link>
             </Box>

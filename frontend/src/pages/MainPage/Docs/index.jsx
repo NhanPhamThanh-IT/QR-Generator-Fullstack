@@ -25,7 +25,7 @@ const HelpSection = lazy(() => import('@components/sections/DocumentationPage/He
 // Constants
 import {
     HERO_SECTION_DATA,
-    documentationSections
+    DOCUMENTS_SECTION_DATA
 } from './constants';
 
 // Hooks
@@ -133,7 +133,7 @@ const Docs = ({ isMobile }) => {
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => navigateTo(CTA_SECTION_DATA.buttonLink)}
+                    onClick={() => navigateTo(HERO_SECTION_DATA.cardButtonLink)}
                     endIcon={<ChevronRight />}
                 >
                     {HERO_SECTION_DATA.cardButtonText}
@@ -157,7 +157,7 @@ const Docs = ({ isMobile }) => {
                             color: 'transparent',
                         }}
                     >
-                        Explore Our Documentation
+                        {DOCUMENTS_SECTION_DATA.title}
                     </Typography>
                     <Typography
                         variant="body1"
@@ -169,15 +169,15 @@ const Docs = ({ isMobile }) => {
                             lineHeight: 1.6,
                         }}
                     >
-                        Discover comprehensive guides and documentation to help you start working with our tools as quickly as possible
+                        {DOCUMENTS_SECTION_DATA.description}
                     </Typography>
                 </Box>
 
                 <Grid container spacing={4}>
-                    {documentationSections.map((section, index) => {
+                    {DOCUMENTS_SECTION_DATA.documents.map((section, index) => {
                         const Icon = section.icon;
                         return (
-                            <Grid item xs={12} md={6} key={section.title}>
+                            <Grid size={{ xs: 12, md: 6 }} key={section.title}>
                                 <Zoom in timeout={500} style={{ transitionDelay: `${index * 100}ms` }}>
                                     <MotionPaper
                                         elevation={0}
