@@ -1,29 +1,67 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
-# Env
-.env
-.venv/
+# Virtual environment
 venv/
 ENV/
+env/
+.venv/
 
-# Database
-*.db
-*.sqlite3
-users.db
-
-# VSCode
+# Editor config
 .vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
 
-# OS files
+# OS-specific files
 .DS_Store
 Thumbs.db
 
-# Logs
+# Python environment and tools
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Logs and databases
 *.log
+*.sqlite3
+*.db
+
+# FastAPI / Uvicorn / Gunicorn runtime
+*.pid
+*.pid.lock
+
+# Testing & coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Environment files
+.env
+.env.*
+
+# MyPy & Pylint
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.pylint.d/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
 
 # Others
-.idea/
+*.bak
+*.tmp
+*.orig

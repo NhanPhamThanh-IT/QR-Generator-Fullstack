@@ -1,9 +1,11 @@
 fastapi
-uvicorn[standard]
-qrcode
-pillow
+uvicorn
 motor
 python-jose[cryptography]
 passlib[bcrypt]
+pydantic-settings
 pydantic[email]
-python-dotenv 
+python-multipart
+pytest
+pytest-asyncio
+httpx

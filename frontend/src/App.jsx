@@ -1,16 +1,11 @@
-import React from "react";
+// src/App.jsx
 import { BrowserRouter } from "react-router-dom";
-import MainLayout from "./layouts/MainLayout";
-import AppRoutes from "./routes/AppRoutes";
+import AppRoutes from "./routes";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
-      <MainLayout>
-        <AppRoutes />
-      </MainLayout>
+      <AppRoutes />
     </BrowserRouter>
   );
 }
-
-export default App; 
