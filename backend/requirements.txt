@@ -7,4 +7,5 @@ pydantic-settings
 pydantic[email]
 python-multipart
 pytest
+pytest-asyncio
 httpx

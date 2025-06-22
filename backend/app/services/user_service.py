@@ -1,21 +1,23 @@
 from app.db.session import db, Collections
-from app.core.security import hash_password, verify_password
-from app.models.user_model import UserInDB
+from passlib.context import CryptContext
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 async def get_user_by_email(email: str):
-    user = await db[Collections.user_collection].find_one({"email": email})
-    if user:
-        return UserInDB(id=str(user["_id"]), email=user["email"], hashed_password=user["hashed_password"])
-    return None
+    return await db[Collections.user_collection].find_one({"email": email})
 
 async def create_user(email: str, password: str):
-    hashed_pw = hash_password(password)
-    user = {"email": email, "hashed_password": hashed_pw}
-    result = await db[Collections.user_collection].insert_one(user)
-    return str(result.inserted_id)
+    hashed_password = pwd_context.hash(password)
+    user = {"email": email, "hashed_password": hashed_password}
+    await db[Collections.user_collection].insert_one(user)
+
+async def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)
 
 async def authenticate_user(email: str, password: str):
     user = await get_user_by_email(email)
-    if user and verify_password(password, user.hashed_password):
-        return user
-    return None
+    if not user:
+        return False
+    if not await verify_password(password, user["hashed_password"]):
+        return False
+    return user
