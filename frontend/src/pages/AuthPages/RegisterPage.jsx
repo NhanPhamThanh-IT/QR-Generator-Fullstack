@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { register } from "../services/authService";
+import { register } from "../../services/authService";
 import Cookies from "js-cookie";
 import { Button, TextField, Container, Typography, Box } from "@mui/material";
 
