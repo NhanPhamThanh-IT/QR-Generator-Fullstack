@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Box, Button, Container, Grid, TextField, Typography, Paper, Card, CardContent, CardMedia, CircularProgress, useTheme, useMediaQuery } from '@mui/material';
+import { useState } from 'react';
+import { Box, Button, Container, Grid, TextField, Typography, Paper, Card, CardContent, CircularProgress, useTheme, useMediaQuery } from '@mui/material';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
