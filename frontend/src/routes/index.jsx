@@ -4,6 +4,7 @@ import publicRoutes from "./publicRoutes";
 import privateRoutes from "./privateRoutes";
 import Page404 from "../pages/ErrorPages/Page404";
 import ProtectedRoute from "../components/ProtectedRoute";
+import Layout from "../components/layout/index";
 import { ROUTES } from "./constants";
 
 export default function AppRoutes() {
@@ -17,7 +18,7 @@ export default function AppRoutes() {
                 <Route
                     key={path}
                     path={path}
-                    element={<ProtectedRoute>{element}</ProtectedRoute>}
+                    element={<ProtectedRoute><Layout>{element}</Layout></ProtectedRoute>}
                 />
             ))}
 
