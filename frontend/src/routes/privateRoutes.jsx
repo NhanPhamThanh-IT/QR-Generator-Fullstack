@@ -1,16 +1,15 @@
 // src/routes/privateRoutes.js
-import HomePage from "../pages/MainPages/HomePage";
-import ContactPage from "../pages/MainPages/ContactPage";
+import lazyLoad from "../utils/lazyLoad";
 import { ROUTES } from "./constants";
 
 const privateRoutes = [
     {
         path: ROUTES.HOMEPAGE,
-        element: <HomePage />,
+        element: lazyLoad(() => import("../pages/MainPages/HomePage")),
     },
     {
         path: ROUTES.CONTACT,
-        element: <ContactPage />,
+        element: lazyLoad(() => import("../pages/MainPages/ContactPage")),
     },
 ];
 

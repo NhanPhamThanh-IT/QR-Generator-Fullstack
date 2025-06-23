@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
     AppBar,
     Box,
@@ -15,7 +15,7 @@ import {
     useScrollTrigger,
     Avatar,
     Menu,
-    MenuItem
+    MenuItem,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
@@ -24,15 +24,15 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import { ROUTES } from '../../routes/constants';
 import Cookies from 'js-cookie';
 
-// Styled components to match QR Code Generator theme
-const StyledAppBar = styled(AppBar)(({ theme, trigger }) => ({
+// Styled AppBar that changes based on scroll
+const StyledAppBar = styled(AppBar)(({ trigger }) => ({
     background: trigger ? 'white' : 'transparent',
     boxShadow: trigger ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
     transition: 'all 0.3s ease',
     color: trigger ? '#333' : '#fff',
 }));
 
-// Added styled component for the logo icon to change color based on scroll position
+// Icon style
 const StyledQrCodeIcon = styled(QrCodeIcon)(({ trigger }) => ({
     fontSize: 32,
     marginRight: '8px',
@@ -40,7 +40,7 @@ const StyledQrCodeIcon = styled(QrCodeIcon)(({ trigger }) => ({
     transition: 'all 0.3s ease',
 }));
 
-// Added styled component for the logo text to change color based on scroll position
+// Logo text style
 const LogoText = styled(Typography)(({ trigger }) => ({
     fontWeight: 700,
     color: trigger ? 'inherit' : '#fff',
@@ -48,14 +48,16 @@ const LogoText = styled(Typography)(({ trigger }) => ({
     transition: 'all 0.3s ease',
 }));
 
+// Toolbar layout
 const StyledToolbar = styled(Toolbar)({
     display: 'flex',
     justifyContent: 'space-between',
 });
 
-const NavButton = styled(Button)(({ theme }) => ({
+// Navigation button
+const NavButton = styled(Button)({
     textTransform: 'none',
-    fontWeight: '500',
+    fontWeight: 500,
     fontSize: '16px',
     margin: '0 8px',
     borderRadius: '8px',
@@ -63,14 +65,15 @@ const NavButton = styled(Button)(({ theme }) => ({
     transition: 'all 0.2s ease',
     '&:hover': {
         background: 'rgba(58, 123, 213, 0.1)',
-    }
-}));
+    },
+});
 
-const AuthButton = styled(Button)(({ theme }) => ({
+// Auth button
+const AuthButton = styled(Button)({
     borderRadius: '10px',
     padding: '8px 20px',
     textTransform: 'none',
-    fontWeight: '600',
+    fontWeight: 600,
     fontSize: '15px',
     background: 'linear-gradient(90deg, #3a7bd5, #2b5876)',
     transition: 'all 0.3s ease',
@@ -80,14 +83,8 @@ const AuthButton = styled(Button)(({ theme }) => ({
         background: 'linear-gradient(90deg, #3583e9, #356cb1)',
         boxShadow: '0 6px 18px rgba(59, 123, 213, 0.4)',
         transform: 'translateY(-2px)',
-    }
-}));
-
-// Function to handle elevation on scroll
-function ElevationScroll(props) {
-    const { children } = props;
-    return children;
-}
+    },
+});
 
 export default function Header() {
     const navigate = useNavigate();
@@ -96,13 +93,11 @@ export default function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 
-    // Get trigger value for scroll position
     const trigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 50,
     });
 
-    // Menu items updated for QR Generator site
     const menuItems = [
         { text: 'Home', path: ROUTES.HOMEPAGE },
         { text: 'QR Generator', path: ROUTES.QRGENERATOR },
@@ -110,7 +105,7 @@ export default function Header() {
     ];
 
     const handleDrawerToggle = () => {
-        setMobileOpen((prev) => !prev);
+        setMobileOpen(prev => !prev);
     };
 
     const handleProfileClick = (event) => {
@@ -125,7 +120,9 @@ export default function Header() {
         Cookies.remove('access_token');
         setAnchorEl(null);
         navigate(ROUTES.LOGIN);
-    }; const drawer = (
+    };
+
+    const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', p: 2 }}>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 2 }}>
                 <StyledQrCodeIcon trigger={false} />
@@ -137,22 +134,21 @@ export default function Header() {
             <List>
                 {menuItems.map((item) => (
                     <ListItem
-                        button
+                        key={item.text}
                         component={Link}
                         to={item.path}
-                        key={item.text}
                         sx={{
                             borderRadius: '8px',
                             my: 1,
                             '&:hover': {
                                 backgroundColor: 'rgba(58, 123, 213, 0.1)',
-                            }
+                            },
                         }}
                     >
                         <ListItemText
                             primary={item.text}
                             primaryTypographyProps={{
-                                sx: { textAlign: 'center', fontWeight: 500 }
+                                sx: { textAlign: 'center', fontWeight: 500 },
                             }}
                         />
                     </ListItem>
@@ -161,7 +157,6 @@ export default function Header() {
                 {!isAuthenticated ? (
                     <>
                         <ListItem
-                            button
                             component={Link}
                             to={ROUTES.LOGIN}
                             sx={{ justifyContent: 'center', mt: 2 }}
@@ -171,7 +166,6 @@ export default function Header() {
                             </Button>
                         </ListItem>
                         <ListItem
-                            button
                             component={Link}
                             to={ROUTES.REGISTER}
                             sx={{ justifyContent: 'center', mt: 1 }}
@@ -183,7 +177,6 @@ export default function Header() {
                     </>
                 ) : (
                     <ListItem
-                        button
                         onClick={handleLogout}
                         sx={{ justifyContent: 'center', mt: 2 }}
                     >
@@ -199,143 +192,135 @@ export default function Header() {
                 )}
             </List>
         </Box>
-    ); return (
-        <ElevationScroll>
-            <StyledAppBar position="fixed" trigger={trigger}>
-                <Container maxWidth="lg">
-                    <StyledToolbar disableGutters>
-                        {/* Logo - Updated for QR Code Generator */}
-                        <Box
-                            component={Link}
-                            to={ROUTES.HOMEPAGE}
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                textDecoration: 'none'
-                            }}
-                        >
-                            <StyledQrCodeIcon trigger={trigger} />
-                            <LogoText
-                                variant="h6"
-                                noWrap
-                                trigger={trigger}
-                            >
-                                QR Generator
-                            </LogoText>
+    );
+
+    return (
+        <StyledAppBar position="fixed" trigger={trigger}>
+            <Container maxWidth="lg">
+                <StyledToolbar disableGutters>
+                    <Box
+                        component={Link}
+                        to={ROUTES.HOMEPAGE}
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            textDecoration: 'none',
+                        }}
+                    >
+                        <StyledQrCodeIcon trigger={trigger} />
+                        <LogoText variant="h6" noWrap trigger={trigger}>
+                            QR Generator
+                        </LogoText>
+                    </Box>
+
+                    {!isMobile && (
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            {menuItems.map((item) => (
+                                <NavButton
+                                    key={item.text}
+                                    component={Link}
+                                    to={item.path}
+                                    color="inherit"
+                                >
+                                    {item.text}
+                                </NavButton>
+                            ))}
                         </Box>
+                    )}
 
-                        {/* Desktop Navigation */}
-                        {!isMobile && (
-                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                {menuItems.map((item) => (
-                                    <NavButton
-                                        key={item.text}
-                                        component={Link}
-                                        to={item.path}
-                                        color="inherit"
-                                    >
-                                        {item.text}
-                                    </NavButton>
-                                ))}
-                            </Box>
-                        )}
-
-                        {/* Authentication Buttons or User Profile */}
-                        {!isMobile && (
-                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                {isAuthenticated ? (
-                                    <>
-                                        <IconButton onClick={handleProfileClick}>
-                                            <Avatar
-                                                sx={{
-                                                    width: 40,
-                                                    height: 40,
-                                                    background: 'linear-gradient(135deg, #3a7bd5, #2b5876)',
-                                                }}
-                                            >
-                                                U
-                                            </Avatar>
-                                        </IconButton>                                        <Menu
-                                            anchorEl={anchorEl}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleMenuClose}
-                                            PaperProps={{
-                                                sx: {
-                                                    mt: 1,
-                                                    borderRadius: '12px',
-                                                    boxShadow: '0 8px 40px rgba(0, 0, 0, 0.12)',
-                                                }
+                    {!isMobile && (
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            {isAuthenticated ? (
+                                <>
+                                    <IconButton onClick={handleProfileClick}>
+                                        <Avatar
+                                            sx={{
+                                                width: 40,
+                                                height: 40,
+                                                background: 'linear-gradient(135deg, #3a7bd5, #2b5876)',
                                             }}
                                         >
-                                            <MenuItem
-                                                component={Link}
-                                                to={ROUTES.PROFILE}
-                                                onClick={handleMenuClose}
-                                            >
-                                                My Account
-                                            </MenuItem>                                            <MenuItem
-                                                component={Link}
-                                                to={ROUTES.DASHBOARD}
-                                                onClick={handleMenuClose}
-                                                sx={{ color: 'inherit' }}
-                                            >
-                                                My QR Codes
-                                            </MenuItem>
-                                            <MenuItem onClick={handleLogout}>Sign Out</MenuItem>
-                                        </Menu>
-                                    </>
-                                ) : (
-                                    <>
-                                        <NavButton
+                                            U
+                                        </Avatar>
+                                    </IconButton>
+                                    <Menu
+                                        anchorEl={anchorEl}
+                                        open={Boolean(anchorEl)}
+                                        onClose={handleMenuClose}
+                                        PaperProps={{
+                                            sx: {
+                                                mt: 1,
+                                                borderRadius: '12px',
+                                                boxShadow: '0 8px 40px rgba(0, 0, 0, 0.12)',
+                                            },
+                                        }}
+                                    >
+                                        <MenuItem
                                             component={Link}
-                                            to={ROUTES.LOGIN}
-                                            color="inherit"
+                                            to={ROUTES.PROFILE}
+                                            onClick={handleMenuClose}
                                         >
-                                            Sign In
-                                        </NavButton>
-                                        <AuthButton
+                                            My Account
+                                        </MenuItem>
+                                        <MenuItem
                                             component={Link}
-                                            to={ROUTES.REGISTER}
-                                            variant="contained"
+                                            to={ROUTES.DASHBOARD}
+                                            onClick={handleMenuClose}
                                         >
-                                            Create Account
-                                        </AuthButton>
-                                    </>
-                                )}
-                            </Box>
-                        )}
+                                            My QR Codes
+                                        </MenuItem>
+                                        <MenuItem onClick={handleLogout}>Sign Out</MenuItem>
+                                    </Menu>
+                                </>
+                            ) : (
+                                <>
+                                    <NavButton
+                                        component={Link}
+                                        to={ROUTES.LOGIN}
+                                        color="inherit"
+                                    >
+                                        Sign In
+                                    </NavButton>
+                                    <AuthButton
+                                        component={Link}
+                                        to={ROUTES.REGISTER}
+                                        variant="contained"
+                                    >
+                                        Create Account
+                                    </AuthButton>
+                                </>
+                            )}
+                        </Box>
+                    )}
 
-                        {/* Mobile Menu Icon */}
-                        {isMobile && (
-                            <IconButton
-                                color="inherit"
-                                aria-label="open drawer"
-                                edge="end"
-                                onClick={handleDrawerToggle}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                        )}
-                    </StyledToolbar>
-                </Container>
+                    {isMobile && (
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="end"
+                            onClick={handleDrawerToggle}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    )}
+                </StyledToolbar>
+            </Container>
 
-                {/* Mobile Navigation Drawer */}
-                <Drawer
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{ keepMounted: true }}
-                    sx={{
-                        display: { xs: 'block', md: 'none' },
-                        '& .MuiDrawer-paper': {
-                            width: 280,
-                            borderRadius: '0 16px 16px 0',
-                        },
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-            </StyledAppBar>
-        </ElevationScroll>
+            <Drawer
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{ keepMounted: true }}
+                sx={{
+                    display: { xs: 'block', md: 'none' },
+                    '& .MuiDrawer-paper': {
+                        width: 280,
+                        borderRadius: '0 16px 16px 0',
+                    },
+                }}
+            >
+                {drawer}
+            </Drawer>
+        </StyledAppBar>
     );
 }

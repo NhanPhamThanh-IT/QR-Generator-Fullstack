@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     Box,
     Container,
@@ -17,7 +17,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import API from "../../api/axiosInstance.js";
 
 const StyledContainer = styled(Container)(({ theme }) => ({
     display: "flex",
@@ -111,10 +111,6 @@ const contactInfo = [
 
 const GOOGLE_MAPS_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537363155047!3d-37.8162797420217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f1f6e7fb%3A0x5045675218ce6e0!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sau!4v1680000000000!5m2!1sen!2sau";
 
-const API = axios.create({
-    baseURL: "/api/v1",
-});
-
 export default function ContactPage() {
     const isMobile = useMediaQuery("(max-width:900px)");
     const [loading, setLoading] = useState(false);
@@ -125,7 +121,7 @@ export default function ContactPage() {
     const onSubmit = async (data) => {
         setLoading(true);
         try {
-            await API.post("/contact", data);
+            await API.post("/contact/create", data);
             setSnackbar({ open: true, message: "Message sent successfully!", severity: "success" });
             reset();
         } catch (err) {
@@ -171,26 +167,6 @@ export default function ContactPage() {
                                     Have a question or want to work with us? Fill out the form below and we'll get back to you soon.
                                 </Typography>
                                 <form onSubmit={handleSubmit(onSubmit)} noValidate>
-                                    <StyledTextField
-                                        label="Full Name"
-                                        fullWidth
-                                        {...register("fullName", { required: "Full Name is required" })}
-                                        error={!!errors.fullName}
-                                        helperText={errors.fullName?.message}
-                                    />
-                                    <StyledTextField
-                                        label="Email"
-                                        fullWidth
-                                        type="email"
-                                        {...register("email", {
-                                            required: "Email is required",
-                                            pattern: {
-                                                value: /\S+@\S+\.\S+/, message: "Invalid email address"
-                                            }
-                                        })}
-                                        error={!!errors.email}
-                                        helperText={errors.email?.message}
-                                    />
                                     <StyledTextField
                                         label="Subject"
                                         fullWidth

@@ -1,20 +1,19 @@
 // src/routes/publicRoutes.js
-import LoginPage from "../pages/AuthPages/LoginPage";
-import RegisterPage from "../pages/AuthPages/RegisterPage";
+import lazyLoad from "../utils/lazyLoad";
 import { ROUTES } from "./constants";
 
 const publicRoutes = [
     {
         path: ROUTES.LOGIN,
-        element: <LoginPage />,
+        element: lazyLoad(() => import("../pages/AuthPages/LoginPage")),
     },
     {
         path: ROUTES.REGISTER,
-        element: <RegisterPage />,
+        element:  lazyLoad(() => import("../pages/AuthPages/RegisterPage")),
     },
     {
         path: ROUTES.ROOT,
-        element: <LoginPage />,
+        element:  lazyLoad(() => import("../pages/MainPages/HomePage")),
     },
 ];
 
