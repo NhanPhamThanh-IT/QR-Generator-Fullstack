@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1 import auth
+from app.api.v1 import auth, contact
 
 app = FastAPI(title="Reusable FastAPI Auth App")
 
@@ -18,3 +18,4 @@ app.add_middleware(
 )
 
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Auth"])
+app.include_router(contact.router, prefix="/api/v1/contact", tags=["Contact"])

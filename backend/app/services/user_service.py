@@ -6,9 +6,9 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 async def get_user_by_email(email: str):
     return await db[Collections.user_collection].find_one({"email": email})
 
-async def create_user(email: str, password: str):
+async def create_user(name: str, email: str, password: str):
     hashed_password = pwd_context.hash(password)
-    user = {"email": email, "hashed_password": hashed_password}
+    user = {"name": name, "email": email, "hashed_password": hashed_password}
     await db[Collections.user_collection].insert_one(user)
 
 async def verify_password(plain_password: str, hashed_password: str) -> bool:

@@ -11,7 +11,7 @@ async def register(user: UserCreate):
     existing_user = await get_user_by_email(user.email)
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
-    await create_user(user.email, user.password)
+    await create_user(user.name, user.email, user.password)
     token = create_access_token(data={"sub": user.email})
     return {"access_token": token, "token_type": "bearer"}
 

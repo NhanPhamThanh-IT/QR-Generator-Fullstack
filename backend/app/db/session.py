@@ -6,3 +6,4 @@ db = client[settings.MONGODB_DB]
 
 class Collections:
     user_collection = settings.USER_COLLECTION
+    contact_collection = settings.CONTACT_COLLECTION

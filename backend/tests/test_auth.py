@@ -12,7 +12,7 @@ async def test_auth_flow():
         # Register
         res_register = await ac.post(
             "/api/v1/auth/register",
-            json={"email": "user@example.com", "password": "secure123"},
+            json={"name": "Jenifer Pham", "email": "user@example.com", "password": "123456"},
         )
         assert res_register.status_code == 200
         token = res_register.json()["access_token"]
@@ -21,7 +21,7 @@ async def test_auth_flow():
         # Login
         res_login = await ac.post(
             "/api/v1/auth/login",
-            data={"username": "user@example.com", "password": "secure123"},
+            data={"username": "user@example.com", "password": "123456"},
             headers={"Content-Type": "application/x-www-form-urlencoded"},
         )
         assert res_login.status_code == 200

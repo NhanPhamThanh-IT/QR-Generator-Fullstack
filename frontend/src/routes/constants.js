@@ -4,5 +4,6 @@ export const ROUTES = {
     REGISTER: "/register",
     ROOT: "/",
     HOMEPAGE: "/homepage",
+    CONTACT: "/contact",
     NOT_FOUND: "*",
 };
