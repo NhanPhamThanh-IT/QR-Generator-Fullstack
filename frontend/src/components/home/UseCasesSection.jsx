@@ -3,7 +3,7 @@ import { Box, Container, Grid, Typography, Card, CardContent } from '@mui/materi
 const UseCasesSection = () => {
     const useCases = [
         { title: "Restaurant Menus", description: "Replace physical menus with easy-to-update digital versions", image: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" },
-        { title: "Business Cards", description: "Add all your contact information and social profiles in one scan", image: "https://images.unsplash.com/photo-1572502069441-dbd9c1d14d12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" },
+        { title: "Business Cards", description: "Add all your contact information and social profiles in one scan", image: "https://plus.unsplash.com/premium_photo-1661380215864-8dd37776f596?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
         { title: "Product Packaging", description: "Link customers to instruction manuals, warranty info, and more", image: "https://images.unsplash.com/photo-1605870445919-838d190e8e1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" },
         { title: "Marketing Materials", description: "Track engagement on your print advertisements and flyers", image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" }
     ];

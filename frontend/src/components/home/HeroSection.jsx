@@ -47,6 +47,7 @@ const HeroSection = () => {
                                     backgroundColor: '#ffffff',
                                     color: '#6a11cb',
                                     fontWeight: 'bold',
+                                    textTransform: 'none',
                                     '&:hover': {
                                         backgroundColor: '#f0f0f0',
                                     }
@@ -63,6 +64,7 @@ const HeroSection = () => {
                                     px: 4,
                                     borderColor: 'white',
                                     color: 'white',
+                                    textTransform: 'none',
                                     '&:hover': {
                                         backgroundColor: 'rgba(255, 255, 255, 0.1)',
                                         borderColor: 'white'
@@ -76,7 +78,7 @@ const HeroSection = () => {
                     <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Box
                             component="img"
-                            src="https://images.unsplash.com/photo-1622676666769-990a5a87fa31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+                            src="https://imgv3.fotor.com/images/share/Various-QR-code-types-to-choose-from-on-Fotors-QR-code-generator.jpg"
                             alt="QR Code Example"
                             sx={{
                                 maxWidth: '100%',

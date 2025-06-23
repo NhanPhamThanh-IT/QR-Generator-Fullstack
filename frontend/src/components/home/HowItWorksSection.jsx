@@ -27,7 +27,7 @@ const HowItWorksSection = () => {
                     <Grid size={{ xs: 12, md: 6 }}>
                         <Box
                             component="img"
-                            src="https://images.unsplash.com/photo-1622676666769-990a5a87fa31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+                            src="https://plus.unsplash.com/premium_photo-1681293215212-2a7f852e44ee?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="QR Code Demo"
                             sx={{
                                 width: '100%',
@@ -80,6 +80,8 @@ const HowItWorksSection = () => {
                                 px: 4,
                                 backgroundImage: 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)',
                                 boxShadow: '0 8px 16px rgba(106, 17, 203, 0.3)',
+                                textTransform: 'none',
+                                fontWeight: 'bold',
                                 '&:hover': {
                                     boxShadow: '0 12px 20px rgba(106, 17, 203, 0.4)',
                                 }

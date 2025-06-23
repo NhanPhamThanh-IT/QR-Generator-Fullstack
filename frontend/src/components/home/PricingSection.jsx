@@ -33,6 +33,8 @@ const PricingSection = () => {
                                     py: 1.5,
                                     px: 4,
                                     backgroundImage: 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)',
+                                    textTransform: 'none',
+                                    fontWeight: 'bold',
                                 }}
                             >
                                 View Pricing
@@ -44,6 +46,7 @@ const PricingSection = () => {
                                 sx={{
                                     py: 1.5,
                                     px: 4,
+                                    textTransform: 'none',
                                 }}
                             >
                                 Contact Sales
