@@ -15,7 +15,7 @@ const CtaSection = lazyLoad(() => import("../../components/home/CtaSection"));
 
 const HomePage = () => {
   return (
-    <Box sx={{ backgroundColor: "#f8f9fa", minHeight: "100vh", mb: 24 }}>
+    <Box sx={{ backgroundColor: "#f8f9fa", minHeight: "100vh", mb: 20 }}>
       <HeroSection />
       <LazySection><StatsSection /></LazySection>
       <LazySection><FeaturesSection /></LazySection>

@@ -1,10 +1,5 @@
-import axios from "axios";
 import Cookies from "js-cookie";
-
-const API = axios.create({
-    baseURL: "http://localhost:8000/api/v1",
-    withCredentials: true,
-});
+import API from "../api/axiosInstance.js";
 
 export const register = async (name, email, password) =>
     await API.post("/auth/register", { name, email, password });
@@ -24,7 +19,5 @@ export const logout = async () => {
 export const getCurrentUser = async () => {
     const token = Cookies.get("access_token");
     if (!token) throw new Error("No token found");
-    return await API.get("/users/me", {
-        headers: { Authorization: `Bearer ${token}` },
-    });
+    return await API.get("/users/me");
 };

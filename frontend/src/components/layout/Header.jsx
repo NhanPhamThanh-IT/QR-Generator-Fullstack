@@ -106,7 +106,7 @@ export default function Header() {
     const menuItems = [
         { text: 'Home', path: ROUTES.HOMEPAGE },
         { text: 'QR Generator', path: ROUTES.QRGENERATOR },
-        { text: 'How It Works', path: ROUTES.HOWITWORKS },
+        { text: 'Contact', path: ROUTES.CONTACT },
     ];
 
     const handleDrawerToggle = () => {
@@ -204,7 +204,8 @@ export default function Header() {
             <StyledAppBar position="fixed" trigger={trigger}>
                 <Container maxWidth="lg">
                     <StyledToolbar disableGutters>
-                        {/* Logo - Updated for QR Code Generator */}                        <Box
+                        {/* Logo - Updated for QR Code Generator */}
+                        <Box
                             component={Link}
                             to={ROUTES.HOMEPAGE}
                             sx={{
