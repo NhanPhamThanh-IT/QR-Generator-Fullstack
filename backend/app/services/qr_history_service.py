@@ -1,5 +1,4 @@
 from app.db.session import db, Collections
-from bson import ObjectId
 
 async def create_qr_history(user_email: str, data_type: str, input: str, qr_color: str, bg_color: str, size: int, corner_radius: int, logo: str, output_format: str, timestamp: str):
     """
@@ -33,3 +32,10 @@ async def get_qr_history_by_user(user_email: str):
         document.pop("_id", None)
         history_list.append(document)
     return history_list 
+
+async def clear_qr_history_by_user(user_email: str):
+    """
+    Clear all QR code history records for a user.
+    """
+    result = await db[Collections.qr_history_collection].delete_many({"user_email": user_email})
+    return result.deleted_count

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Paper, Box, Typography, IconButton } from '@mui/material';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';

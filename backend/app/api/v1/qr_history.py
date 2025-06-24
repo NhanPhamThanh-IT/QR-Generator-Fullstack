@@ -1,6 +1,10 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from app.schemas.qr_history_schema import QRHistoryCreate
-from app.services.qr_history_service import create_qr_history, get_qr_history_by_user
+from app.services.qr_history_service import (
+    create_qr_history,
+    get_qr_history_by_user,
+    clear_qr_history_by_user
+)
 from app.api.deps import get_current_user
 from typing import Any, Dict
 
@@ -42,4 +46,17 @@ async def list_history(current_user: dict = Depends(get_current_user)) -> Dict[s
         history = await get_qr_history_by_user(current_user["email"])
         return {"history": history}
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)) 
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+    
+@router.delete("/clear-history", status_code=status.HTTP_204_NO_CONTENT)
+async def clear_history(current_user: dict = Depends(get_current_user)) -> None:
+    """
+    Clear all QR code history records for the current user.
+    Returns a 204 No Content response on success.
+    """
+    try:
+        deleted_count = await clear_qr_history_by_user(current_user["email"])
+        if deleted_count == 0:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No history found to clear")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))

@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Box, Container, Typography, Grid, Paper, Button } from '@mui/material';
+import React, { useState, useRef } from 'react';
+import { Box, Container, Typography, Grid, Paper } from '@mui/material';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import QRForm from './components/QRForm';
 import QRPreview from './components/QRPreview';
 import QRHistory from './components/QRHistory';
-import { saveToBackend, fetchBackendHistory } from './utils/qrHistory';
+import { createQR } from '../../services/qrService';
 
 const DEFAULT_COLOR = '#2575fc';
 const DEFAULT_BG_COLOR = '#fff';
@@ -21,14 +21,7 @@ export default function QRGeneratorPage() {
     const [loading, setLoading] = useState(false);
     const [qrValue, setQrValue] = useState('');
     const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
-    const [history, setHistory] = useState([]);
     const qrRef = useRef();
-
-    useEffect(() => {
-        fetchBackendHistory().then(h => {
-            if (Array.isArray(h)) setHistory(h);
-        }).catch(() => {});
-    }, []);
 
     // Handlers for form changes
     const handleFormChange = (field, value) => {
@@ -76,10 +69,7 @@ export default function QRGeneratorPage() {
                 timestamp: new Date().toISOString(),
             };
             try {
-                await saveToBackend(entry);
-                // Fetch backend history to update UI
-                const h = await fetchBackendHistory();
-                setHistory(h);
+                await createQR(entry);
             } catch (e) {
                 setSnackbar({ open: true, message: 'Lưu lịch sử QR lên server thất bại!', severity: 'error' });
             }
@@ -127,150 +117,6 @@ export default function QRGeneratorPage() {
             });
         } else {
             setSnackbar({ open: true, message: 'Copy only works for PNG format.', severity: 'info' });
-        }
-    };
-
-    // History actions
-    const handleHistoryDownload = (entry) => {
-        // Create a hidden container to render the QR code
-        const container = document.createElement('div');
-        document.body.appendChild(container);
-        const qr = entry.outputFormat === 'png' ? (
-            React.createElement(require('qrcode.react').QRCodeCanvas, {
-                value: entry.input,
-                size: 256,
-                fgColor: entry.qrColor,
-                bgColor: entry.bgColor,
-                level: 'Q',
-                includeMargin: false,
-                imageSettings: entry.logo ? {
-                    src: entry.logo,
-                    height: 52,
-                    width: 52,
-                    excavate: true,
-                } : undefined,
-                style: { borderRadius: entry.cornerRadius },
-            })
-        ) : (
-            React.createElement(require('qrcode.react').QRCodeSVG, {
-                value: entry.input,
-                size: 256,
-                fgColor: entry.qrColor,
-                bgColor: entry.bgColor,
-                level: 'Q',
-                includeMargin: false,
-                imageSettings: entry.logo ? {
-                    src: entry.logo,
-                    height: 52,
-                    width: 52,
-                    excavate: true,
-                } : undefined,
-                style: { borderRadius: entry.cornerRadius },
-            })
-        );
-        import('react-dom').then(ReactDOM => {
-            ReactDOM.render(qr, container);
-            setTimeout(() => {
-                if (entry.outputFormat === 'png') {
-                    const canvas = container.querySelector('canvas');
-                    if (canvas) {
-                        const url = canvas.toDataURL('image/png');
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.download = 'qr-code.png';
-                        link.click();
-                    }
-                } else {
-                    const svg = container.querySelector('svg');
-                    if (svg) {
-                        const serializer = new XMLSerializer();
-                        const svgStr = serializer.serializeToString(svg);
-                        const blob = new Blob([svgStr], { type: 'image/svg+xml' });
-                        const url = URL.createObjectURL(blob);
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.download = 'qr-code.svg';
-                        link.click();
-                        URL.revokeObjectURL(url);
-                    }
-                }
-                document.body.removeChild(container);
-            }, 100);
-        });
-    };
-
-    const handleHistoryCopy = (entry) => {
-        const container = document.createElement('div');
-        document.body.appendChild(container);
-        const qr = entry.outputFormat === 'png' ? (
-            React.createElement(require('qrcode.react').QRCodeCanvas, {
-                value: entry.input,
-                size: 256,
-                fgColor: entry.qrColor,
-                bgColor: entry.bgColor,
-                level: 'Q',
-                includeMargin: false,
-                imageSettings: entry.logo ? {
-                    src: entry.logo,
-                    height: 52,
-                    width: 52,
-                    excavate: true,
-                } : undefined,
-                style: { borderRadius: entry.cornerRadius },
-            })
-        ) : (
-            React.createElement(require('qrcode.react').QRCodeSVG, {
-                value: entry.input,
-                size: 256,
-                fgColor: entry.qrColor,
-                bgColor: entry.bgColor,
-                level: 'Q',
-                includeMargin: false,
-                imageSettings: entry.logo ? {
-                    src: entry.logo,
-                    height: 52,
-                    width: 52,
-                    excavate: true,
-                } : undefined,
-                style: { borderRadius: entry.cornerRadius },
-            })
-        );
-        import('react-dom').then(ReactDOM => {
-            ReactDOM.render(qr, container);
-            setTimeout(async () => {
-                if (entry.outputFormat === 'png') {
-                    const canvas = container.querySelector('canvas');
-                    if (canvas) {
-                        canvas.toBlob(async (blob) => {
-                            try {
-                                await navigator.clipboard.write([
-                                    new window.ClipboardItem({ 'image/png': blob })
-                                ]);
-                                setSnackbar({ open: true, message: 'QR code copied to clipboard!', severity: 'success' });
-                            } catch {
-                                setSnackbar({ open: true, message: 'Copy failed. Try downloading instead.', severity: 'error' });
-                            }
-                        });
-                    }
-                } else {
-                    setSnackbar({ open: true, message: 'Copy only works for PNG format.', severity: 'info' });
-                }
-                document.body.removeChild(container);
-            }, 100);
-        });
-    };
-
-    const handleClearHistory = () => {
-        setHistory([]);
-    };
-
-    const handleSyncHistory = async () => {
-        try {
-            const h = await fetchBackendHistory();
-            setHistory(h);
-            setSnackbar({ open: true, message: 'Đồng bộ lịch sử thành công!', severity: 'success' });
-        } catch {
-            setSnackbar({ open: true, message: 'Đồng bộ lịch sử thất bại!', severity: 'error' });
         }
     };
 
@@ -322,18 +168,8 @@ export default function QRGeneratorPage() {
                             </Box>
                         </Grid>
                     </Grid>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                        <Button variant="outlined" onClick={handleSyncHistory} sx={{ borderRadius: 2, textTransform: 'none' }}>
-                            Đồng bộ lịch sử
-                        </Button>
-                    </Box>
                 </Paper>
-                <QRHistory
-                    history={history}
-                    onDownload={handleHistoryDownload}
-                    onCopy={handleHistoryCopy}
-                    onClear={handleClearHistory}
-                />
+                <QRHistory setSnackbar={setSnackbar} />
             </Container>
         </Box>
     );
