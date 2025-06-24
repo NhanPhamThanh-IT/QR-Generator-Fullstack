@@ -153,7 +153,7 @@ export default function RegisterPage() {
         setIsLoading(true);
 
         try {
-            const res = await register(name, email, password);
+            const res = await register({ name: name, email: email, password: password });
             Cookies.set("access_token", res.data.access_token, { secure: true });
             navigate(ROUTES.HOMEPAGE, { replace: true });
         } catch (err) {

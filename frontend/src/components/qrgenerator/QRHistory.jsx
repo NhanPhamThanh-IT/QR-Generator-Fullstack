@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Typography, Button, Grid } from '@mui/material';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import QRHistoryItem from './QRHistoryItem';
-import { getQRHistory, clearQRHistory } from '../../../services/qrService';
+import { getQRHistory, clearQRHistory } from '../../services/qrService';
 
 export default function QRHistory({ setSnackbar }) {
   const [history, setHistory] = useState([]);

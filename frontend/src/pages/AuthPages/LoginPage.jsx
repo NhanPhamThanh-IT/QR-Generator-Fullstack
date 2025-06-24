@@ -129,7 +129,7 @@ export default function LoginPage() {
         setIsLoading(true);
 
         try {
-            const res = await login(email, password);
+            const res = await login({ username: email, password: password });
             Cookies.set("access_token", res.data.access_token, { secure: true });
             navigate(ROUTES.HOMEPAGE, { replace: true });
         } catch (err) {
