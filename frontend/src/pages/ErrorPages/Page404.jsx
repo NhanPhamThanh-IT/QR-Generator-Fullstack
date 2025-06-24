@@ -36,13 +36,13 @@ const Page404 = () => {
     };
 
     const goHome = () => {
-        navigate('/');
+        navigate('/homepage');
     };
 
     return (
         <Box
             sx={{
-                minHeight: '100vh',
+                minHeight: '90vh',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -101,6 +101,9 @@ const Page404 = () => {
                                     onClick={goBack}
                                     fullWidth={isMobile}
                                     size="large"
+                                    sx={{
+                                        textTransform: 'none',
+                                    }}
                                 >
                                     Go Back
                                 </Button>
@@ -111,6 +114,9 @@ const Page404 = () => {
                                     onClick={goHome}
                                     fullWidth={isMobile}
                                     size="large"
+                                    sx={{
+                                        textTransform: 'none',
+                                    }}
                                 >
                                     Back to Home
                                 </Button>

@@ -10,7 +10,6 @@ const FeaturesSection = lazyLoad(() => import("../../components/home/FeaturesSec
 const HowItWorksSection = lazyLoad(() => import("../../components/home/HowItWorksSection"));
 const UseCasesSection = lazyLoad(() => import("../../components/home/UseCasesSection"));
 const TestimonialsSection = lazyLoad(() => import("../../components/home/TestimonialsSection"));
-const PricingSection = lazyLoad(() => import("../../components/home/PricingSection"));
 const CtaSection = lazyLoad(() => import("../../components/home/CtaSection"));
 
 const HomePage = () => {
@@ -22,7 +21,6 @@ const HomePage = () => {
       <LazySection><HowItWorksSection /></LazySection>
       <LazySection><UseCasesSection /></LazySection>
       <LazySection><TestimonialsSection /></LazySection>
-      <LazySection><PricingSection /></LazySection>
       <LazySection><CtaSection /></LazySection>
     </Box>
   );

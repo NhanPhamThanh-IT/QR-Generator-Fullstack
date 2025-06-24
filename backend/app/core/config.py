@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     USER_COLLECTION: str
     CONTACT_COLLECTION: str
+    QR_HISTORY_COLLECTION: str
 
     model_config = SettingsConfigDict(env_file=".env")
 

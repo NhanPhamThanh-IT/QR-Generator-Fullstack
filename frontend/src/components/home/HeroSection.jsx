@@ -1,7 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const HeroSection = () => {
+    const navigate = useNavigate();
+
+    const goToRoute = (route) => () => {
+        navigate(route);
+    };
+
+    const goToSection = (section) => () => {
+        const element = document.getElementById(section);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <Box
             sx={{
@@ -39,7 +53,7 @@ const HeroSection = () => {
                             <Button
                                 variant="contained"
                                 size="large"
-                                href="/register"
+                                onClick={goToRoute('/qr-generator')}
                                 endIcon={<ArrowForwardIcon />}
                                 sx={{
                                     py: 1.5,
@@ -58,7 +72,7 @@ const HeroSection = () => {
                             <Button
                                 variant="outlined"
                                 size="large"
-                                href="#features"
+                                onClick={goToSection('features')}
                                 sx={{
                                     py: 1.5,
                                     px: 4,
