@@ -1,19 +1,22 @@
 // src/routes/publicRoutes.js
+import { Navigate } from "react-router-dom";
 import lazyLoad from "../utils/lazyLoad";
 import { ROUTES } from "./constants";
+const LoginPage = lazyLoad(() => import("../pages/AuthPages/LoginPage"));
+const RegisterPage = lazyLoad(() => import("../pages/AuthPages/RegisterPage"));
 
 const publicRoutes = [
     {
         path: ROUTES.LOGIN,
-        element: lazyLoad(() => import("../pages/AuthPages/LoginPage")),
+        element: <LoginPage />,
     },
     {
         path: ROUTES.REGISTER,
-        element:  lazyLoad(() => import("../pages/AuthPages/RegisterPage")),
+        element: <RegisterPage />,
     },
     {
         path: ROUTES.ROOT,
-        element:  lazyLoad(() => import("../pages/MainPages/HomePage")),
+        element: <Navigate to={ROUTES.HOMEPAGE} replace />,
     },
 ];
 
