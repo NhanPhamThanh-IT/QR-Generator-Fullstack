@@ -9,6 +9,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
         payload = decode_token(token)
         email = payload.get("sub")
+        role = payload.get("role")
         if email is None:
             raise ValueError("Invalid token")
         user = await get_user_by_email(email)

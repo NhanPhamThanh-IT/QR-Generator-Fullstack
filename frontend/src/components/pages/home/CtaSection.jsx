@@ -1,6 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import { Box, Container, Typography, Button } from '@mui/material';
+import { ROUTES } from '../../../routes/constants';
 
 const CtaSection = () => {
+    const navigate = useNavigate();
+
+    const goToRoute = (route) => {
+        navigate(route);
+    };
+
     return (
         <Box
             sx={{
@@ -36,7 +44,7 @@ const CtaSection = () => {
                     <Button
                         variant="contained"
                         size="large"
-                        href="/register"
+                        onClick={() => goToRoute(ROUTES.QRGENERATOR)}
                         sx={{
                             backgroundColor: '#ffffff',
                             color: '#6a11cb',
@@ -54,7 +62,7 @@ const CtaSection = () => {
                     <Button
                         variant="outlined"
                         size="large"
-                        href="/demo"
+                        onClick={() => goToRoute(ROUTES.CONTACT)}
                         sx={{
                             borderColor: 'white',
                             color: 'white',

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from app.schemas.contact_schema import ContactCreate
 from app.services.contact_service import create_contact
-from app.api.deps import get_current_user
+from app.api.deps.auth import get_current_user
 
 router = APIRouter()
 

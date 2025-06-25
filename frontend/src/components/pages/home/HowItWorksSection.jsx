@@ -1,5 +1,7 @@
+import { useNavigate } from 'react-router-dom';
 import { Box, Container, Grid, Typography, Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { ROUTES } from '../../../routes/constants';
 
 const HowItWorksSection = () => {
     const steps = [
@@ -7,6 +9,12 @@ const HowItWorksSection = () => {
         { step: 2, title: "Choose your QR code type", description: "Website URL, text, phone number, Wi-Fi, and many more options" },
         { step: 3, title: "Customize and download", description: "Add colors, logos, and download in high resolution" }
     ];
+
+    const navigate = useNavigate();
+
+    const goToRoute = (route) => () => {
+        navigate(route);
+    };
 
     return (
         <Box sx={{ backgroundColor: '#f3f4ff', py: 10 }}>
@@ -72,7 +80,7 @@ const HowItWorksSection = () => {
                         <Button
                             variant="contained"
                             size="large"
-                            href="/register"
+                            onClick={goToRoute(ROUTES.QRGENERATOR)}
                             endIcon={<ArrowForwardIcon />}
                             sx={{
                                 mt: 3,

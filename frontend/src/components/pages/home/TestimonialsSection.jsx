@@ -27,7 +27,8 @@ const TestimonialsSection = () => {
             backgroundColor: '#f8f9fa',
             py: 10,
             backgroundImage: 'radial-gradient(#e0e6ff 1px, transparent 1px)',
-            backgroundSize: '20px 20px'
+            backgroundSize: '20px 20px',
+            mb: 18,
         }}>
             <Container>
                 <Box sx={{ mb: 8, textAlign: 'center' }}>

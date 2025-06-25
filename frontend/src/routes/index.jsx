@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import publicRoutes from "./publicRoutes";
 import privateRoutes from "./privateRoutes";
 import Page404 from "../pages/ErrorPages/Page404";
-import ProtectedRoute from "../components/ProtectedRoute";
+import ProtectedRoute from "../components/common/ProtectedRoute";
 import Layout from "../components/layout/index";
 import { ROUTES } from "./constants";
 

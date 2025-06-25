@@ -101,6 +101,7 @@ export default function Header() {
     const menuItems = [
         { text: 'Home', path: ROUTES.HOMEPAGE },
         { text: 'QR Generator', path: ROUTES.QRGENERATOR },
+        { text: 'QR History', path: ROUTES.QRHISTORY },
         { text: 'Contact', path: ROUTES.CONTACT },
     ];
 

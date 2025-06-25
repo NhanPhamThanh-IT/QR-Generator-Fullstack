@@ -17,7 +17,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { useForm } from "react-hook-form";
-import API from "../../api/axiosInstance.js";
+import { sendContactMessage } from "../../services/contactService";
 
 const StyledContainer = styled(Container)(({ theme }) => ({
     display: "flex",
@@ -121,7 +121,7 @@ export default function ContactPage() {
     const onSubmit = async (data) => {
         setLoading(true);
         try {
-            await API.post("/contact/create", data);
+            await sendContactMessage(data);
             setSnackbar({ open: true, message: "Message sent successfully!", severity: "success" });
             reset();
         } catch (err) {
