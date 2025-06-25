@@ -1,12 +1,12 @@
 import { useState, useRef } from 'react';
-import { Box, Container, Typography, Grid, Paper } from '@mui/material';
-import QrCodeIcon from '@mui/icons-material/QrCode';
+import { Box, Container, Grid, Paper, TextField, Typography } from '@mui/material';
+import HeroSection from '../../components/pages/qrgenerator/HeroSection'
 import QRForm from './components/QRForm';
 import QRPreview from './components/QRPreview';
 import { createQR } from '../../services/qrService';
 
 const DEFAULT_COLOR = '#2575fc';
-const DEFAULT_BG_COLOR = '#fff';
+const DEFAULT_BG_COLOR = '#ffffff';
 
 export default function QRGeneratorPage() {
     const [dataType, setDataType] = useState('text');
@@ -18,9 +18,10 @@ export default function QRGeneratorPage() {
     const [logo, setLogo] = useState(null);
     const [outputFormat, setOutputFormat] = useState('png');
     const [loading, setLoading] = useState(false);
-    const [qrValue, setQrValue] = useState('');
     const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
     const qrRef = useRef();
+    const [wifi, setWifi] = useState({ ssid: '', password: '', encryption: '' });
+    const [vcard, setVcard] = useState({ name: '', phone: '', email: '', address: '', org: '' });
 
     // Handlers for form changes
     const handleFormChange = (field, value) => {
@@ -32,6 +33,24 @@ export default function QRGeneratorPage() {
             case 'size': setSize(value); break;
             case 'cornerRadius': setCornerRadius(value); break;
             case 'outputFormat': setOutputFormat(value); break;
+            case 'eyeShape': setEyeShape(value); break;
+            case 'gradient': setGradient(value); break;
+            case 'dpi': setDpi(value); break;
+            case 'watermark': setWatermark(value); break;
+            case 'tag': setTag(value); break;
+            case 'template': setTemplate(value); break;
+            case 'wifi_ssid': setWifi(w => ({ ...w, ssid: value })); break;
+            case 'wifi_password': setWifi(w => ({ ...w, password: value })); break;
+            case 'wifi_encryption': setWifi(w => ({ ...w, encryption: value })); break;
+            case 'vcard_name': setVcard(v => ({ ...v, name: value })); break;
+            case 'vcard_phone': setVcard(v => ({ ...v, phone: value })); break;
+            case 'vcard_email': setVcard(v => ({ ...v, email: value })); break;
+            case 'vcard_address': setVcard(v => ({ ...v, address: value })); break;
+            case 'vcard_org': setVcard(v => ({ ...v, org: value })); break;
+            case 'gradientType': setGradientType(value); break;
+            case 'gradientColor2': setGradientColor2(value); break;
+            case 'gradientRotation': setGradientRotation(value); break;
+            case 'advancedEnabled': setAdvancedEnabled(value); break;
             default: break;
         }
     };
@@ -46,19 +65,24 @@ export default function QRGeneratorPage() {
 
     // Generate QR code
     const handleGenerate = async () => {
-        if (!input) {
+        let qrData = input;
+        if (dataType === 'wifi') {
+            qrData = `WIFI:T:${wifi.encryption};S:${wifi.ssid};P:${wifi.password};;`;
+        } else if (dataType === 'vcard') {
+            qrData = `BEGIN:VCARD\nVERSION:3.0\nFN:${vcard.name}\nORG:${vcard.org}\nTEL:${vcard.phone}\nEMAIL:${vcard.email}\nADR:${vcard.address}\nEND:VCARD`;
+        }
+        if (!qrData) {
             setSnackbar({ open: true, message: 'Please enter data to encode.', severity: 'error' });
             return;
         }
         setLoading(true);
         setTimeout(async () => {
-            setQrValue(input);
             setLoading(false);
-            setSnackbar({ open: true, message: 'QR code generated!', severity: 'success' });
+            setSnackbar({ open: true, message: 'QR code generated successfully!', severity: 'success' });
             // Save to backend
             const entry = {
                 data_type: dataType,
-                input,
+                input: qrData,
                 qr_color: qrColor,
                 bg_color: bgColor,
                 size,
@@ -70,7 +94,7 @@ export default function QRGeneratorPage() {
             try {
                 await createQR(entry);
             } catch (e) {
-                setSnackbar({ open: true, message: 'Lưu lịch sử QR lên server thất bại!', severity: 'error' });
+                setSnackbar({ open: true, message: 'Failed to save QR history to server!', severity: 'error' });
             }
         }, 600);
     };
@@ -119,40 +143,100 @@ export default function QRGeneratorPage() {
         }
     };
 
-    return (
-        <Box sx={{ background: '#f3f4ff', minHeight: '100vh', py: { xs: 4, md: 8 } }}>
-            <Container maxWidth="md">
-                <Paper sx={{ borderRadius: 16, p: 4, boxShadow: '0 8px 40px rgba(0, 0, 0, 0.10)', background: '#fff' }}>
-                    <Box sx={{ mb: 4, textAlign: 'center' }}>
-                        <QrCodeIcon sx={{ fontSize: 48, color: 'primary.main', mb: 1 }} />
-                        <Typography variant="h4" fontWeight="bold" gutterBottom>
-                            QR Code Generator
-                        </Typography>
-                        <Typography variant="subtitle1" color="text.secondary">
-                            Create, customize, and download your QR code instantly.
-                        </Typography>
+    // Render input field based on data type
+    const renderInputField = () => {
+        switch (dataType) {
+            case 'email':
+                return <TextField label="Email" type="email" fullWidth value={input} onChange={e => handleFormChange('input', e.target.value)} />;
+            case 'url':
+                return <TextField label="URL" type="url" fullWidth value={input} onChange={e => handleFormChange('input', e.target.value)} />;
+            case 'phone':
+                return <TextField label="Phone Number" type="tel" fullWidth value={input} onChange={e => handleFormChange('input', e.target.value)} />;
+            case 'sms':
+                return <TextField label="SMS Number" type="tel" fullWidth value={input} onChange={e => handleFormChange('input', e.target.value)} />;
+            case 'wifi':
+                return (
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                        <TextField label="SSID" fullWidth value={wifi.ssid} onChange={e => handleFormChange('wifi_ssid', e.target.value)} />
+                        <TextField label="Password" fullWidth value={wifi.password} onChange={e => handleFormChange('wifi_password', e.target.value)} />
+                        <TextField label="Encryption" fullWidth value={wifi.encryption} onChange={e => handleFormChange('wifi_encryption', e.target.value)} />
                     </Box>
-                    <Grid container spacing={4}>
-                        <Grid item xs={12} md={6}>
-                            <QRForm
-                                dataType={dataType}
-                                input={input}
-                                qrColor={qrColor}
-                                bgColor={bgColor}
-                                size={size}
-                                cornerRadius={cornerRadius}
-                                logo={logo}
-                                outputFormat={outputFormat}
-                                loading={loading}
-                                onChange={handleFormChange}
-                                onLogoUpload={handleLogoUpload}
-                                onGenerate={handleGenerate}
-                            />
+                );
+            case 'vcard':
+                return (
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                        <TextField label="Full Name" fullWidth value={vcard.name} onChange={e => handleFormChange('vcard_name', e.target.value)} />
+                        <TextField label="Phone" fullWidth value={vcard.phone} onChange={e => handleFormChange('vcard_phone', e.target.value)} />
+                        <TextField label="Email" fullWidth value={vcard.email} onChange={e => handleFormChange('vcard_email', e.target.value)} />
+                        <TextField label="Address" fullWidth value={vcard.address} onChange={e => handleFormChange('vcard_address', e.target.value)} />
+                        <TextField label="Organization" fullWidth value={vcard.org} onChange={e => handleFormChange('vcard_org', e.target.value)} />
+                    </Box>
+                );
+            default:
+                return <TextField label="Text" fullWidth value={input} onChange={e => handleFormChange('input', e.target.value)} />;
+        }
+    };
+
+    return (
+        <Box sx={{ background: '#f3f4ff', minHeight: '100vh' }}>
+            {/* Hero Section */}
+            <HeroSection />
+            
+            <Container maxWidth="xl">
+                <Paper sx={{ borderRadius: 6, p: { xs: 2, md: 5 }, boxShadow: '0 8px 40px rgba(0, 0, 0, 0.10)', background: '#fff', minHeight: 500 }}>
+                    <Grid container spacing={4} alignItems="stretch">
+                        <Grid size={{ xs: 12, md: 6 }}>
+                            <Box sx={{
+                                background: '#f7f9fc',
+                                borderRadius: 4,
+                                boxShadow: '0 2px 12px rgba(37,117,252,0.07)',
+                                p: { xs: 2, md: 3 },
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                border: '1px solid #e3e8f0',
+                            }}>
+                                <Typography variant="h5" fontWeight="bold" sx={{ mb: 2, color: 'primary.main' }}>Create your QR code</Typography>
+                                <QRForm
+                                    dataType={dataType}
+                                    input={input}
+                                    qrColor={qrColor}
+                                    bgColor={bgColor}
+                                    size={size}
+                                    cornerRadius={cornerRadius}
+                                    logo={logo}
+                                    outputFormat={outputFormat}
+                                    loading={loading}
+                                    wifi={wifi}
+                                    vcard={vcard}
+                                    onChange={handleFormChange}
+                                    onLogoUpload={handleLogoUpload}
+                                    onGenerate={handleGenerate}
+                                    renderInputField={renderInputField}
+                                />
+                            </Box>
                         </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Box ref={qrRef}>
+                        <Grid size={{ xs: 12, md: 6 }}>
+                            <Box sx={{
+                                background: '#f8f9fa',
+                                borderRadius: 4,
+                                boxShadow: '0 4px 24px rgba(37,117,252,0.10)',
+                                p: { xs: 2, md: 4 },
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                minHeight: 400,
+                                border: '2px solid #e3e8f0',
+                                transition: 'box-shadow 0.2s',
+                                '&:hover': {
+                                    boxShadow: '0 8px 32px rgba(37,117,252,0.18)',
+                                },
+                            }}>
+                                <Typography variant="h5" fontWeight="bold" sx={{ mb: 2, color: 'primary.main' }}>Preview</Typography>
                                 <QRPreview
-                                    qrValue={qrValue}
+                                    qrValue={input}
                                     size={size}
                                     qrColor={qrColor}
                                     bgColor={bgColor}
