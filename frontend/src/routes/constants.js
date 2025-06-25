@@ -5,6 +5,7 @@ export const ROUTES = {
     REGISTER: "/register",
     HOMEPAGE: "/homepage",
     QRGENERATOR: "/qr-generator",
+    QRHISTORY: "/qr-history",
     CONTACT: "/contact",
     NOT_FOUND: "*",
 };

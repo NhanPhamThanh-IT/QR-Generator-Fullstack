@@ -3,7 +3,6 @@ import { Box, Container, Typography, Grid, Paper } from '@mui/material';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import QRForm from './components/QRForm';
 import QRPreview from './components/QRPreview';
-import QRHistory from '../../components/qrgenerator/QRHistory';
 import { createQR } from '../../services/qrService';
 
 const DEFAULT_COLOR = '#2575fc';
@@ -169,7 +168,6 @@ export default function QRGeneratorPage() {
                         </Grid>
                     </Grid>
                 </Paper>
-                <QRHistory setSnackbar={setSnackbar} />
             </Container>
         </Box>
     );

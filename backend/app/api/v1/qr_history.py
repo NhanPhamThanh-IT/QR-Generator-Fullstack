@@ -5,7 +5,7 @@ from app.services.qr_history_service import (
     get_qr_history_by_user,
     clear_qr_history_by_user
 )
-from app.api.deps import get_current_user
+from app.api.deps.auth import get_current_user
 from typing import Any, Dict
 
 router = APIRouter()

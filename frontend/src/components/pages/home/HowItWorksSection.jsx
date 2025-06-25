@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Container, Grid, Typography, Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { ROUTES } from '../../routes/constants';
+import { ROUTES } from '../../../routes/constants';
 
 const HowItWorksSection = () => {
     const steps = [

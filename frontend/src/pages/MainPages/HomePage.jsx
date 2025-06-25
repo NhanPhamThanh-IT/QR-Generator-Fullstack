@@ -4,13 +4,13 @@ import lazyLoad from "../../utils/lazyLoad";
 import LazySection from "../../components/common/LazySection";
 
 // Lazy-load sections
-const HeroSection = lazyLoad(() => import("../../components/home/HeroSection"));
-const StatsSection = lazyLoad(() => import("../../components/home/StatsSection"));
-const FeaturesSection = lazyLoad(() => import("../../components/home/FeaturesSection"));
-const HowItWorksSection = lazyLoad(() => import("../../components/home/HowItWorksSection"));
-const UseCasesSection = lazyLoad(() => import("../../components/home/UseCasesSection"));
-const TestimonialsSection = lazyLoad(() => import("../../components/home/TestimonialsSection"));
-const CtaSection = lazyLoad(() => import("../../components/home/CtaSection"));
+const HeroSection = lazyLoad(() => import("../../components/pages/home/HeroSection"));
+const StatsSection = lazyLoad(() => import("../../components/pages/home/StatsSection"));
+const FeaturesSection = lazyLoad(() => import("../../components/pages/home/FeaturesSection"));
+const HowItWorksSection = lazyLoad(() => import("../../components/pages/home/HowItWorksSection"));
+const UseCasesSection = lazyLoad(() => import("../../components/pages/home/UseCasesSection"));
+const TestimonialsSection = lazyLoad(() => import("../../components/pages/home/TestimonialsSection"));
+const CtaSection = lazyLoad(() => import("../../components/pages/home/CtaSection"));
 
 const HomePage = () => {
   return (

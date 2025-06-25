@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Container, Typography, Button } from '@mui/material';
-import { ROUTES } from '../../routes/constants';
+import { ROUTES } from '../../../routes/constants';
 
 const CtaSection = () => {
     const navigate = useNavigate();
