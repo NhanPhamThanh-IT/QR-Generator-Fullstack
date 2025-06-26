@@ -11,15 +11,6 @@ export async function createQR(entry) {
 }
 
 /**
- * Fetch all QR code history records for the current user from the backend.
- * @returns {Promise<Array>} - List of QR history records
- */
-export async function getQRHistory() {
-  const response = await API.get('/qr-history/list');
-  return response.data.history;
-}
-
-/**
  *  Delete a specific QR code history record by ID.
  *  @returns {Promise<Object>} - API response
  */
