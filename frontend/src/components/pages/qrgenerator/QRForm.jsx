@@ -6,7 +6,6 @@ import {
   Button,
   InputLabel,
   Box,
-  Grid,
   Stack,
   Snackbar,
   Alert,
@@ -16,6 +15,8 @@ import {
   FormControl,
   ToggleButtonGroup,
   ToggleButton,
+  Slider,
+  Typography,
 } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
@@ -376,18 +377,62 @@ const QRForm = ({ formData, setFormData }) => {
         </Box>
 
         {/* Size */}
-        <TextField
-          label="Size (px)"
-          name="size"
-          type="number"
-          value={formData.size || 200}
-          onChange={handleChange}
-          fullWidth
-          required
-          error={!!errors.size}
-          helperText={errors.size}
-          inputProps={{ min: 100, max: 1000 }}
-        />
+        <Box sx={{ width: '100%' }}>
+          <Typography gutterBottom sx={{ fontWeight: 500, color: 'text.primary' }}>
+            Size: {formData.size || 200}px
+          </Typography>
+          <Slider
+            name="size"
+            value={formData.size || 200}
+            onChange={(e, value) => handleChange({ target: { name: 'size', value } })}
+            min={100}
+            max={1000}
+            step={10}
+            marks={[
+              { value: 100, label: '100px' },
+              { value: 500, label: '500px' },
+              { value: 1000, label: '1000px' }
+            ]}
+            valueLabelDisplay="auto"
+            sx={{
+              color: 'primary.main',
+              '& .MuiSlider-track': {
+                border: 'none',
+              },
+              '& .MuiSlider-thumb': {
+                width: 24,
+                height: 24,
+                backgroundColor: '#fff',
+                border: '2px solid currentColor',
+                '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
+                  boxShadow: 'inherit',
+                },
+                '&:before': {
+                  display: 'none',
+                },
+              },
+              '& .MuiSlider-valueLabel': {
+                lineHeight: 1.2,
+                fontSize: 12,
+                background: 'unset',
+                padding: 0,
+                width: 32,
+                height: 32,
+                borderRadius: '50% 50% 50% 0',
+                backgroundColor: 'primary.main',
+                transformOrigin: 'bottom left',
+                transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
+                '&:before': { display: 'none' },
+                '&.MuiSlider-valueLabelOpen': {
+                  transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
+                },
+                '& > *': {
+                  transform: 'rotate(45deg)',
+                },
+              },
+            }}
+          />
+        </Box>
 
         {/* Logo Upload */}
         <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>

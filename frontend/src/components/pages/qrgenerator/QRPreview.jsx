@@ -80,9 +80,10 @@ const QRPreview = ({ formData }) => {
     <>
       <Paper
         sx={{
-          p: 5,
-          pb: 0,
-          height: '100%',
+          position: 'sticky',
+          top: 20, // Khoảng cách từ top của viewport
+          p: 10,
+          height: 'fit-content', // Thay đổi từ 100% thành fit-content
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -95,7 +96,7 @@ const QRPreview = ({ formData }) => {
           background: 'linear-gradient(to bottom right, rgba(255,255,255,1), rgba(248,250,252,1))',
           boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)',
           transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
-          position: 'relative',
+          zIndex: 10, // Đảm bảo component nằm trên các element khác
           '&::after': {
             content: '""',
             position: 'absolute',
@@ -153,7 +154,7 @@ const QRPreview = ({ formData }) => {
         </Box>
 
         {qrUrl && (
-          <Box sx={{ mt: 3, display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
+          <Box sx={{ mt: 3, mb: 3, display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
             <Button
               variant="contained"
               startIcon={<Download />}
