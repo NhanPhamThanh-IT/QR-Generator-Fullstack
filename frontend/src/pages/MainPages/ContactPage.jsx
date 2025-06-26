@@ -17,15 +17,15 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { useForm } from "react-hook-form";
+import HeroSection from '../../components/pages/common/HeroSection'
 import { sendContactMessage } from "../../services/contactService";
 
 const StyledContainer = styled(Container)(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    minHeight: "97vh",
-    padding: "20px",
-    marginTop: "70px",
+    paddingTop: "40px",
+    paddingBottom: "60px",
 }));
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -132,30 +132,11 @@ export default function ContactPage() {
     };
 
     return (
-        <Box
-            sx={{
-                py: { xs: 8, md: 12 },
-                background: 'linear-gradient(120deg, #6a11cb 0%, #2575fc 100%)',
-                color: 'white',
-                textAlign: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-            }}
-        >
-            {/* Background Pattern */}
-            <Box sx={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                opacity: 0.05,
-                backgroundImage: 'radial-gradient(circle, #ffffff 10%, transparent 10%), radial-gradient(circle, #ffffff 10%, transparent 10%)',
-                backgroundSize: '30px 30px',
-                backgroundPosition: '0 0, 15px 15px',
-            }} />
-            <StyledContainer maxWidth="xl">
+        <>
+            {/* Hero Section */}
+            <HeroSection />
 
+            <StyledContainer maxWidth="xl">
                 <StyledPaper elevation={0}>
                     <Grid container spacing={0}>
                         <Grid size={{ xs: 12, md: 6 }}>
@@ -240,6 +221,6 @@ export default function ContactPage() {
                     </Snackbar>
                 </StyledPaper>
             </StyledContainer>
-        </Box>
+        </>
     );
 }
