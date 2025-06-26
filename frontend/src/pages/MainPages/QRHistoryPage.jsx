@@ -41,6 +41,7 @@ import {
 import HeroSection from '../../components/pages/common/HeroSection';
 import {
     getQRHistory,
+    deleteQRHistoryByID
 } from "../../services/qrHistoryService";
 
 const QRHistoryPage = () => {
@@ -171,13 +172,9 @@ const QRHistoryPage = () => {
         if (!deleteDialog.item) return;
 
         try {
-            const response = await axios.delete(`${API_BASE_URL}/qr-history/${deleteDialog.item.id}`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                }
-            });
-
-            if (response.data.success) {
+            const response = await deleteQRHistoryByID(deleteDialog.item.id);
+            console.log('Delete response:', response);
+            if (response.message) {
                 const updated = qrHistory.filter(item => item.id !== deleteDialog.item.id);
                 setQrHistory(updated);
                 setSnackbar({
@@ -186,13 +183,13 @@ const QRHistoryPage = () => {
                     severity: 'success'
                 });
             } else {
-                throw new Error(response.data.message || 'Failed to delete QR code');
+                throw new Error(response || 'Failed to delete QR code');
             }
         } catch (error) {
             console.error('Error deleting QR code:', error);
             setSnackbar({
                 open: true,
-                message: error.response?.data?.message || 'Failed to delete QR code',
+                message: error?.message || 'Failed to delete QR code',
                 severity: 'error'
             });
         } finally {

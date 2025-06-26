@@ -8,3 +8,13 @@ export async function getQRHistory() {
     const response = await API.get('/qr-history/list');
     return response.data.history;
 }
+
+/**
+ * Fetch a specific QR code history record by ID.
+ * @param {string} id - The ID of the QR history record to fetch
+ * @returns {Promise<Object>} - The QR history record
+ * */
+export async function deleteQRHistoryByID(id) {
+    const response = await API.delete(`/qr-history/delete/${id}`);
+    return response.data;
+}
