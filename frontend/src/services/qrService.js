@@ -27,3 +27,8 @@ export async function clearQRHistory() {
   const response = await API.delete('/qr-history/clear-history');
   return response.data;
 }
+
+export const generateQR = async (payload) => {
+  const res = await API.post('/qr/generate', payload);
+  return res.data.image;
+};

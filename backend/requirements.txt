@@ -9,3 +9,6 @@ python-multipart
 pytest
 pytest-asyncio
 httpx
+pillow
+qrcode
+qrcode[pil]
