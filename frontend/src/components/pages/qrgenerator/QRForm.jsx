@@ -14,9 +14,13 @@ import {
   MenuItem,
   Select,
   FormControl,
-  Typography
+  ToggleButtonGroup,
+  ToggleButton,
 } from '@mui/material';
-import ImageIcon from '@mui/icons-material/Image';
+import CodeIcon from '@mui/icons-material/Code';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import FormSectionHeading from './FormSectionHeading';
 import {
   createQR
 } from '../../../services/qrService';
@@ -255,6 +259,8 @@ const QRForm = ({ formData, setFormData }) => {
       onSubmit={handleSubmit}
     >
       <Stack spacing={3}>
+        <FormSectionHeading index={1} title="Complete the content" />
+
         {/* Dropdown chọn loại input */}
         <FormControl fullWidth>
           <InputLabel>Input Type</InputLabel>
@@ -274,104 +280,102 @@ const QRForm = ({ formData, setFormData }) => {
         {/* Input field động */}
         {renderInputField()}
 
-        <Grid container spacing={10} sx={{ mt: 2 }}>
-          <Grid size={{ xs: 12, sm: 6 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <InputLabel
-                htmlFor="color-input"
-                sx={{
-                  fontWeight: 500,
-                  color: 'text.primary',
-                  minWidth: '80px'
-                }}
-              >
-                QR Color
-              </InputLabel>
-              <Box
-                sx={{
-                  position: 'relative',
-                  width: 56,
-                  height: 30,
-                  borderRadius: 1,
-                  border: '2px solid',
-                  borderColor: 'divider',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  transition: 'border-color 0.2s',
-                  '&:hover': {
-                    borderColor: 'primary.main'
-                  }
-                }}
-              >
-                <input
-                  id="color-input"
-                  type="color"
-                  name="color"
-                  value={formData.color || '#000000'}
-                  onChange={handleChange}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    border: 'none',
-                    background: 'none',
-                    cursor: 'pointer',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0
-                  }}
-                />
-              </Box>
-            </Box>
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <InputLabel
-                htmlFor="bg-color-input"
-                sx={{
-                  fontWeight: 500,
-                  color: 'text.primary',
-                  minWidth: '120px'
-                }}
-              >
-                Background Color
-              </InputLabel>
-              <Box
-                sx={{
-                  position: 'relative',
-                  width: 56,
-                  height: 30,
-                  borderRadius: 1,
-                  border: '2px solid',
-                  borderColor: 'divider',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  transition: 'border-color 0.2s',
-                  '&:hover': {
-                    borderColor: 'primary.main'
-                  }
-                }}
-              >
-                <input
-                  id="bg-color-input"
-                  type="color"
-                  name="bgColor"
-                  value={formData.bgColor || '#ffffff'}
-                  onChange={handleChange}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    border: 'none',
-                    background: 'none',
-                    cursor: 'pointer',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0
-                  }}
-                />
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
+        <FormSectionHeading index={2} title="Design your QR" />
+
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <InputLabel
+            htmlFor="color-input"
+            sx={{
+              fontWeight: 500,
+              color: 'text.primary',
+              minWidth: '80px'
+            }}
+          >
+            QR Color
+          </InputLabel>
+          <Box
+            sx={{
+              position: 'relative',
+              width: 56,
+              height: 30,
+              borderRadius: 1,
+              border: '2px solid',
+              borderColor: 'divider',
+              overflow: 'hidden',
+              cursor: 'pointer',
+              transition: 'border-color 0.2s',
+              '&:hover': {
+                borderColor: 'primary.main'
+              }
+            }}
+          >
+            <input
+              id="color-input"
+              type="color"
+              name="color"
+              value={formData.color || '#000000'}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                background: 'none',
+                cursor: 'pointer',
+                position: 'absolute',
+                top: 0,
+                left: 0
+              }}
+            />
+          </Box>
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <InputLabel
+            htmlFor="bg-color-input"
+            sx={{
+              fontWeight: 500,
+              color: 'text.primary',
+              minWidth: '120px'
+            }}
+          >
+            Background Color
+          </InputLabel>
+          <Box
+            sx={{
+              position: 'relative',
+              width: 56,
+              height: 30,
+              borderRadius: 1,
+              border: '2px solid',
+              borderColor: 'divider',
+              overflow: 'hidden',
+              cursor: 'pointer',
+              transition: 'border-color 0.2s',
+              '&:hover': {
+                borderColor: 'primary.main'
+              }
+            }}
+          >
+            <input
+              id="bg-color-input"
+              type="color"
+              name="bgColor"
+              value={formData.bgColor || '#ffffff'}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                background: 'none',
+                cursor: 'pointer',
+                position: 'absolute',
+                top: 0,
+                left: 0
+              }}
+            />
+          </Box>
+        </Box>
+
+        {/* Size */}
         <TextField
           label="Size (px)"
           name="size"
@@ -384,18 +388,8 @@ const QRForm = ({ formData, setFormData }) => {
           helperText={errors.size}
           inputProps={{ min: 100, max: 1000 }}
         />
-        <TextField
-          label="Output Format"
-          name="outputFormat"
-          value={formData.outputFormat || 'png'}
-          onChange={handleChange}
-          fullWidth
-          select
-          SelectProps={{ native: true }}
-        >
-          <option value="png">PNG</option>
-          <option value="svg">SVG</option>
-        </TextField>
+
+        {/* Logo Upload */}
         <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
           <input
             accept="image/*"
@@ -409,8 +403,7 @@ const QRForm = ({ formData, setFormData }) => {
             <Box
               sx={{
                 width: '100%',
-                height: 180,
-                border: "2px dashed #90caf9",
+                backgroundColor: '#f5f5f5',
                 borderRadius: 2,
                 display: "flex",
                 flexDirection: "column",
@@ -423,13 +416,38 @@ const QRForm = ({ formData, setFormData }) => {
                 },
               }}
             >
-              <ImageIcon sx={{ fontSize: 140, color: 'rgb(164, 163, 163)' }} />
-              <Typography variant="body1" color="textSecondary">
-                Upload Logo
-              </Typography>
+              <img
+                src="https://qrcode-gen.com/images/upload-Image-logo.svg"
+                alt="Uploaded Logo"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
             </Box>
           </label>
         </Box>
+
+        {/* Output Format */}
+        <FormSectionHeading index={3} title="Choose your output format" />
+        <ToggleButtonGroup
+          value={formData.outputFormat || 'png'}
+          exclusive
+          onChange={(e, value) => {
+            if (value) handleChange({ target: { name: 'outputFormat', value } });
+          }}
+          fullWidth
+          sx={{ borderRadius: 1, boxShadow: 1, '& .MuiToggleButton-root': { flex: 1, py: 1.5 } }}
+        >
+          <ToggleButton value="png" aria-label="PNG">
+            <InsertPhotoIcon sx={{ mr: 1 }} /> PNG
+          </ToggleButton>
+          <ToggleButton value="jpg" aria-label="JPG">
+            <PhotoCameraIcon sx={{ mr: 1 }} /> JPG
+          </ToggleButton>
+          <ToggleButton value="svg" aria-label="SVG">
+            <CodeIcon sx={{ mr: 1 }} /> SVG
+          </ToggleButton>
+        </ToggleButtonGroup>
+
+        {/* Submit Button */}
         <Button type="submit" variant="contained" color="primary" sx={{ mt: 2, textTransform: 'none', fontWeight: 700, fontSize: '1rem' }}>
           Generate QR
         </Button>

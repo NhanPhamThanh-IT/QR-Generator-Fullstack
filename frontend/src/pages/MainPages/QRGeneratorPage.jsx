@@ -31,12 +31,12 @@ const QRGeneratorPage = () => {
           alignItems="stretch"
         >
           <Grid
-            size={{ xs: 12, md: 7 }}
+            size={{ xs: 12, md: 6 }}
           >
             <QRForm formData={formData} setFormData={setFormData} />
           </Grid>
           <Grid
-            size={{ xs: 12, md: 5 }}
+            size={{ xs: 12, md: 6 }}
           >
             <QRPreview formData={formData} />
           </Grid>
