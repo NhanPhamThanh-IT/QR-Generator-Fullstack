@@ -18,3 +18,12 @@ export async function deleteQRHistoryByID(id) {
     const response = await API.delete(`/qr-history/delete/${id}`);
     return response.data;
 }
+
+/**
+ *  Delete a specific QR code history record by ID.
+ *  @returns {Promise<Object>} - API response
+ */
+export async function clearQRHistory() {
+    const response = await API.delete('/qr-history/clear-history');
+    return response.data;
+}

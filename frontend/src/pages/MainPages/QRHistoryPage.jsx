@@ -17,10 +17,6 @@ import {
     Pagination,
     InputAdornment,
     Button,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
     Avatar,
     Divider,
     Skeleton,
@@ -36,13 +32,19 @@ import {
     Email as EmailIcon,
     Phone as PhoneIcon,
     TextFields as TextIcon,
-    Refresh as RefreshIcon
+    Refresh as RefreshIcon,
+    ClearAll as ClearAllIcon
 } from '@mui/icons-material';
 import HeroSection from '../../components/pages/common/HeroSection';
+import SectionHeading from '../../components/pages/common/SectionHeading';
 import {
     getQRHistory,
-    deleteQRHistoryByID
+    deleteQRHistoryByID,
+    clearQRHistory
 } from "../../services/qrHistoryService";
+import DeleteDialog from '../../components/pages/qrhistory/DeleteDialog';
+import ClearAllDialog from '../../components/pages/qrhistory/ClearAllDialog';
+import { useDialog } from '../../hooks/useDialog';
 
 const QRHistoryPage = () => {
     const [qrHistory, setQrHistory] = useState([]);
@@ -51,9 +53,13 @@ const QRHistoryPage = () => {
     const [filterType, setFilterType] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
-    const [deleteDialog, setDeleteDialog] = useState({ open: false, item: null });
     const [error, setError] = useState(null);
     const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+
+    // Use custom hooks for dialog management
+    const deleteDialog = useDialog();
+    const clearAllDialog = useDialog();
+
     const itemsPerPage = 9;
 
     // Fetch QR History from backend
@@ -165,17 +171,16 @@ const QRHistoryPage = () => {
     };
 
     const handleDeleteClick = (item) => {
-        setDeleteDialog({ open: true, item });
+        deleteDialog.openDialog(item);
     };
 
     const handleDeleteConfirm = async () => {
-        if (!deleteDialog.item) return;
+        if (!deleteDialog.data) return;
 
         try {
-            const response = await deleteQRHistoryByID(deleteDialog.item.id);
-            console.log('Delete response:', response);
+            const response = await deleteQRHistoryByID(deleteDialog.data.id);
             if (response.message) {
-                const updated = qrHistory.filter(item => item.id !== deleteDialog.item.id);
+                const updated = qrHistory.filter(item => item.id !== deleteDialog.data.id);
                 setQrHistory(updated);
                 setSnackbar({
                     open: true,
@@ -193,7 +198,38 @@ const QRHistoryPage = () => {
                 severity: 'error'
             });
         } finally {
-            setDeleteDialog({ open: false, item: null });
+            deleteDialog.closeDialog();
+        }
+    };
+
+    const handleClearAll = () => {
+        if (qrHistory.length === 0) return;
+        clearAllDialog.openDialog(qrHistory);
+    };
+
+    const handleClearAllConfirm = async () => {
+        try {
+            const response = await clearQRHistory();
+            if (response.message) {
+                setQrHistory([]);
+                setFilteredHistory([]);
+                setSnackbar({
+                    open: true,
+                    message: 'All QR codes cleared successfully!',
+                    severity: 'success'
+                });
+            } else {
+                throw new Error(response || 'Failed to clear QR codes');
+            }
+        } catch (error) {
+            console.error('Error clearing QR codes:', error);
+            setSnackbar({
+                open: true,
+                message: error?.message || 'Failed to clear QR codes',
+                severity: 'error'
+            });
+        } finally {
+            clearAllDialog.closeDialog();
         }
     };
 
@@ -221,14 +257,11 @@ const QRHistoryPage = () => {
             <HeroSection />
             <Container maxWidth="lg" sx={{ py: 4 }}>
                 {/* Header */}
-                <Box textAlign="center" mb={4}>
-                    <Typography variant="h3" component="h1" gutterBottom fontWeight="bold">
-                        QR Code History
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                        Manage and download your previously generated QR codes
-                    </Typography>
-                </Box>
+                <SectionHeading
+                    overline="QR CODE HISTORY"
+                    title="History of Your QR Codes"
+                    description="Manage and download your previously generated QR codes"
+                />
 
                 {/* Error Alert */}
                 {error && (
@@ -248,52 +281,89 @@ const QRHistoryPage = () => {
 
                 {/* Controls */}
                 <Box mb={4}>
-                    <Grid container spacing={2} alignItems="center">
+                    <Grid container spacing={2} alignItems="stretch">
+                        {/* Search Field */}
                         <Grid size={{ xs: 12, md: 6 }}>
-                            <TextField
-                                fullWidth
-                                placeholder="Search by content or type..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                variant="outlined"
-                            />
+                            <Box height="100%">
+                                <TextField
+                                    fullWidth
+                                    placeholder="Search by content or type..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <SearchIcon />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                    variant="outlined"
+                                    sx={{ height: '100%' }}
+                                />
+                            </Box>
                         </Grid>
-                        <Grid size={{ xs: 12, md: 4 }}>
-                            <FormControl fullWidth>
-                                <InputLabel>Filter by Type</InputLabel>
-                                <Select
-                                    value={filterType}
-                                    label="Filter by Type"
-                                    onChange={(e) => setFilterType(e.target.value)}
-                                >
-                                    <MenuItem value="all">All Types</MenuItem>
-                                    <MenuItem value="url">URL</MenuItem>
-                                    <MenuItem value="text">Text</MenuItem>
-                                    <MenuItem value="email">Email</MenuItem>
-                                    <MenuItem value="phone">Phone</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
+
+                        {/* Select Field */}
                         <Grid size={{ xs: 12, md: 2 }}>
-                            <Button
-                                fullWidth
-                                variant="outlined"
-                                onClick={handleRefresh}
-                                disabled={loading}
-                                startIcon={<RefreshIcon />}
-                            >
-                                Refresh
-                            </Button>
+                            <Box height="100%">
+                                <FormControl fullWidth sx={{ height: '100%' }}>
+                                    <InputLabel>Filter by Type</InputLabel>
+                                    <Select
+                                        value={filterType}
+                                        label="Filter by Type"
+                                        onChange={(e) => setFilterType(e.target.value)}
+                                    >
+                                        <MenuItem value="all">All Types</MenuItem>
+                                        <MenuItem value="url">URL</MenuItem>
+                                        <MenuItem value="text">Text</MenuItem>
+                                        <MenuItem value="email">Email</MenuItem>
+                                        <MenuItem value="phone">Phone</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Box>
+                        </Grid>
+
+                        {/* Refresh Button */}
+                        <Grid size={{ xs: 12, md: 2 }}>
+                            <Box height="100%">
+                                <Button
+                                    fullWidth
+                                    variant="outlined"
+                                    onClick={handleRefresh}
+                                    disabled={loading}
+                                    startIcon={<RefreshIcon />}
+                                    sx={{
+                                        height: '100%',
+                                        textTransform: 'none',
+                                    }}
+                                >
+                                    Refresh
+                                </Button>
+                            </Box>
+                        </Grid>
+
+                        {/* Clear All Button */}
+                        <Grid size={{ xs: 12, md: 2 }}>
+                            <Box height="100%">
+                                <Button
+                                    fullWidth
+                                    variant="outlined"
+                                    color="error"
+                                    onClick={handleClearAll}
+                                    disabled={loading}
+                                    startIcon={<ClearAllIcon />}
+                                    sx={{
+                                        height: '100%',
+                                        textTransform: 'none',
+                                    }}
+                                >
+                                    Clear All
+                                </Button>
+                            </Box>
                         </Grid>
                     </Grid>
                 </Box>
+
 
                 {/* QR History Grid */}
                 {loading ? (
@@ -434,37 +504,23 @@ const QRHistoryPage = () => {
                 )}
 
                 {/* Delete Confirmation Dialog */}
-                <Dialog
-                    open={deleteDialog.open}
-                    onClose={() => setDeleteDialog({ open: false, item: null })}
-                >
-                    <DialogTitle>Confirm Delete</DialogTitle>
-                    <DialogContent>
-                        <Typography>
-                            Are you sure you want to delete this QR code?
-                        </Typography>
-                        {deleteDialog.item && (
-                            <Typography variant="body2" color="text.secondary" mt={1}>
-                                Content: {truncateContent(deleteDialog.item.input)}
-                            </Typography>
-                        )}
-                    </DialogContent>
-                    <DialogActions>
-                        <Button
-                            onClick={() => setDeleteDialog({ open: false, item: null })}
-                            color="inherit"
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            onClick={handleDeleteConfirm}
-                            color="error"
-                            variant="contained"
-                        >
-                            Delete
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                <DeleteDialog
+                    open={deleteDialog.isOpen}
+                    onClose={deleteDialog.closeDialog}
+                    onConfirm={handleDeleteConfirm}
+                    item={deleteDialog.data}
+                    itemName="QR code"
+                />
+
+                {/* Clear All Dialog */}
+                <ClearAllDialog
+                    open={clearAllDialog.isOpen}
+                    onClose={clearAllDialog.closeDialog}
+                    onConfirm={handleClearAllConfirm}
+                    items={qrHistory}
+                    itemType="QR codes"
+                    showStats={true}
+                />
 
                 {/* Snackbar for notifications */}
                 <Snackbar

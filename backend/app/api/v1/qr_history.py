@@ -49,16 +49,17 @@ async def list_history(current_user: dict = Depends(get_current_user)) -> Dict[s
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
     
-@router.delete("/clear-history", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/clear-history", status_code=status.HTTP_200_OK)
 async def clear_history(current_user: dict = Depends(get_current_user)) -> None:
     """
     Clear all QR code history records for the current user.
-    Returns a 204 No Content response on success.
+    Returns a 200 OK response on success.
     """
     try:
         deleted_count = await clear_qr_history_by_user(current_user["email"])
         if deleted_count == 0:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No history found to clear")
+        return { "message": "QR history cleared successfully" }
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
     
