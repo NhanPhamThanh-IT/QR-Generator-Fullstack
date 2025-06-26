@@ -81,7 +81,8 @@ const QRPreview = ({ formData }) => {
       <Paper
         sx={{
           p: 5,
-          minHeight: 320,
+          pb: 0,
+          height: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -111,14 +112,11 @@ const QRPreview = ({ formData }) => {
           }
         }}
       >
-        <Typography variant="h6" mb={3} sx={{ fontWeight: 600, color: 'text.primary' }}>
-          QR Code Preview
-        </Typography>
         <Box
           sx={{
             position: 'relative',
-            width: 200,
-            height: 200,
+            width: 300,
+            height: 300,
             borderRadius: 2,
             overflow: 'hidden',
             border: '2px solid',

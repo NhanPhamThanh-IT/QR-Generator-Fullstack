@@ -17,12 +17,27 @@ const QRGeneratorPage = () => {
       <HeroSection />
 
       {/* QR Code Generator Form and Preview */}
-      <Box sx={{ p: { xs: 1, md: 4 }, maxWidth: 1200, mx: "auto" }}>
-        <Grid container spacing={4}>
-          <Grid size={{ xs: 12, md: 7 }}>
+      <Box
+        sx={{
+          p: { xs: 1, md: 4 },
+          maxWidth: 1200,
+          mx: "auto",
+          mb: 20,
+        }}
+      >
+        <Grid
+          container
+          spacing={4}
+          alignItems="stretch"
+        >
+          <Grid
+            size={{ xs: 12, md: 7 }}
+          >
             <QRForm formData={formData} setFormData={setFormData} />
           </Grid>
-          <Grid size={{ xs: 12, md: 5 }}>
+          <Grid
+            size={{ xs: 12, md: 5 }}
+          >
             <QRPreview formData={formData} />
           </Grid>
         </Grid>
