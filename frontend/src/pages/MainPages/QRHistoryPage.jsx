@@ -334,7 +334,9 @@ const QRHistoryPage = () => {
                                     startIcon={<RefreshIcon />}
                                     sx={{
                                         height: '100%',
+                                        fontWeight: 600,
                                         textTransform: 'none',
+                                        fontSize: '1rem',
                                     }}
                                 >
                                     Refresh
@@ -355,6 +357,8 @@ const QRHistoryPage = () => {
                                     sx={{
                                         height: '100%',
                                         textTransform: 'none',
+                                        fontWeight: 600,
+                                        fontSize: '1rem',
                                     }}
                                 >
                                     Clear All
