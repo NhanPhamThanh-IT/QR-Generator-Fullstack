@@ -23,7 +23,7 @@ import {
     Alert,
     Snackbar
 } from '@mui/material';
-import SearchIcon from 'C/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
 import QrCodeIcon from '@mui/icons-material/QrCode';
