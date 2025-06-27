@@ -4,11 +4,11 @@ A full-stack web application for generating and managing QR codes with customiza
 
 ### Login page
 
-![Login Page](resources\login-page.jpg)
+![Login Page](./resources/login-page.jpg)
 
 ### Homepage
 
-![Home Page](resources\home-page.jpg)
+![Home Page](./resources/home-page.jpg)
 
 ## 🚀 Features
 
