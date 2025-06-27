@@ -23,18 +23,15 @@ import {
     Alert,
     Snackbar
 } from '@mui/material';
-import {
-    Search as SearchIcon,
-    Download as DownloadIcon,
-    Delete as DeleteIcon,
-    QrCode as QrCodeIcon,
-    Link as LinkIcon,
-    Email as EmailIcon,
-    Phone as PhoneIcon,
-    TextFields as TextIcon,
-    Refresh as RefreshIcon,
-    ClearAll as ClearAllIcon
-} from '@mui/icons-material';
+import SearchIcon from '@mui/icons-material/Search';
+import DownloadIcon from '@mui/icons-material/Download';
+import DeleteIcon from '@mui/icons-material/Delete';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import LinkIcon from '@mui/icons-material/Link';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 import HeroSection from '../../components/pages/common/HeroSection';
 import SectionHeading from '../../components/pages/common/SectionHeading';
 import {

@@ -1,5 +1,5 @@
-import { ClearAll as ClearAllIcon } from '@mui/icons-material';
 import { Typography, Box, Chip } from '@mui/material';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 import ConfirmationDialog from '../common/ConfirmationDialog';
 
 const ClearAllDialog = ({
