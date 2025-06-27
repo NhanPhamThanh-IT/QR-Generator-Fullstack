@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Paper, Typography, Box, Snackbar, Alert, Button } from '@mui/material';
-import { Download, ContentCopy } from '@mui/icons-material';
+import Download from '@mui/icons-material/Download';
+import ContentCopy from '@mui/icons-material/ContentCopy';
 import { generateQR } from '../../../services/qrService';
 
 const QRPreview = ({ formData }) => {

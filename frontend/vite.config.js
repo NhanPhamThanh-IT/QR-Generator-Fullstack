@@ -21,5 +21,23 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'mui-core': ['@mui/material', 'react-transition-group'],
+            'mui-icons': ['@mui/icons-material'],
+            'react-vendor': ['react', 'react-dom']
+          }
+        }
+      }
+    },
+    optimizeDeps: {
+      include: [
+        '@mui/material',
+        '@mui/icons-material',
+        'react-transition-group'
+      ]
+    }
   };
 });
