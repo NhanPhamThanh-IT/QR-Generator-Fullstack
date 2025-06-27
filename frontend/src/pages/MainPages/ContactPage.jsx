@@ -18,6 +18,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { useForm } from "react-hook-form";
 import HeroSection from '../../components/pages/common/HeroSection'
+import SectionHeading from '../../components/pages/common/SectionHeading';
 import { sendContactMessage } from "../../services/contactService";
 
 const StyledContainer = styled(Container)(({ theme }) => ({
@@ -136,91 +137,99 @@ export default function ContactPage() {
             {/* Hero Section */}
             <HeroSection />
 
-            <StyledContainer maxWidth="xl">
-                <StyledPaper elevation={0}>
-                    <Grid container spacing={0}>
-                        <Grid size={{ xs: 12, md: 6 }}>
-                            <FormSection>
-                                <Typography variant="h4" fontWeight={700} mb={2} color="#2b5876">
-                                    Contact Us
-                                </Typography>
-                                <Typography variant="body1" mb={4} color="#666">
-                                    Have a question or want to work with us? Fill out the form below and we'll get back to you soon.
-                                </Typography>
-                                <form onSubmit={handleSubmit(onSubmit)} noValidate>
-                                    <StyledTextField
-                                        label="Subject"
-                                        fullWidth
-                                        {...register("subject", { required: "Subject is required" })}
-                                        error={!!errors.subject}
-                                        helperText={errors.subject?.message}
-                                    />
-                                    <StyledTextField
-                                        label="Message"
-                                        fullWidth
-                                        multiline
-                                        minRows={4}
-                                        {...register("message", { required: "Message is required" })}
-                                        error={!!errors.message}
-                                        helperText={errors.message?.message}
-                                    />
-                                    <Box sx={{ position: "relative", mt: 2 }}>
-                                        <StyledButton
-                                            type="submit"
-                                            variant="contained"
+            <Container maxWidth="lg" sx={{ py: 4 }}>
+                <SectionHeading
+                    overline="Contact Us"
+                    title="Get in Touch"
+                    description="We'd love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to reach out."
+                />
+
+                <StyledContainer maxWidth="xl">
+                    <StyledPaper elevation={0}>
+                        <Grid container spacing={0}>
+                            <Grid size={{ xs: 12, md: 6 }}>
+                                <FormSection>
+                                    <Typography variant="h4" fontWeight={700} mb={2} color="#2b5876">
+                                        Contact Us
+                                    </Typography>
+                                    <Typography variant="body1" mb={4} color="#666">
+                                        Have a question or want to work with us? Fill out the form below and we'll get back to you soon.
+                                    </Typography>
+                                    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                                        <StyledTextField
+                                            label="Subject"
                                             fullWidth
-                                            disabled={loading}
-                                        >
-                                            {loading ? <CircularProgress size={24} color="inherit" /> : "Send Message"}
-                                        </StyledButton>
+                                            {...register("subject", { required: "Subject is required" })}
+                                            error={!!errors.subject}
+                                            helperText={errors.subject?.message}
+                                        />
+                                        <StyledTextField
+                                            label="Message"
+                                            fullWidth
+                                            multiline
+                                            minRows={4}
+                                            {...register("message", { required: "Message is required" })}
+                                            error={!!errors.message}
+                                            helperText={errors.message?.message}
+                                        />
+                                        <Box sx={{ position: "relative", mt: 2 }}>
+                                            <StyledButton
+                                                type="submit"
+                                                variant="contained"
+                                                fullWidth
+                                                disabled={loading}
+                                            >
+                                                {loading ? <CircularProgress size={24} color="inherit" /> : "Send Message"}
+                                            </StyledButton>
+                                        </Box>
+                                    </form>
+                                </FormSection>
+                            </Grid>
+                            <Grid size={{ xs: 12, md: 6 }}>
+                                <InfoSection>
+                                    <Typography variant="h5" fontWeight={600} mb={3}>
+                                        Contact Information
+                                    </Typography>
+                                    {contactInfo.map((info, idx) => (
+                                        <Box key={info.label} display="flex" alignItems="center" mb={2}>
+                                            {info.icon}
+                                            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                                                {info.value}
+                                            </Typography>
+                                        </Box>
+                                    ))}
+                                    <Box mt={4} width="100%">
+                                        <iframe
+                                            title="Google Maps"
+                                            src={GOOGLE_MAPS_EMBED}
+                                            width="100%"
+                                            height={isMobile ? 200 : 220}
+                                            style={{ border: 0, borderRadius: 12 }}
+                                            allowFullScreen=""
+                                            loading="lazy"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                        ></iframe>
                                     </Box>
-                                </form>
-                            </FormSection>
+                                </InfoSection>
+                            </Grid>
                         </Grid>
-                        <Grid size={{ xs: 12, md: 6 }}>
-                            <InfoSection>
-                                <Typography variant="h5" fontWeight={600} mb={3}>
-                                    Contact Information
-                                </Typography>
-                                {contactInfo.map((info, idx) => (
-                                    <Box key={info.label} display="flex" alignItems="center" mb={2}>
-                                        {info.icon}
-                                        <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                                            {info.value}
-                                        </Typography>
-                                    </Box>
-                                ))}
-                                <Box mt={4} width="100%">
-                                    <iframe
-                                        title="Google Maps"
-                                        src={GOOGLE_MAPS_EMBED}
-                                        width="100%"
-                                        height={isMobile ? 200 : 220}
-                                        style={{ border: 0, borderRadius: 12 }}
-                                        allowFullScreen=""
-                                        loading="lazy"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                    ></iframe>
-                                </Box>
-                            </InfoSection>
-                        </Grid>
-                    </Grid>
-                    <Snackbar
-                        open={snackbar.open}
-                        autoHideDuration={4000}
-                        onClose={() => setSnackbar({ ...snackbar, open: false })}
-                        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                    >
-                        <Alert
+                        <Snackbar
+                            open={snackbar.open}
+                            autoHideDuration={4000}
                             onClose={() => setSnackbar({ ...snackbar, open: false })}
-                            severity={snackbar.severity}
-                            sx={{ width: "100%" }}
+                            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                         >
-                            {snackbar.message}
-                        </Alert>
-                    </Snackbar>
-                </StyledPaper>
-            </StyledContainer>
+                            <Alert
+                                onClose={() => setSnackbar({ ...snackbar, open: false })}
+                                severity={snackbar.severity}
+                                sx={{ width: "100%" }}
+                            >
+                                {snackbar.message}
+                            </Alert>
+                        </Snackbar>
+                    </StyledPaper>
+                </StyledContainer>
+            </Container>
         </>
     );
 }

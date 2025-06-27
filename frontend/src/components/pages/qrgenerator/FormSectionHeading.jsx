@@ -20,7 +20,6 @@ export default function FormSectionHeading({ index, title }) {
             </Box>
             <InputLabel
                 sx={{
-                    fontWeight: 500,
                     color: 'text.primary',
                     minWidth: '80px',
                     fontWeight: 600,

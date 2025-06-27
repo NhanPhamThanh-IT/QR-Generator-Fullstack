@@ -5,6 +5,7 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import SecurityIcon from '@mui/icons-material/Security';
 import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
 import SpeedIcon from '@mui/icons-material/Speed';
+import SectionHeading from '../common/SectionHeading';
 
 const FeaturesSection = () => {
     const features = [
@@ -43,17 +44,11 @@ const FeaturesSection = () => {
     return (
         <Box id="features" sx={{ py: 10 }}>
             <Container maxWidth="lg">
-                <Box sx={{ mb: 8, textAlign: 'center' }}>
-                    <Typography variant="overline" color="primary" sx={{ fontWeight: 'bold', letterSpacing: 1.5 }}>
-                        POWERFUL FEATURES
-                    </Typography>
-                    <Typography variant="h3" fontWeight="bold" sx={{ mt: 1, mb: 2 }}>
-                        Why Choose Our QR Generator?
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary" sx={{ maxWidth: '800px', mx: 'auto' }}>
-                        We offer enterprise-grade QR code solutions with features designed to help your business grow
-                    </Typography>
-                </Box>
+                <SectionHeading
+                    overline="POWERFUL FEATURES"
+                    title="Why Choose Our QR Generator?"
+                    description="We offer enterprise-grade QR code solutions with features designed to help your business grow."
+                />
 
                 <Grid container spacing={4}>
                     {features.map((feature, index) => (
